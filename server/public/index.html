@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     <header>
         <nav>
             <ul>
@@ -63,7 +63,7 @@
                 </table>
 
                 <table class="Fuel-Cost-Frequency-table">
-                    <caption class="Fuel-Cost-Frequency-caption">Fuel Cost / Frequency</caption>
+                    <caption class="Fuel-Cost-Frequency-caption">Fuel Cost / ACP</caption>
                     <tbody>
 
                     </tbody>
@@ -85,14 +85,9 @@
                 </table>
 
                 <table class="Normal-Rate-table">
-                    <caption class="Normal-Rate-caption">Normal Rate</caption>
+                    <caption class="Normal-Rate-caption">Inst. Parameters</caption>
                     <thead>
-                        <tr>
-                            <th style="color: #00a9a9;">Block No</th>
-                            <th style="color: #00a9a9;">DAM (Rs)</th>
-                            <th style="color: #00a9a9;">RTM (Rs)</th>
-                            <th style="color: #00a9a9;">NRATE (Rs)</th>
-                        </tr>
+
                     </thead>
                     <tbody style="color: white;">
 
@@ -208,6 +203,7 @@
                 realTimeExpImpTbody.innerHTML = '';
 
                 // Populate the Previous Block table with ID 1 data
+                // Populate the Previous Block table with ID 1 data
                 const previousBlockRows = [
                     { label: 'Block No', value: previousBlockData.P1 },
                     { label: 'Block Time', value: previousBlockData.P2 },
@@ -218,33 +214,43 @@
                     { label: 'Avg.Frequency(Hz)', value: previousBlockData.P7 },
                     { label: 'Avg.Export(MW)', value: previousBlockData.P8 },
                     { label: 'DS(MW)', value: previousBlockData.P9 },
-                    { label: 'Normal Rate(Rs)', value: previousBlockData.P10 },
-                    { label: 'DS Rate(Rs)', value: previousBlockData.P11 },
-                    { label: 'DS(Rs)', value: previousBlockData.P12 },
-                    { label: 'Additional DS(Rs)', value: previousBlockData.P13 },
-                    { label: 'Total DS(Rs)', value: previousBlockData.P14 },
-                    { label: 'Fuel Cost(Rs)', value: previousBlockData.P15 },
-                    { label: 'Net Profit/Lose(Rs)', value: previousBlockData.P16 },
+                    { label: 'DS Rate(Rs)', value: previousBlockData.P10 },
+                    { label: 'DS(Rs)', value: previousBlockData.P11 },
+                    { label: 'DS beyond ± 10% (Rs.)', value: previousBlockData.P12 },
+                    { label: 'Total DS(Rs)', value: previousBlockData.P13 },
+                    { label: 'Fuel Cost(Rs)', value: previousBlockData.P14 },
+                    { label: 'Net Gain/Lose(Rs)', value: previousBlockData.P15 },
+                    { label: 'Avg. MVAr', value: previousBlockData.P16 },
                     { label: 'MVAr(-97% of V)', value: previousBlockData.P17 },
                     { label: 'Gain/Lose(Rs)', value: previousBlockData.P18 },
                     { label: 'MVAr(-103% of V)', value: previousBlockData.P19 },
                     { label: 'Gain/Lose(Rs)', value: previousBlockData.P20 },
+                    { label: 'Net Gain/Loss (Rs.)', value: previousBlockData.P21 },
                 ];
 
-                previousBlockRows.forEach(row => {
+                previousBlockRows.forEach((row, index) => {
                     const tr = document.createElement('tr');
                     const value = row.value !== null && row.value !== undefined ? row.value : 'undefined';
 
                     tr.innerHTML = `
-                    <td style="color: #00ffff;">${row.label}</td>
-                    <td style="color: ${typeof row.value === 'number' ? (row.value < 0 ? 'red' : 'white') : 'white'};">
-                      ${row.value !== null && row.value !== undefined
+    <td style="color: #00ffff;">${row.label}</td>
+    <td style="color: ${typeof row.value === 'number' ? (row.value < 0 ? 'red' : 'white') : 'white'};">
+      ${row.value !== null && row.value !== undefined
                             ? (row.value < 0 ? `<span style="color: red;">${row.value}</span>` : row.value)
                             : 'undefined'}
-                    </td>
-                `;
+    </td>
+`;
 
                     previousBlockTbody.appendChild(tr);
+
+                    // Check if the current row is "Net Profit/Lose(Rs)" to insert the Reactive Power header
+                    if (row.label === 'Net Gain/Lose(Rs)') {
+                        const reactivePowerRow = document.createElement('tr');
+                        reactivePowerRow.innerHTML = `
+            <th colspan="3" style="text-align: center; color: #d9823d; padding: 10px;">Reactive Power</th>
+        `;
+                        previousBlockTbody.appendChild(reactivePowerRow);
+                    }
                 });
 
 
@@ -257,22 +263,21 @@
                     { label: 'Sch.Generation(MW)', value: currentBlockData.P5 },
                     { label: 'Backing Down(MW)', value: currentBlockData.P6 },
                     { label: 'Exp./SG%', value: currentBlockData.P7 },
-                    { label: 'Inst.Frequency(Hz)', value: currentBlockData.P8 },
-                    { label: 'Inst.Export(MW)', value: currentBlockData.P9 },
-                    { label: 'Avg.Frequency(Hz)', value: currentBlockData.P10 },
-                    { label: 'Avg.Export(MW)', value: currentBlockData.P11 },
-                    { label: 'DS(MW)', value: currentBlockData.P12 },
-                    { label: 'Normal Rate(Rs)', value: currentBlockData.P13 },
-                    { label: 'DS Rate(Rs)', value: currentBlockData.P14 },
-                    { label: 'DS(Rs)', value: currentBlockData.P15 },
-                    { label: 'Additional DS(Rs)', value: currentBlockData.P16 },
-                    { label: 'Total DS(Rs)', value: currentBlockData.P17 },
-                    { label: 'Fuel Cost(Rs)', value: currentBlockData.P18 },
-                    { label: 'Net Profit/Lose(Rs)', value: currentBlockData.P19 },
-                    { label: 'MVAr(-97% of V)', value: currentBlockData.P20 },
+                    { label: 'Avg.Frequency(Hz)', value: currentBlockData.P8 },
+                    { label: 'Avg.Export(MW)', value: currentBlockData.P9 },
+                    { label: 'DS(MW)', value: currentBlockData.P10 },
+                    { label: 'DS Rate(Rs)', value: currentBlockData.P11 },
+                    { label: 'DS(Rs)', value: currentBlockData.P12 },
+                    { label: 'DS beyond ± 10% (Rs.)', value: currentBlockData.P13 },
+                    { label: 'Total DS(Rs)', value: currentBlockData.P14 },
+                    { label: 'Fuel Cost(Rs)', value: currentBlockData.P15 },
+                    { label: 'Net Gain/Lose(Rs)', value: currentBlockData.P16 },
+                    { label: 'Avg. MVAr', value: currentBlockData.P17 },
+                    { label: 'MVAr(-97% of V)', value: currentBlockData.P18 },
+                    { label: 'Gain/Lose(Rs)', value: currentBlockData.P19 },
+                    { label: 'MVAr(-103% of V)', value: currentBlockData.P20 },
                     { label: 'Gain/Lose(Rs)', value: currentBlockData.P21 },
-                    { label: 'MVAr(-103% of V)', value: currentBlockData.P22 },
-                    { label: 'Gain/Lose(Rs)', value: currentBlockData.P23 },
+                    { label: 'Net Gain/Loss (Rs.)', value: currentBlockData.P22 },
                 ];
 
                 currentBlockRows.forEach(row => {
@@ -288,6 +293,13 @@
                     </td>
             `;
                     currentBlockTbody.appendChild(tr);
+                    if (row.label === 'Net Gain/Lose(Rs)') {
+                        const reactivePowerRow = document.createElement('tr');
+                        reactivePowerRow.innerHTML = `
+            <th colspan="3" style="text-align: center; color: #d9823d; padding: 10px;">Reactive Power</th>
+        `;
+                        currentBlockTbody.appendChild(reactivePowerRow);
+                    }
                 });
 
                 // Populate the Previous Block Status table with ID 3 data
@@ -327,14 +339,10 @@
                     previousBlockStatusTbody.appendChild(tr);
                 });
 
-
-
-
                 // Populate the Fuel Cost / Frequency table
                 const fuelCostFrequencyRows = [
-                    { label: 'ACP(RS./kWh)', value: previousBlockData.P1 },
-                    { label: 'Fuel Cost Ph-1(Rs./kWh)', value: previousBlockData.P2 },
-                    { label: 'Avg.Freq.up to prev.block', value: previousBlockData.P4 },
+                    { label: 'Fuel Cost (Rs./kWh)', value: previousBlockData.P1 },
+                    { label: 'ACP(RS./kWh)', value: previousBlockData.P2 },
                 ];
 
                 fuelCostFrequencyRows.forEach(row => {
@@ -372,10 +380,10 @@
 
                 // Populate the Normal Rate table with data from previousBlockStatus
                 const normalRateRows = [
-                    { blockNo: previousBlockStatus.P1, damRate: previousBlockStatus.P2, rtmRate: previousBlockStatus.P3, nrate: previousBlockStatus.P4 },
-                    { blockNo: previousBlockStatus.P2, damRate: previousBlockStatus.P5, rtmRate: previousBlockStatus.P6, nrate: previousBlockStatus.P7 },
-                    { blockNo: previousBlockStatus.P3, damRate: previousBlockStatus.P8, rtmRate: previousBlockStatus.P9, nrate: previousBlockStatus.P10 },
-                    { blockNo: previousBlockStatus.P4, damRate: previousBlockStatus.P11, rtmRate: previousBlockStatus.P12, nrate: previousBlockStatus.P13 },
+                    { label: 'Net Exp (MW)', value: previousBlockStatus.P1 },
+                    { label: ' Frequency (Hz)', value: previousBlockStatus.P2 },
+                    { label: 'Net Exp (MVAr)', value: previousBlockStatus.P3 },
+                    { label: 'Grid Voltage (%)', value: previousBlockStatus.P4 },
                 ];
 
                 normalRateRows.forEach(row => {
@@ -385,10 +393,8 @@
                     const getValue = (value) => (value !== null && value !== undefined ? value : 'undefined');
 
                     tr.innerHTML = `
-                    <td style="color: white;">${getValue(row.blockNo)}</td>
-                    <td style="color: white;">${getValue(row.damRate)}</td>
-                    <td style="color: white;">${getValue(row.rtmRate)}</td>
-                    <td style="color: white;">${getValue(row.nrate)}</td>
+                    <td style="color: #f100f1;">${row.label}</td>
+                    <td style="color: #00ff00;">${row.value !== null ? row.value : 'undefined'}</td>
                 `;
 
                     normalRateTbody.appendChild(tr);
@@ -404,19 +410,20 @@
                     { label: 'SG(MWh)', value: cummUptoPreBlk.P5 },
                     { label: 'Backing Down(MWh)', value: cummUptoPreBlk.P6 },
                     { label: 'Exp./SG%', value: cummUptoPreBlk.P7 },
-                    { label: 'Export(MWh)', value: cummUptoPreBlk.P8 },
-                    { label: 'Import(MWh)', value: cummUptoPreBlk.P9 },
-                    { label: 'Net Export(MWh)', value: cummUptoPreBlk.P10 },
-                    { label: 'DS(MW)', value: cummUptoPreBlk.P11 },
-                    { label: 'DS(Rs)', value: cummUptoPreBlk.P12 },
-                    { label: 'Additional DS(Rs)', value: cummUptoPreBlk.P13 },
-                    { label: 'Total DS(Rs)', value: cummUptoPreBlk.P14 },
-                    { label: 'Fuel Cost(Rs)', value: cummUptoPreBlk.P15 },
-                    { label: 'Net Profit/Lose(Rs)', value: cummUptoPreBlk.P16 },
+                    { label: 'Avg. Frequency (Hz)', value: cummUptoPreBlk.P8 },
+                    { label: 'Net Export(MWh)', value: cummUptoPreBlk.P9 },
+                    { label: 'DS(MW)', value: cummUptoPreBlk.P10 },
+                    { label: 'DS(Rs)', value: cummUptoPreBlk.P11 },
+                    { label: 'DS beyond ±10% (Rs.)', value: cummUptoPreBlk.P12 },
+                    { label: 'Total DS(Rs)', value: cummUptoPreBlk.P13 },
+                    { label: 'Fuel Cost(Rs)', value: cummUptoPreBlk.P14 },
+                    { label: 'Net Gain/Lose(Rs)', value: cummUptoPreBlk.P15 },
+                    { label: 'Net Exp (MVARh)', value: cummUptoPreBlk.P16 },
                     { label: 'MVAr(-97% of V)', value: cummUptoPreBlk.P17 },
                     { label: 'Gain/Lose(Rs)', value: cummUptoPreBlk.P18 },
                     { label: 'MVAr(-103% of V)', value: cummUptoPreBlk.P19 },
                     { label: 'Gain/Lose(Rs)', value: cummUptoPreBlk.P20 },
+                    { label: 'Net Gain / Loss', value: cummUptoPreBlk.P21 }
                 ];
 
                 cumulativeRows.forEach(row => {
@@ -426,34 +433,41 @@
                 <td style="color: ${typeof row.value === 'number' ? (row.value < 0 ? 'red' : 'white') : 'white'};">${row.value !== null ? row.value : 'undefined'}</td>
             `;
                     cumulativeTbody.appendChild(tr);
+                    if (row.label === 'Net Gain/Lose(Rs)') {
+                        const reactivePowerRow = document.createElement('tr');
+                        reactivePowerRow.innerHTML = `
+            <th colspan="3" style="text-align: center; color: #d9823d; padding: 10px;">Reactive Power</th>
+        `;
+                        cumulativeTbody.appendChild(reactivePowerRow);
+                    }
                 });
 
                 const realTimeRows = [
                     { label: 'GEN-1', mw: realTimeGenerationData.P1, mvar: realTimeGenerationData.P2, volt: realTimeGenerationData.P3, amp: realTimeGenerationData.P4, pf: realTimeGenerationData.P5 },
                     { label: 'GEN-2', mw: realTimeGenerationData.P6, mvar: realTimeGenerationData.P7, volt: realTimeGenerationData.P8, amp: realTimeGenerationData.P9, pf: realTimeGenerationData.P10 },
+                    { label: 'GEN-3', mw: realTimeGenerationData.P1, mvar: realTimeGenerationData.P2, volt: realTimeGenerationData.P3, amp: realTimeGenerationData.P4, pf: realTimeGenerationData.P5 },
+                    { label: 'GEN-4', mw: realTimeGenerationData.P6, mvar: realTimeGenerationData.P7, volt: realTimeGenerationData.P8, amp: realTimeGenerationData.P9, pf: realTimeGenerationData.P10 },
                     { label: 'TOTAL', mw: realTimeGenerationData.P11, mvar: realTimeGenerationData.P12, volt: '', amp: '', pf: '' }, // Assuming TOTAL does not have volt, amp, pf
-                    { label: 'Inst.Aux.Cons(MWh)', mw: '', mvar: realTimeGenerationData.P13, volt: 'Inst.Aux.Cons(%)', amp: '', pf: realTimeGenerationData.P14 },
-                    { label: 'Cumm.Aux.Cons(MWh)', mw: '', mvar: realTimeGenerationData.P15, volt: 'Cumm.Aux.Cons(%)', amp: '', pf: realTimeGenerationData.P16 }
+                    { label: 'PH-1 Inst./Cumm. APC (MWh / %)', mw: '', mvar: realTimeGenerationData.P13, volt: realTimeGenerationData.P14, amp: realTimeGenerationData.P15, pf: realTimeGenerationData.P14 },
+                    { label: 'PH-2 Inst./Cumm. APC (MWh / %)', mw: '', mvar: realTimeGenerationData.P15, volt: realTimeGenerationData.P16, amp: realTimeGenerationData.P17, pf: realTimeGenerationData.P16 }
                 ];
 
                 realTimeRows.forEach(row => {
-                    const labelColor = (row.label === 'Inst.Aux.Cons(MWh)' || row.label === 'Cumm.Aux.Cons(MWh)') ? '#860389' : '#00ffff';
+                    const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#860389' : '#00ffff';
                     const voltColor = (row.volt === 'Inst.Aux.Cons(%)' || row.volt === 'Cumm.Aux.Cons(%)') ? '#860389' : 'white';
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                    <td style="color: ${labelColor};">${row.label}</td>
-                    <td style="color: white;">${row.mw}</td>
-                    <td style="color: white;">${row.mvar}</td>
-                    <td style="color: ${voltColor};">${row.volt}</td>
-                    <td style="color: white;">${row.amp}</td>
-                    <td style="color: white;">${row.pf}</td>
-                `;
+        <td style="color: ${labelColor};">${row.label}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.mw}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.mvar}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.volt}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.amp}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.pf}</td>
+    `;
 
                     realTimeGenerationTbody.appendChild(tr);
                 });
-
-
 
                 const expImpRows = [
                     { label: 'KJ', expMW: realTimeExpImpData.P1, impMVV: realTimeExpImpData.P2, mvar: realTimeExpImpData.P3, volt: realTimeExpImpData.P4, amp: realTimeExpImpData.P5, pf: realTimeExpImpData.P6 },
@@ -462,7 +476,8 @@
                     { label: 'ZL-2', expMW: realTimeExpImpData.P19, impMVV: realTimeExpImpData.P20, mvar: realTimeExpImpData.P21, volt: realTimeExpImpData.P22, amp: realTimeExpImpData.P23, pf: realTimeExpImpData.P24 },
                     { label: 'I/C-A', expMW: realTimeExpImpData.P1, impMVV: realTimeExpImpData.P2, mvar: realTimeExpImpData.P3, volt: realTimeExpImpData.P4, amp: realTimeExpImpData.P5, pf: realTimeExpImpData.P6 },
                     { label: 'I/C-B', expMW: realTimeExpImpData.P7, impMVV: realTimeExpImpData.P8, mvar: realTimeExpImpData.P9, volt: realTimeExpImpData.P10, amp: realTimeExpImpData.P11, pf: realTimeExpImpData.P12 },
-                    { label: 'TOTAL', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: '', pf: '' }, // Assuming TOTAL does not have volt, amp, pf
+                    { label: 'AD -1', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 }, // Assuming TOTAL does not have volt, amp, pf
+                    { label: 'AD -2', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 }, // Assuming TOTAL does not have volt, amp, pf
                 ];
 
                 expImpRows.forEach(row => {
