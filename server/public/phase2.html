@@ -431,17 +431,17 @@
                 ];
 
                 realTimeRows.forEach(row => {
-                    const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#860389' : '#00ffff';
-                    const voltColor = (row.volt === 'Inst.Aux.Cons(%)' || row.volt === 'Cumm.Aux.Cons(%)') ? '#860389' : 'white';
+                    const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#de00de' : '#00ffff';
+                    const voltColor = (row.volt === 'Inst.Aux.Cons(%)' || row.volt === 'Cumm.Aux.Cons(%)') ? '#de00de' : 'white';
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
         <td style="color: ${labelColor};">${row.label}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.mw}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.mvar}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.volt}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.amp}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#860389' : 'white'};">${row.pf}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.mw}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.mvar}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.volt}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.amp}</td>
+        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.pf}</td>
     `;
 
                     realTimeGenerationTbody.appendChild(tr);
