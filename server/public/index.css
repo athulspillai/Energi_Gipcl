@@ -8,46 +8,53 @@ body {
 header {
     background-color: #1a1a1a;
     color: white;
-    padding: 1px 30px;
+    padding: 0px 30px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 nav ul li a {
-    color: #60943c;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #1a1a1a; /* Fixed to include # */
+    color: white;
     text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background-color: #00b300;
+}
+
+/* Style for the active link */
+nav ul li a.active {
+    background-color: #00b300; /* Green color for active link */
 }
 
 .header-container {
     display: flex;
-    /* Use flexbox layout */
     align-items: center;
-    /* Center items vertically */
     padding: 5px;
-    /* Adjust padding as needed */
     background-color: #1a1a1a;
 }
 
 .date-time {
     color: #1a1a1a;
-    /* Change color as needed */
     font-size: 1.5rem;
-    /* Adjust font size as needed */
     color: #00ffff;
 }
 
 .table-title {
     margin: 0;
     padding: 5px 25px;
-    color: #60943c;
+    color: #00e600;
 }
 
 .tables-container {
@@ -56,56 +63,59 @@ nav ul li a {
     margin-top: 0%;
 }
 
+.tables-container table {
+    height: 665px;
+}
+
 .Previous-Block-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     width: 25%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
-}
-
-.Previous-Block-table,
-th,
-td {
-    border: 1px solid #333;
-}
-
-.Previous-Block-table,
-th,
-td {
-    padding: 8px;
-    text-align: left;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
 .Previous-Block-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    font-weight: bold;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 
-.Previous-Block-tbody,
-tr {
-    line-height: 0%;
+.Previous-Block-tbody tr {
+    line-height: 0
+        /* Adjust line height for better readability */
 }
-
 
 .Current-Block-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
+    /* Remove extra margin */
     width: 25%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
+    /* gap: 10px; */
 }
 
-.Current-Block-table,
+/* .Current-Block-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Current-Block-table,
 th,
@@ -116,26 +126,34 @@ td {
 
 .Current-Block-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #00e600;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    font-weight: bold;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Cumulative-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
-    width: 27%;
-    /* Adjust width as needed */
+    width: 25%;
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Cumulative-table,
+/* .Cumulative-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Cumulative-table,
 th,
@@ -146,25 +164,33 @@ td {
 
 .Cumulative-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Previous-Block-Status-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     /* width: 24%;  */
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Previous-Block-Status-table,
+/* .Previous-Block-Status-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Previous-Block-Status-table,
 th,
@@ -175,25 +201,33 @@ td {
 
 .Previous-Block-Status-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Fuel-Cost-Frequency-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     /* width: 24%;  */
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Fuel-Cost-Frequency-table,
+/* .Fuel-Cost-Frequency-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Fuel-Cost-Frequency-table,
 th,
@@ -204,25 +238,33 @@ td {
 
 .Fuel-Cost-Frequency-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Next-Block-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     /* width: 24%;  */
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Next-Block-table,
+/* .Next-Block-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Next-Block-table,
 th,
@@ -233,25 +275,33 @@ td {
 
 .Next-Block-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Normal-Rate-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     /* width: 24%;  */
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Normal-Rate-table,
+/* .Normal-Rate-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Normal-Rate-table,
 th,
@@ -262,25 +312,33 @@ td {
 
 .Normal-Rate-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Real-Time-Generation-Data-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     width: 50%;
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Real-Time-Generation-Data-table,
+/* .Real-Time-Generation-Data-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Real-Time-Generation-Data-table,
 th,
@@ -291,11 +349,15 @@ td {
 
 .Real-Time-Generation-Data-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .table-containerss {
@@ -304,24 +366,21 @@ td {
 
 .table-containerss table {
     width: 95%;
-    /* or any specific width */
     margin-bottom: 20px;
-    /* Optional: space between tables */
-    height: 7.5%;
+    height: 7.7%;
 }
 
 .Previous-Blocks-table {
     border-collapse: collapse;
     margin: 10px;
     width: 32%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
 }
 
 .Previous-Blocks-table,
 th,
 td {
-    border: 1px solid #333;
+    border: 1px solid #1a1a1a;
 }
 
 .Previous-Blocks-tables,
@@ -333,9 +392,9 @@ td {
 
 .Previous-Blocks-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
 }
@@ -344,14 +403,13 @@ td {
     border-collapse: collapse;
     margin: 10px;
     width: 32%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
 }
 
 .Current-Blocks-table,
 th,
 td {
-    border: 1px solid #333;
+    border: 1px solid #1a1a1a;
 }
 
 .Current-Blocks-table,
@@ -363,9 +421,9 @@ td {
 
 .Current-Blocks-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
 }
@@ -374,14 +432,13 @@ td {
     border-collapse: collapse;
     margin: 10px;
     width: 25%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
 }
 
 .Cumulatives-table,
 th,
 td {
-    border: 1px solid #333;
+    border: 1px solid #1a1a1a;
 }
 
 .Cumulatives-table,
@@ -393,25 +450,29 @@ td {
 
 .Cumulatives-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
 }
 
 .Real-Time-Exp-Imp-Data-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     width: 50%;
     background-color: #1a1a1a;
+    border: 2px solid white;
+    /* White border to create the frame */
+    border-top: none;
+    /* Remove the top border for alignment with caption */
 }
 
-.Real-Time-Exp-Imp-Data-table,
+/* .Real-Time-Exp-Imp-Data-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Real-Time-Exp-Imp-Data-table,
 th,
@@ -422,11 +483,15 @@ td {
 
 .Real-Time-Exp-Imp-Data-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    /* Add the same border as the table */
+    border-bottom: none;
+    /* Merge the caption with the table frame */
 }
 
 .Normal-Rate-tables {
@@ -439,7 +504,7 @@ td {
 .Normal-Rate-tables,
 th,
 td {
-    border: 1px solid #333;
+    border: 1px solid #1a1a1a;
 }
 
 .Normal-Rate-tables,
@@ -451,9 +516,9 @@ td {
 
 .Normal-Rate-tables caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
 }
@@ -465,11 +530,11 @@ td {
     background-color: #1a1a1a;
 }
 
-.Normal-Rate-table,
+/* .Normal-Rate-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Normal-Rate-table,
 th,
@@ -480,9 +545,9 @@ td {
 
 .Normal-Rate-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
 }
@@ -491,6 +556,7 @@ td {
     display: flex;
     margin: 20px;
     width: 98%;
+    margin-top: -40px;
 }
 
 
@@ -501,22 +567,22 @@ td {
 }
 
 .Real-Time-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     width: 33%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
-    min-height: 500px;
-    /* Adjust the height as needed */
+    min-height: 600px;
     height: 100%;
-    /* Makes tables stretch equally */
+    border: 2px solid white;
+    border-top: none;
+
 }
 
-.Real-Time-table,
+/* .Real-Time-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Real-Time-table,
 th,
@@ -527,11 +593,13 @@ td {
 
 .Real-Time-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    border-bottom: none;
 }
 
 
@@ -541,22 +609,21 @@ tr {
 }
 
 .Misnew-Current-Blocks-table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin: 10px;
     width: 33%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
-    min-height: 500px;
-    /* Adjust the height as needed */
+    min-height: 600px;
     height: 100%;
-    /* Makes tables stretch equally */
+    border: 2px solid white;
+    border-top: none;
 }
 
-.Misnew-Current-Blocks-table,
+/* .Misnew-Current-Blocks-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Misnew-Current-Blocks-table,
 th,
@@ -567,30 +634,31 @@ td {
 
 .Misnew-Current-Blocks-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    border-bottom: none;
 }
 
 .Misnew-Cumulatives-table {
     border-collapse: collapse;
     margin: 10px;
     width: 33%;
-    /* Adjust width as needed */
     background-color: #1a1a1a;
-    min-height: 500px;
-    /* Adjust the height as needed */
+    min-height: 600px;
     height: 100%;
-    /* Makes tables stretch equally */
+    border: 2px solid white;
+    border-top: none;
 }
 
-.Misnew-Cumulatives-table,
+/* .Misnew-Cumulatives-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Misnew-Cumulatives-table,
 th,
@@ -601,11 +669,13 @@ td {
 
 .Misnew-Cumulatives-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    border-bottom: none;
 }
 
 
@@ -614,13 +684,15 @@ td {
     margin: 10px;
     width: 50%;
     background-color: #1a1a1a;
+    border: 2px solid white;
+    border-top: none;
 }
 
-.Acp-Fuel-Cost-Frequency-table,
+/* .Acp-Fuel-Cost-Frequency-table,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Acp-Fuel-Cost-Frequency-table,
 th,
@@ -631,11 +703,13 @@ td {
 
 .Acp-Fuel-Cost-Frequency-table caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
+    border: 2px solid white;
+    border-bottom: none;
 }
 
 .Normal-Rate-tables {
@@ -643,14 +717,15 @@ td {
     margin: 10px;
     width: 50%;
     background-color: #1a1a1a;
-
+    border: 2px solid white;
+    border-top: none;
 }
 
-.Normal-Rate-tables,
+/* .Normal-Rate-tables,
 th,
 td {
-    border: 1px solid #333;
-}
+    border: 1px solid #1a1a1a;
+} */
 
 .Normal-Rate-tables,
 th,
@@ -661,9 +736,9 @@ td {
 
 .Normal-Rate-tables caption {
     font-weight: bold;
-    color: #d9823d;
+    color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: left;
     padding: 5px;
 }
@@ -672,6 +747,6 @@ td {
     display: flex;
     margin: 20px;
     width: 98%;
-    height: 210px;
+    height: 300px;
+    margin-top: -30px;
 }
-

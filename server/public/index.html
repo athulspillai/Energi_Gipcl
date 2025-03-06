@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <header>
         <nav>
             <ul>
@@ -46,19 +45,18 @@
                 </tbody>
             </table>
             <div class="table-containerss">
-                <table class="Previous-Block-Status-table">
+                <table style="height: 130px;" class="Previous-Block-Status-table">
                     <caption class="Previous-Block-Status-caption">Previous Block Status</caption>
                     <thead>
                         <tr>
-                            <th style="color: #00bbbb;">Block.No</th>
-                            <th style="color: #00bbbb;">Frequency</th>
-                            <th style="color: #00bbbb;">SG</th>
-                            <th style="color: #00bbbb;">Net.Export</th>
-                            <th style="color: #00bbbb;">Dev.MW</th>
+                            <th style="color: #00eaea; font-weight: bold;">Block.No</th>
+                            <th style="color: #00eaea; font-weight: bold;">Frequency</th>
+                            <th style="color: #00eaea; font-weight: bold;">SG</th>
+                            <th style="color: #00eaea; font-weight: bold;">Net.Export</th>
+                            <th style="color: #00eaea; font-weight: bold;">Dev.MW</th>
                         </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
 
@@ -69,14 +67,14 @@
                     </tbody>
                 </table>
 
-                <table class="Next-Block-table">
+                <table style="height: 110px;" class="Next-Block-table">
                     <caption class="Next-Block-caption">Next Block</caption>
                     <thead>
                         <tr>
-                            <th style="color: #00a9a9;">Block No</th>
-                            <th style="color: #00a9a9;">Block Time</th>
-                            <th style="color: #00a9a9;">DC MW</th>
-                            <th style="color: #00a9a9;">SG MW</th>
+                            <th style="color: #00eaea; font-weight: bold;">Block No</th>
+                            <th style="color: #00eaea; font-weight: bold;">Block Time</th>
+                            <th style="color: #00eaea; font-weight: bold;">DC MW</th>
+                            <th style="color: #00eaea; font-weight: bold;">SG MW</th>
                         </tr>
                     </thead>
                     <tbody style="color: white;">
@@ -84,7 +82,7 @@
                     </tbody>
                 </table>
 
-                <table class="Normal-Rate-table">
+                <table style="height: 130px;" class="Normal-Rate-table">
                     <caption class="Normal-Rate-caption">Inst. Parameters</caption>
                     <thead>
 
@@ -104,18 +102,18 @@
         </div>
 
         <div class="tables-containers">
-            <table class="Real-Time-Generation-Data-table">
+            <table style="height: 130px;" class="Real-Time-Generation-Data-table">
                 <caption class="Real-Time-Generation-Data-caption">
                     Real Time Generation Data
                 </caption>
                 <thead>
                     <tr>
                         <th></th>
-                        <th style="color: #00ffff;">MW</th>
-                        <th style="color: #00ffff;">MVAR</th>
-                        <th style="color: #00ffff;">VOLT(kV)</th>
-                        <th style="color: #00ffff;">AMP (I)</th>
-                        <th style="color: #00ffff;">PF</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">MW</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">MVAR</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">VOLT (kV)</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">AMP (I)</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">PF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -130,12 +128,12 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th style="color: #00ffff;">EXP MW</th>
-                        <th style="color: #00ffff;">IMP MVV</th>
-                        <th style="color: #00ffff;">MVAR</th>
-                        <th style="color: #00ffff;">VOLT(kV)</th>
-                        <th style="color: #00ffff;">AMP (I)</th>
-                        <th style="color: #00ffff;">PF</th>
+                        <th style="color: #00ffff; font-weight: bold; text-align: center">EXP MW</th>
+                        <th style="color: #00ffff; font-weight: bold; text-align: center">IMP MW</th>
+                        <th style="color: #00ffff; font-weight: bold; text-align: center">MVAR</th>
+                        <th style="color: #00ffff; font-weight: bold; text-align: center">VOLT (kV)</th>
+                        <th style="color: #00ffff; font-weight: bold; text-align: center">AMP (I)</th>
+                        <th style="color: #00ffff; font-weight: bold; text-align: center">PF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -145,6 +143,20 @@
         </div>
     </main>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentPage = window.location.pathname.split("/").pop(); // Get the current page name
+            const navLinks = document.querySelectorAll("nav ul li a");
+
+            navLinks.forEach(link => {
+                // Remove the active class from all links
+                link.classList.remove("active");
+
+                // Add the active class to the current link
+                if (link.getAttribute("href") === currentPage) {
+                    link.classList.add("active");
+                }
+            });
+        });
         function updateDateTime() {
             const now = new Date();
             // Format date as DD/MM/YYYY
@@ -207,51 +219,64 @@
                 const previousBlockRows = [
                     { label: 'Block No', value: previousBlockData.P1 },
                     { label: 'Block Time', value: previousBlockData.P2 },
-                    { label: 'Dec.Capacity(MW)', value: previousBlockData.P3 },
-                    { label: 'Sch.Generation(MW)', value: previousBlockData.P4 },
+                    { label: 'Dec.Capacity (MW)', value: previousBlockData.P3 },
+                    { label: 'Sch.Generation (MW)', value: previousBlockData.P4 },
                     { label: 'Backing Down (MW)', value: previousBlockData.P5 },
                     { label: 'Exp./SG%', value: previousBlockData.P6 },
-                    { label: 'Avg.Frequency(Hz)', value: previousBlockData.P7 },
-                    { label: 'Avg.Export(MW)', value: previousBlockData.P8 },
-                    { label: 'DS(MW)', value: previousBlockData.P9 },
-                    { label: 'DS Rate(Rs)', value: previousBlockData.P10 },
-                    { label: 'DS(Rs)', value: previousBlockData.P11 },
-                    { label: 'DS beyond ± 10% (Rs.)', value: previousBlockData.P12 },
-                    { label: 'Total DS(Rs)', value: previousBlockData.P13 },
-                    { label: 'Fuel Cost(Rs)', value: previousBlockData.P14 },
-                    { label: 'Net Gain/Lose(Rs)', value: previousBlockData.P15 },
+                    { label: 'Avg.Frequency (Hz)', value: previousBlockData.P7 },
+                    { label: 'Avg.Export (MW)', value: previousBlockData.P8 },
+                    { label: 'DS (MW)', value: previousBlockData.P9 },
+                    { label: 'DS Rate (Rs)', value: previousBlockData.P10 },
+                    { label: 'DS (Rs)', value: previousBlockData.P11 },
+                    { label: 'DS beyond ± 10% (Rs)', value: previousBlockData.P12 },
+                    { label: 'Total DS (Rs)', value: previousBlockData.P13 },
+                    { label: 'Fuel Cost (Rs)', value: previousBlockData.P14 },
+                    { label: 'Net Gain /  Loss (Rs)', value: previousBlockData.P15 },
                     { label: 'Avg. MVAr', value: previousBlockData.P16 },
-                    { label: 'MVAr(-97% of V)', value: previousBlockData.P17 },
-                    { label: 'Gain/Lose(Rs)', value: previousBlockData.P18 },
-                    { label: 'MVAr(-103% of V)', value: previousBlockData.P19 },
-                    { label: 'Gain/Lose(Rs)', value: previousBlockData.P20 },
-                    { label: 'Net Gain/Loss (Rs.)', value: previousBlockData.P21 },
+                    { label: 'MVAr (<97% of V)', value: previousBlockData.P17 },
+                    { label: 'Gain / Loss (Rs)', value: previousBlockData.P18 },
+                    { label: 'MVAr (>103% of V)', value: previousBlockData.P19 },
+                    { label: 'Gain / Loss (Rs)', value: previousBlockData.P20 },
+                    { label: 'Net Gain / Loss (Rs)', value: previousBlockData.P21 },
                 ];
 
                 previousBlockRows.forEach((row, index) => {
                     const tr = document.createElement('tr');
                     const value = row.value !== null && row.value !== undefined ? row.value : 'undefined';
 
+                    // Define the labels that should have red text when their value is negative
+                    const labelsWithRedText = [
+                        'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
+                        'DS beyond ± 10% (Rs.)', 'Total DS (Rs)',
+                        'Fuel Cost (Rs)', 'Net Gain / Loss (Rs)'
+                    ];
+
                     tr.innerHTML = `
-    <td style="color: #00ffff;">${row.label}</td>
-    <td style="color: ${typeof row.value === 'number' ? (row.value < 0 ? 'red' : 'white') : 'white'};">
-      ${row.value !== null && row.value !== undefined
-                            ? (row.value < 0 ? `<span style="color: red;">${row.value}</span>` : row.value)
+                      <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
+                        <td style="color: ${typeof row.value === 'number'
+                            ? (row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white')
+                            : 'white'
+                        }; font-weight: bold; text-align: center;">
+                         ${row.value !== null && row.value !== undefined
+                            ? (row.value < 0 && labelsWithRedText.includes(row.label)
+                                ? `<span style="color: red;">${row.value}</span>`
+                                : row.value)
                             : 'undefined'}
-    </td>
-`;
+                        </td>
+                    `;
 
                     previousBlockTbody.appendChild(tr);
 
-                    // Check if the current row is "Net Profit/Lose(Rs)" to insert the Reactive Power header
-                    if (row.label === 'Net Gain/Lose(Rs)') {
+                    // Check if the current row is "Net Gain / Loss (Rs)" to insert the Reactive Power header
+                    if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-            <th colspan="3" style="text-align: center; color: #d9823d; padding: 10px;">Reactive Power</th>
-        `;
+                         <th colspan="3" style="text-align: center; color: #f79546; padding: 10px; font-weight: bold; font-size: 1.3rem; border-top: 2px solid white; border-bottom: 2px solid white; border-left: none; border-right: none; border-radius: 5px;">Reactive Power</th>
+                    `;
                         previousBlockTbody.appendChild(reactivePowerRow);
                     }
                 });
+
 
 
                 // Populate the Current Block table with ID 2 data
@@ -259,106 +284,129 @@
                     { label: 'Block No', value: currentBlockData.P1 },
                     { label: 'Block Time', value: currentBlockData.P2 },
                     { label: 'Time Left', value: currentBlockData.P3 }, // Assuming this is available in ID 2 data
-                    { label: 'Dec.Capacity(MW)', value: currentBlockData.P4 },
-                    { label: 'Sch.Generation(MW)', value: currentBlockData.P5 },
-                    { label: 'Backing Down(MW)', value: currentBlockData.P6 },
+                    { label: 'Dec.Capacity (MW)', value: currentBlockData.P4 },
+                    { label: 'Sch.Generation (MW)', value: currentBlockData.P5 },
+                    { label: 'Backing Down (MW)', value: currentBlockData.P6 },
                     { label: 'Exp./SG%', value: currentBlockData.P7 },
-                    { label: 'Avg.Frequency(Hz)', value: currentBlockData.P8 },
-                    { label: 'Avg.Export(MW)', value: currentBlockData.P9 },
-                    { label: 'DS(MW)', value: currentBlockData.P10 },
-                    { label: 'DS Rate(Rs)', value: currentBlockData.P11 },
-                    { label: 'DS(Rs)', value: currentBlockData.P12 },
-                    { label: 'DS beyond ± 10% (Rs.)', value: currentBlockData.P13 },
-                    { label: 'Total DS(Rs)', value: currentBlockData.P14 },
-                    { label: 'Fuel Cost(Rs)', value: currentBlockData.P15 },
-                    { label: 'Net Gain/Lose(Rs)', value: currentBlockData.P16 },
+                    { label: 'Avg.Frequency (Hz)', value: currentBlockData.P8 },
+                    { label: 'Avg.Export (MW)', value: currentBlockData.P9 },
+                    { label: 'DS (MW)', value: currentBlockData.P10 },
+                    { label: 'DS Rate (Rs)', value: currentBlockData.P11 },
+                    { label: 'DS (Rs)', value: currentBlockData.P12 },
+                    { label: 'DS beyond ± 10% (Rs)', value: currentBlockData.P13 },
+                    { label: 'Total DS (Rs)', value: currentBlockData.P14 },
+                    { label: 'Fuel Cost (Rs)', value: currentBlockData.P15 },
+                    { label: 'Net Gain /  Loss (Rs)', value: currentBlockData.P16 },
                     { label: 'Avg. MVAr', value: currentBlockData.P17 },
-                    { label: 'MVAr(-97% of V)', value: currentBlockData.P18 },
-                    { label: 'Gain/Lose(Rs)', value: currentBlockData.P19 },
-                    { label: 'MVAr(-103% of V)', value: currentBlockData.P20 },
-                    { label: 'Gain/Lose(Rs)', value: currentBlockData.P21 },
-                    { label: 'Net Gain/Loss (Rs.)', value: currentBlockData.P22 },
+                    { label: 'MVAr (<97% of V)', value: currentBlockData.P18 },
+                    { label: 'Gain / Loss (Rs)', value: currentBlockData.P19 },
+                    { label: 'MVAr (>103% of V)', value: currentBlockData.P20 },
+                    { label: 'Gain / Loss (Rs)', value: currentBlockData.P21 },
+                    { label: 'Net Gain / Loss (Rs)', value: currentBlockData.P22 },
                 ];
 
                 currentBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
                     const value = row.value !== null && row.value !== undefined ? row.value : 'undefined';
 
+                    // Labels that should have red text when the value is negative
+                    const labelsWithRedText = [
+                        'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
+                        'DS beyond ± 10% (Rs)', 'Total DS (Rs)',
+                        'Fuel Cost (Rs)', 'Net Gain /  Loss (Rs)'
+                    ];
+
                     tr.innerHTML = `
-                    <td style="color: #cccc00;">${row.label}</td>
-                    <td style="color: ${typeof row.value === 'number' ? (row.value < 0 ? 'red' : '#00e800') : '#00e800'};">
-                        ${row.value !== null && row.value !== undefined
-                            ? (row.value < 0 ? `<span style="color: red;">${row.value}</span>` : row.value)
+                        <td style="color: #e7e700; font-weight: bold;">${row.label}</td>
+                        <td style="color: ${typeof row.value === 'number' && row.value < 0 && labelsWithRedText.includes(row.label)
+                            ? 'red'
+                            : '#00e800'
+                        }; font-weight: bold; text-align: center;">
+                          ${row.value !== null && row.value !== undefined
+                            ? (row.value < 0 && labelsWithRedText.includes(row.label)
+                                ? `<span style="color: red;">${row.value}</span>`
+                                : row.value)
                             : 'undefined'}
-                    </td>
-            `;
+                        </td>
+                    `;
+
                     currentBlockTbody.appendChild(tr);
-                    if (row.label === 'Net Gain/Lose(Rs)') {
+
+                    // Check if the current row is "Net Gain / Loss (Rs)" to insert the Reactive Power header
+                    if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-            <th colspan="3" style="text-align: center; color: #d9823d; padding: 10px;">Reactive Power</th>
-        `;
+                        <th colspan="3" style="text-align: center; color: #f79546; padding: 10px; font-weight: bold; font-size: 1.3rem; border-top: 2px solid white; border-bottom: 2px solid white; border-left: none; border-right: none; border-radius: 5px;">Reactive Power</th>
+                    `;
                         currentBlockTbody.appendChild(reactivePowerRow);
                     }
                 });
 
+
                 // Populate the Previous Block Status table with ID 3 data
                 const previousBlockStatusRows = [
-                    { blockNo: previousBlockStatus.P1, frequency: previousBlockStatus.P7, sg: previousBlockStatus.P13, netExport: previousBlockStatus.P19, devMW: previousBlockStatus.P25 },
-                    { blockNo: previousBlockStatus.P2, frequency: previousBlockStatus.P8, sg: previousBlockStatus.P14, netExport: previousBlockStatus.P20, devMW: previousBlockStatus.P7 },
-                    { blockNo: previousBlockStatus.P3, frequency: previousBlockStatus.P9, sg: previousBlockStatus.P15, netExport: previousBlockStatus.P21, devMW: previousBlockStatus.P8 },
-                    { blockNo: previousBlockStatus.P4, frequency: previousBlockStatus.P10, sg: previousBlockStatus.P16, netExport: previousBlockStatus.P22, devMW: previousBlockStatus.P9 },
-                    { blockNo: previousBlockStatus.P5, frequency: previousBlockStatus.P11, sg: previousBlockStatus.P17, netExport: previousBlockStatus.P23, devMW: previousBlockStatus.P4 },
-                    { blockNo: previousBlockStatus.P6, frequency: previousBlockStatus.P12, sg: previousBlockStatus.P18, netExport: previousBlockStatus.P24, devMW: previousBlockStatus.P5 },
-                    { blockNo: 'Average', frequency: previousBlockStatus.P1, sg: previousBlockStatus.P15, netExport: previousBlockStatus.P13, devMW: previousBlockStatus.P25 },
+                    { blockNo: previousBlockStatus.P1, frequency: previousBlockStatus.P7, sg: previousBlockStatus.P14, netExport: previousBlockStatus.P21, devMW: previousBlockStatus.P28 },
+                    { blockNo: previousBlockStatus.P2, frequency: previousBlockStatus.P8, sg: previousBlockStatus.P15, netExport: previousBlockStatus.P22, devMW: previousBlockStatus.P29 },
+                    { blockNo: previousBlockStatus.P3, frequency: previousBlockStatus.P9, sg: previousBlockStatus.P16, netExport: previousBlockStatus.P23, devMW: previousBlockStatus.P30 },
+                    { blockNo: previousBlockStatus.P4, frequency: previousBlockStatus.P10, sg: previousBlockStatus.P17, netExport: previousBlockStatus.P24, devMW: previousBlockStatus.P31 },
+                    { blockNo: previousBlockStatus.P5, frequency: previousBlockStatus.P11, sg: previousBlockStatus.P18, netExport: previousBlockStatus.P25, devMW: previousBlockStatus.P32 },
+                    { blockNo: previousBlockStatus.P6, frequency: previousBlockStatus.P12, sg: previousBlockStatus.P19, netExport: previousBlockStatus.P26, devMW: previousBlockStatus.P33 },
+                    { blockNo: 'Average', frequency: previousBlockStatus.P13, sg: previousBlockStatus.P20, netExport: previousBlockStatus.P27, devMW: previousBlockStatus.P34 },
                 ];
 
                 previousBlockStatusRows.forEach(row => {
                     const tr = document.createElement('tr');
 
+                    // Apply border only to the "Average" row
+                    const borderStyle = row.blockNo === 'Average' ? 'border-top: 2px solid white; border-bottom: 2px solid white; padding: 10px' : '';
+
                     // Function to determine text color
-                    const getColor = (value) => {
+                    const getColor = (value, column) => {
                         if (row.blockNo === 'Average') {
                             return value < 0 ? 'red' : '#00e800';
                         }
-                        return value < 0 ? 'red' : 'white';
+                        // Apply red color only for Dev.MW when value is negative
+                        if (column === 'devMW' && value < 0) {
+                            return 'red';
+                        }
+                        return value < 0 ? 'white' : 'white';
                     };
 
                     // Function to handle undefined or null values
                     const getValue = (value) => (value !== null && value !== undefined ? value : 'undefined');
 
-                    // Generate table row with conditional color styling
+                    // Generate table row with conditional color styling and border for "Average" row
                     tr.innerHTML = `
-                    <td style="color: ${row.blockNo === 'Average' ? '#00e800' : 'white'};">${getValue(row.blockNo)}</td>
-                    <td style="color: ${getColor(row.frequency)};">${getValue(row.frequency)}</td>
-                    <td style="color: ${getColor(row.sg)};">${getValue(row.sg)}</td>
-                    <td style="color: ${getColor(row.netExport)};">${getValue(row.netExport)}</td>
-                    <td style="color: ${getColor(row.devMW)};">${getValue(row.devMW)}</td>
-                `;
+                     <td style="color: ${row.blockNo === 'Average' ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${borderStyle}">${getValue(row.blockNo)}</td>
+                     <td style="color: ${getColor(row.frequency, 'frequency')}; font-weight: bold; text-align: center; ${borderStyle}">${getValue(row.frequency)}</td>
+                     <td style="color: ${getColor(row.sg, 'sg')}; font-weight: bold; text-align: center; ${borderStyle}">${getValue(row.sg)}</td>
+                     <td style="color: ${getColor(row.netExport, 'netExport')}; font-weight: bold; text-align: center; ${borderStyle}">${getValue(row.netExport)}</td>
+                     <td style="color: ${getColor(row.devMW, 'devMW')}; font-weight: bold; text-align: center; ${borderStyle}">${getValue(row.devMW)}</td>
+                    `;
 
                     previousBlockStatusTbody.appendChild(tr);
                 });
 
                 // Populate the Fuel Cost / Frequency table
                 const fuelCostFrequencyRows = [
-                    { label: 'Fuel Cost (Rs./kWh)', value: previousBlockData.P1 },
-                    { label: 'ACP(RS./kWh)', value: previousBlockData.P2 },
+                    { label: 'Fuel Cost (Rs./kWh)', value: previousBlockStatus.P35 },
+                    { label: 'ACP (RS./kWh)', value: previousBlockStatus.P36 },
                 ];
 
                 fuelCostFrequencyRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                    <td style="color: #00ffff;">${row.label}</td>
-                    <td style="color: white;">${row.value !== null ? row.value : 'undefined'}</td>
+                    <td style="color: #de00de; font-weight: bold;">${row.label}</td>
+                    <td style="color: white; font-weight: bold; text-align: center;">${row.value !== null ? row.value : 'undefined'}</td>
                 `;
                     fuelCostFrequencyTbody.appendChild(tr);
                 });
 
                 const nextBlockRows = [
-                    { blockNo: previousBlockStatus.P1, blockTime: '02:00-02:15', dcMW: previousBlockData.P5, sgMW: previousBlockData.P9 },
-                    { blockNo: previousBlockStatus.P2, blockTime: '02:15-02:30', dcMW: previousBlockData.P6, sgMW: previousBlockData.P10 },
-                    { blockNo: previousBlockStatus.P3, blockTime: '02:30-02:45', dcMW: previousBlockData.P7, sgMW: previousBlockData.P11 },
-                    { blockNo: previousBlockStatus.P4, blockTime: '02:45-03:00', dcMW: previousBlockData.P8, sgMW: previousBlockData.P12 },
+                    { blockNo: previousBlockStatus.P37, blockTime: previousBlockStatus.P41, dcMW: previousBlockStatus.P45, sgMW: previousBlockStatus.P49 },
+                    { blockNo: previousBlockStatus.P38, blockTime: previousBlockStatus.P42, dcMW: previousBlockStatus.P46, sgMW: previousBlockStatus.P50 },
+                    { blockNo: previousBlockStatus.P39, blockTime: previousBlockStatus.P43, dcMW: previousBlockStatus.P47, sgMW: previousBlockStatus.P51 },
+                    { blockNo: previousBlockStatus.P40, blockTime: previousBlockStatus.P44, dcMW: previousBlockStatus.P48, sgMW: previousBlockStatus.P52 },
                 ];
 
                 nextBlockRows.forEach(row => {
@@ -368,10 +416,10 @@
                     const getValue = (value) => (value !== null && value !== undefined ? value : 'undefined');
 
                     tr.innerHTML = `
-                    <td style="color: white;">${getValue(row.blockNo)}</td>
-                    <td style="color: white;">${getValue(row.blockTime)}</td>
-                    <td style="color: white;">${getValue(row.dcMW)}</td>
-                    <td style="color: white;">${getValue(row.sgMW)}</td>
+                    <td style="color: white; font-weight: bold; text-align: center;">${getValue(row.blockNo)}</td>
+                    <td style="color: white; font-weight: bold; text-align: center;">${getValue(row.blockTime)}</td>
+                    <td style="color: white; font-weight: bold; text-align: center;">${getValue(row.dcMW)}</td>
+                    <td style="color: white; font-weight: bold; text-align: center;">${getValue(row.sgMW)}</td>
                 `;
 
                     nextBlockTbody.appendChild(tr);
@@ -380,10 +428,10 @@
 
                 // Populate the Normal Rate table with data from previousBlockStatus
                 const normalRateRows = [
-                    { label: 'Net Exp (MW)', value: previousBlockStatus.P1 },
-                    { label: ' Frequency (Hz)', value: previousBlockStatus.P2 },
-                    { label: 'Net Exp (MVAr)', value: previousBlockStatus.P3 },
-                    { label: 'Grid Voltage (%)', value: previousBlockStatus.P4 },
+                    { label: 'Net Exp (MW)', value: previousBlockStatus.P53 },
+                    { label: 'Frequency (Hz)', value: previousBlockStatus.P54 },
+                    { label: 'Net Exp (MVAr)', value: previousBlockStatus.P55 },
+                    { label: 'Grid Voltage (%)', value: previousBlockStatus.P56 },
                 ];
 
                 normalRateRows.forEach(row => {
@@ -393,8 +441,8 @@
                     const getValue = (value) => (value !== null && value !== undefined ? value : 'undefined');
 
                     tr.innerHTML = `
-                    <td style="color: #de00de;">${row.label}</td>
-                    <td style="color: #00ff00;">${row.value !== null ? row.value : 'undefined'}</td>
+                    <td style="color: #de00de; font-weight: bold; font-size: 1.5rem;">${row.label}</td>
+                    <td style="color: #00ff00; font-weight: bold; font-size: 1.5rem; text-align: center;">${row.value !== null ? row.value : 'undefined'}</td>
                 `;
 
                     normalRateTbody.appendChild(tr);
@@ -403,41 +451,67 @@
 
                 // Populate the Cumulative table with data from cummUptoPreBlk
                 const cumulativeRows = [
-                    { label: 'Station Gen(MWh)', value: cummUptoPreBlk.P1 },
-                    { label: 'Gen-1(MWh)', value: cummUptoPreBlk.P2 },
-                    { label: 'Gen-2(MWh)', value: cummUptoPreBlk.P3 },
-                    { label: 'DC(MWh)', value: cummUptoPreBlk.P4 },
-                    { label: 'SG(MWh)', value: cummUptoPreBlk.P5 },
-                    { label: 'Backing Down(MWh)', value: cummUptoPreBlk.P6 },
+                    { label: 'Station Gen (MWh)', value: cummUptoPreBlk.P1 },
+                    { label: 'Gen-1 (MWh)', value: cummUptoPreBlk.P2 },
+                    { label: 'Gen-2 (MWh)', value: cummUptoPreBlk.P3 },
+                    { label: 'DC (MWh)', value: cummUptoPreBlk.P4 },
+                    { label: 'SG (MWh)', value: cummUptoPreBlk.P5 },
+                    { label: 'Backing Down (MWh)', value: cummUptoPreBlk.P6 },
                     { label: 'Exp./SG%', value: cummUptoPreBlk.P7 },
                     { label: 'Avg. Frequency (Hz)', value: cummUptoPreBlk.P8 },
-                    { label: 'Net Export(MWh)', value: cummUptoPreBlk.P9 },
-                    { label: 'DS(MW)', value: cummUptoPreBlk.P10 },
-                    { label: 'DS(Rs)', value: cummUptoPreBlk.P11 },
-                    { label: 'DS beyond ±10% (Rs.)', value: cummUptoPreBlk.P12 },
-                    { label: 'Total DS(Rs)', value: cummUptoPreBlk.P13 },
-                    { label: 'Fuel Cost(Rs)', value: cummUptoPreBlk.P14 },
-                    { label: 'Net Gain/Lose(Rs)', value: cummUptoPreBlk.P15 },
+                    { label: 'Net Export (MWh)', value: cummUptoPreBlk.P9 },
+                    { label: 'DS (MW)', value: cummUptoPreBlk.P10 },
+                    { label: 'DS (Rs)', value: cummUptoPreBlk.P11 },
+                    { label: 'DS beyond ± 10% (Rs)', value: cummUptoPreBlk.P12 },
+                    { label: 'Total DS (Rs)', value: cummUptoPreBlk.P13 },
+                    { label: 'Fuel Cost (Rs)', value: cummUptoPreBlk.P14 },
+                    { label: 'Net Gain / Loss (Rs)', value: cummUptoPreBlk.P15 },
                     { label: 'Net Exp (MVARh)', value: cummUptoPreBlk.P16 },
-                    { label: 'MVAr(-97% of V)', value: cummUptoPreBlk.P17 },
-                    { label: 'Gain/Lose(Rs)', value: cummUptoPreBlk.P18 },
-                    { label: 'MVAr(-103% of V)', value: cummUptoPreBlk.P19 },
-                    { label: 'Gain/Lose(Rs)', value: cummUptoPreBlk.P20 },
+                    { label: 'MVAr (<97% of V)', value: cummUptoPreBlk.P17 },
+                    { label: 'Gain / Loss (Rs)', value: cummUptoPreBlk.P18 },
+                    { label: 'MVAr (>103% of V)', value: cummUptoPreBlk.P19 },
+                    { label: 'Gain / Loss (Rs)', value: cummUptoPreBlk.P20 },
                     { label: 'Net Gain / Loss', value: cummUptoPreBlk.P21 }
                 ];
 
                 cumulativeRows.forEach(row => {
                     const tr = document.createElement('tr');
+
+                    // Labels that require red color when values are negative
+                    const labelsWithRedColor = [
+                        'DS (MW)',
+                        'DS (Rs)',
+                        'DS beyond ± 10% (Rs.)',
+                        'Total DS (Rs)',
+                        'Fuel Cost (Rs)',
+                        'Net Gain / Loss (Rs)'
+                    ];
+
+                    // Function to determine text color based on label
+                    const getColor = (value, label) => {
+                        if (typeof value === 'number' && value < 0 && labelsWithRedColor.includes(label)) {
+                            return 'red';
+                        }
+                        return 'white';
+                    };
+
                     tr.innerHTML = `
-                <td style="color: #00a9a9;">${row.label}</td>
-                <td style="color: ${typeof row.value === 'number' ? (row.value < 0 ? 'red' : 'white') : 'white'};">${row.value !== null ? row.value : 'undefined'}</td>
-            `;
+                     <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
+                     <td style="color: ${getColor(row.value, row.label)}; font-weight: bold; text-align: center;">
+                      ${row.value !== null ? row.value : 'undefined'}
+                    </td>
+                `;
+
                     cumulativeTbody.appendChild(tr);
-                    if (row.label === 'Net Gain/Lose(Rs)') {
+
+                    // Add "Reactive Power" row if label is "Net Gain / Loss (Rs)"
+                    if (row.label === 'Net Gain / Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-            <th colspan="3" style="text-align: center; color: #d9823d; padding: 10px;">Reactive Power</th>
-        `;
+                      <th colspan="3" style="text-align: center; color: #f79546; padding: 10px; font-weight: bold; font-size: 1.3rem; border-top: 2px solid white; border-bottom: 2px solid white; border-left: none; border-right: none; border-radius: 5px;">
+                        Reactive Power
+                      </th>
+                    `;
                         cumulativeTbody.appendChild(reactivePowerRow);
                     }
                 });
@@ -445,28 +519,83 @@
                 const realTimeRows = [
                     { label: 'GEN-1', mw: realTimeGenerationData.P1, mvar: realTimeGenerationData.P2, volt: realTimeGenerationData.P3, amp: realTimeGenerationData.P4, pf: realTimeGenerationData.P5 },
                     { label: 'GEN-2', mw: realTimeGenerationData.P6, mvar: realTimeGenerationData.P7, volt: realTimeGenerationData.P8, amp: realTimeGenerationData.P9, pf: realTimeGenerationData.P10 },
-                    { label: 'GEN-3', mw: realTimeGenerationData.P1, mvar: realTimeGenerationData.P2, volt: realTimeGenerationData.P3, amp: realTimeGenerationData.P4, pf: realTimeGenerationData.P5 },
-                    { label: 'GEN-4', mw: realTimeGenerationData.P6, mvar: realTimeGenerationData.P7, volt: realTimeGenerationData.P8, amp: realTimeGenerationData.P9, pf: realTimeGenerationData.P10 },
-                    { label: 'TOTAL', mw: realTimeGenerationData.P11, mvar: realTimeGenerationData.P12, volt: '', amp: '', pf: '' }, // Assuming TOTAL does not have volt, amp, pf
-                    { label: 'PH-1 Inst./Cumm. APC (MWh / %)', mw: '', mvar: realTimeGenerationData.P13, volt: realTimeGenerationData.P14, amp: realTimeGenerationData.P15, pf: realTimeGenerationData.P14 },
-                    { label: 'PH-2 Inst./Cumm. APC (MWh / %)', mw: '', mvar: realTimeGenerationData.P15, volt: realTimeGenerationData.P16, amp: realTimeGenerationData.P17, pf: realTimeGenerationData.P16 }
+                    { label: 'GEN-3', mw: realTimeGenerationData.P11, mvar: realTimeGenerationData.P12, volt: realTimeGenerationData.P13, amp: realTimeGenerationData.P14, pf: realTimeGenerationData.P15 },
+                    { label: 'GEN-4', mw: realTimeGenerationData.P16, mvar: realTimeGenerationData.P17, volt: realTimeGenerationData.P18, amp: realTimeGenerationData.P19, pf: realTimeGenerationData.P20 },
+                    { label: 'TOTAL', mw: realTimeGenerationData.P21, mvar: realTimeGenerationData.P22, volt: '', amp: '', pf: '' },
                 ];
 
                 realTimeRows.forEach(row => {
-                    const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#de00de' : '#00ffff';
-                    const voltColor = (row.volt === 'Inst.Aux.Cons(%)' || row.volt === 'Cumm.Aux.Cons(%)') ? '#de00de' : 'white';
+                    const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#de00de' : '#00eaea';
 
                     const tr = document.createElement('tr');
-                    tr.innerHTML = `
-        <td style="color: ${labelColor};">${row.label}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.mw}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.mvar}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.volt}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.amp}</td>
-        <td style="color: ${row.label.includes('PH-1') || row.label.includes('PH-2') ? '#de00de' : 'white'};">${row.pf}</td>
-    `;
+
+                    // Apply border only for the "TOTAL" row
+                    if (row.label === 'TOTAL') {
+                        tr.innerHTML = `
+                         <td style="color: #00eaea; font-weight: bold; text-align: left; border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; padding: 10px; background-color: #333">${row.label}</td>
+                         <td style="color: #00e800; font-weight: bold; text-align: center; border-top: 2px solid white; border-bottom: 2px solid white; padding: 10px; background-color: #333">${row.mw}</td>
+                         <td style="color: #00e800; font-weight: bold; text-align: center; border-top: 2px solid white; border-bottom: 2px solid white; border-right: 2px solid white; padding: 10px; background-color: #333">${row.mvar}</td>
+                    `;
+                    } else {
+                        tr.innerHTML = `
+                        <td style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
+                        <td style="color: white; font-weight: bold; text-align: center">${row.mw}</td>
+                        <td style="color: white; font-weight: bold; text-align: center">${row.mvar}</td>
+                        <td style="color: white; font-weight: bold; text-align: center">${row.volt}</td>
+                        <td style="color: white; font-weight: bold; text-align: center">${row.amp}</td>
+                        <td style="color: white; font-weight: bold; text-align: center">${row.pf}</td>
+                    `;
+                    }
 
                     realTimeGenerationTbody.appendChild(tr);
+
+                    if (row.label === 'TOTAL') {
+                        // Add an empty row for spacing
+                        const emptyRow = document.createElement('tr');
+                        emptyRow.innerHTML = `<td colspan="6" style="height: 5%;"></td>`; // Adjust height as needed
+                        realTimeGenerationTbody.appendChild(emptyRow);
+
+                        const apcRow = document.createElement('tr');
+                        apcRow.innerHTML = `
+                        <th colspan="6" style="text-align: left; color: #f79546; padding: 5px; font-weight: bold; font-size: 1.3rem;">APC</th>
+                    `;
+                        realTimeGenerationTbody.appendChild(apcRow);
+
+                        // Create the new header row
+                        const newHeaderRow = document.createElement('tr');
+                        newHeaderRow.innerHTML = `
+                        <th></th>
+                        <th></th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">Inst (MW)</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">Inst (%)</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">Cum (MWh)</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center">Cum (%)</th>
+                    `;
+                        realTimeGenerationTbody.appendChild(newHeaderRow);
+
+                        // Create the new rows for PH-1 and PH-2
+                        const ph1Row = document.createElement('tr');
+                        ph1Row.innerHTML = `
+                        <td style="color: #de00de; font-weight: bold;">PH-1 Inst./Cumm. APC (MWh / %)</td>
+                        <td></td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P23}</td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P24}</td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P25}</td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P26}</td>
+                    `;
+                        realTimeGenerationTbody.appendChild(ph1Row);
+
+                        const ph2Row = document.createElement('tr');
+                        ph2Row.innerHTML = `
+                        <td style="color: #de00de; font-weight: bold;">PH-2 Inst./Cumm. APC (MWh / %)</td>
+                        <td></td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P27}</td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P28}</td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P29}</td>
+                        <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P30}</td>
+                    `;
+                        realTimeGenerationTbody.appendChild(ph2Row);
+                    }
                 });
 
                 const expImpRows = [
@@ -474,25 +603,47 @@
                     { label: 'GV-4', expMW: realTimeExpImpData.P7, impMVV: realTimeExpImpData.P8, mvar: realTimeExpImpData.P9, volt: realTimeExpImpData.P10, amp: realTimeExpImpData.P11, pf: realTimeExpImpData.P12 },
                     { label: 'ZL-1', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 },
                     { label: 'ZL-2', expMW: realTimeExpImpData.P19, impMVV: realTimeExpImpData.P20, mvar: realTimeExpImpData.P21, volt: realTimeExpImpData.P22, amp: realTimeExpImpData.P23, pf: realTimeExpImpData.P24 },
-                    { label: 'I/C-A', expMW: realTimeExpImpData.P1, impMVV: realTimeExpImpData.P2, mvar: realTimeExpImpData.P3, volt: realTimeExpImpData.P4, amp: realTimeExpImpData.P5, pf: realTimeExpImpData.P6 },
-                    { label: 'I/C-B', expMW: realTimeExpImpData.P7, impMVV: realTimeExpImpData.P8, mvar: realTimeExpImpData.P9, volt: realTimeExpImpData.P10, amp: realTimeExpImpData.P11, pf: realTimeExpImpData.P12 },
-                    { label: 'AD -1', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 }, // Assuming TOTAL does not have volt, amp, pf
-                    { label: 'AD -2', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 }, // Assuming TOTAL does not have volt, amp, pf
+                    { label: 'AD -1', expMW: realTimeExpImpData.P25, impMVV: realTimeExpImpData.P26, mvar: realTimeExpImpData.P27, volt: realTimeExpImpData.P28, amp: realTimeExpImpData.P29, pf: realTimeExpImpData.P30 }, // Assuming TOTAL does not have volt, amp, pf
+                    { label: 'AD -2', expMW: realTimeExpImpData.P31, impMVV: realTimeExpImpData.P32, mvar: realTimeExpImpData.P33, volt: realTimeExpImpData.P34, amp: realTimeExpImpData.P35, pf: realTimeExpImpData.P36 }, // Assuming TOTAL does not have volt, amp, pf
+                    { label: 'TOTAL', expMW: realTimeExpImpData.P37, impMVV: realTimeExpImpData.P38, mvar: realTimeExpImpData.P39, volt: '', amp: '', pf: '' },
+                    { label: 'I/C-A', expMW: realTimeExpImpData.P40, impMVV: realTimeExpImpData.P41, mvar: realTimeExpImpData.P42, volt: realTimeExpImpData.P43, amp: realTimeExpImpData.P44, pf: realTimeExpImpData.P45 },
+                    { label: 'I/C-B', expMW: realTimeExpImpData.P46, impMVV: realTimeExpImpData.P47, mvar: realTimeExpImpData.P48, volt: realTimeExpImpData.P49, amp: realTimeExpImpData.P50, pf: realTimeExpImpData.P51 },
                 ];
 
                 expImpRows.forEach(row => {
                     const tr = document.createElement('tr');
+
+                    // Check if the row label is "TOTAL"
+                    const isTotalRow = row.label === 'TOTAL';
+
                     tr.innerHTML = `
-                <td style="color: #00ffff;">${row.label}</td>
-                <td style="color: white;">${row.expMW}</td>
-                <td style="color: white;">${row.impMVV}</td>
-                <td style="color: white;">${row.mvar}</td>
-                <td style="color: white;">${row.volt}</td>
-                <td style="color: white;">${row.amp}</td>
-                <td style="color: white;">${row.pf}</td>
-            `;
+                    <td style="color: #00eaea; font-weight: bold; ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
+                     ${row.label}
+                    </td>
+                    <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                     ${row.expMW}
+                    </td>
+                    <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                     ${row.impMVV}
+                    </td>
+                    <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
+                     ${row.mvar}
+                    </td>
+                    <td style="color: white; font-weight: bold; text-align: center;">
+                     ${row.volt}
+                    </td>
+                    <td style="color: white; font-weight: bold; text-align: center;">
+                     ${row.amp}
+                    </td>
+                   <td style="color: white; font-weight: bold; text-align: center;">
+                     ${row.pf}
+                    </td>
+                `;
+
                     realTimeExpImpTbody.appendChild(tr);
                 });
+
+
 
             } catch (error) {
                 console.error('Error fetching data:', error);
