@@ -24,8 +24,8 @@
             <span class="date-time">
                 Date: <span id="current-date" style="padding: 0 15px;"></span>
                 Time: <span id="current-time" style="padding: 0 15px;"></span>
-                DC Rev.No: 1 <span id="dc-rev" style="padding: 0 15px;"></span>
-                SG Rev.No: 1 <span id="sg-rev" style="padding: 0 15px;"></span>
+                DC Rev.No:<span id="dc-rev" style="padding: 0 15px;"></span>
+                SG Rev.No:<span id="sg-rev" style="padding: 0 15px;"></span>
             </span>
         </div>
 
@@ -195,6 +195,12 @@
                 const cummUptoPreBlkData = data.find(item => item.ID === 15);
                 const acpFuelCostFrequency = data.find(item => item.ID === 16);
                 const normalRate = data.find(item => item.ID === 17);
+
+                const currentBlockDatas = data.find(item => item.ID === 2);
+
+                // Update DC Rev.No and SG Rev.No from currentBlockData (ID === 2)
+                document.getElementById('dc-rev').textContent = currentBlockDatas.P23 !== null && currentBlockDatas.P23 !== undefined ? currentBlockDatas.P23 : 'undefined';
+                document.getElementById('sg-rev').textContent = currentBlockDatas.P24 !== null && currentBlockDatas.P24 !== undefined ? currentBlockDatas.P24 : 'undefined';
 
                 // Populate the SLPP Phase-1 tbody
                 const realTimeValueTbody = document.querySelector('.Real-Time-table tbody');
@@ -510,6 +516,7 @@
 
         window.onload = function () {
             fetchData();
+            setInterval(fetchData, 2000);
         };
 
     </script>
