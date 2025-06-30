@@ -45,7 +45,7 @@
                 </tbody>
             </table>
             <div class="table-containerss">
-                <table style="height: 130px;" class="Previous-Block-Status-table">
+                <table class="Previous-Block-Status-table">
                     <caption class="Previous-Block-Status-caption">Previous Block Status</caption>
                     <thead>
                         <tr>
@@ -68,7 +68,7 @@
                     </tbody>
                 </table>
 
-                <table style="height: 110px;" class="Next-Block-table">
+                <table class="Next-Block-table">
                     <caption class="Next-Block-caption">Next Block</caption>
                     <thead>
                         <tr>
@@ -83,7 +83,7 @@
                     </tbody>
                 </table>
 
-                <table style="height: 133px;" class="Normal-Rate-table">
+                <table style="height: 130px;" class="Normal-Rate-table">
                     <caption class="Normal-Rate-caption">Inst. Parameters</caption>
                     <thead>
 
@@ -271,7 +271,7 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-           <th colspan="3" style="text-align: center; color: #f79546; padding: 10px; font-weight: bold; font-size: 1.3rem; border-top: 2px solid white; border-bottom: 2px solid white; border-left: none; border-right: none; border-radius: 5px;">Reactive Power</th>
+           <th colspan="3" class="reactive-power-header">Reactive Power</th>
         `;
                         previousBlockTbody.appendChild(reactivePowerRow);
                     }
@@ -334,7 +334,7 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-            <th colspan="3" style="text-align: center; color: #f79546; padding: 10px; font-weight: bold; font-size: 1.3rem; border-top: 2px solid white; border-bottom: 2px solid white; border-left: none; border-right: none; border-radius: 5px;">Reactive Power</th>
+            <th colspan="3" class="reactive-power-header">Reactive Power</th>
         `;
                         currentBlockTbody.appendChild(reactivePowerRow);
                     }
@@ -432,8 +432,8 @@
                     const getValue = (value) => (value !== null && value !== undefined ? value : 'undefined');
 
                     tr.innerHTML = `
-                    <td style="color: #de00de; font-weight: bold; font-size: 1.5rem;">${row.label}</td>
-                    <td style="color: #00ff00; font-weight: bold; font-size: 1.5rem;">${row.value !== null ? row.value : 'undefined'}</td>
+                    <td class="normal-rate-label">${row.label}</td>
+                    <td class="normal-rate-value">${row.value !== null ? row.value : 'undefined'}</td>
                 `;
 
                     normalRateTbody.appendChild(tr);
@@ -499,7 +499,7 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-            <th colspan="3" style="text-align: center; color: #f79546; padding: 10px; font-weight: bold; font-size: 1.3rem; border-top: 2px solid white; border-bottom: 2px solid white; border-left: none; border-right: none; border-radius: 5px;">
+            <th colspan="3" class="reactive-power-header">
                 Reactive Power
             </th>
         `;
@@ -523,9 +523,9 @@
                     // Apply border only for the "TOTAL" row
                     if (row.label === 'TOTAL') {
                         tr.innerHTML = `
-            <td style="color: #00eaea; font-weight: bold; text-align: left; border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; padding: 10px; background-color: #333">${row.label}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center; border-top: 2px solid white; border-bottom: 2px solid white; padding: 10px; background-color: #333">${row.mw}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center; border-top: 2px solid white; border-bottom: 2px solid white; border-right: 2px solid white; padding: 10px; background-color: #333">${row.mvar}</td>
+            <td class="Total-Row">${row.label}</td>
+            <td class="Total-Row">${row.mw}</td>
+            <td class="Total-Row">${row.mvar}</td>
         `;
                     } else {
                         tr.innerHTML = `
@@ -548,7 +548,7 @@
 
                         const apcRow = document.createElement('tr');
                         apcRow.innerHTML = `
-            <th colspan="6" style="text-align: left; color: #f79546; padding: 5px; font-weight: bold; font-size: 1.3rem;">APC</th>
+            <th colspan="6" class="Real-Time-Generation-Data-APC">APC</th>
         `;
                         realTimeGenerationTbody.appendChild(apcRow);
 
@@ -557,33 +557,33 @@
                         newHeaderRow.innerHTML = `
             <th></th>
             <th></th>
-            <th style="color: #00eaea; font-weight: bold; text-align: center">Inst (MW)</th>
-            <th style="color: #00eaea; font-weight: bold; text-align: center">Inst (%)</th>
-            <th style="color: #00eaea; font-weight: bold; text-align: center">Cum (MWh)</th>
-            <th style="color: #00eaea; font-weight: bold; text-align: center">Cum (%)</th>
+            <th class="Real-Time-Generation-Data-Subheader">Inst (MW)</th>
+            <th class="Real-Time-Generation-Data-Subheader">Inst (%)</th>
+            <th class="Real-Time-Generation-Data-Subheader">Cum (MWh)</th>
+            <th class="Real-Time-Generation-Data-Subheader">Cum (%)</th>
         `;
                         realTimeGenerationTbody.appendChild(newHeaderRow);
 
                         // Create the new rows for PH-1 and PH-2
                         const ph1Row = document.createElement('tr');
                         ph1Row.innerHTML = `
-            <td style="color: #de00de; font-weight: bold;">PH-1 Inst./Cumm. APC (MWh / %)</td>
+            <td  class="Real-Time-Generation-Data-row-label">PH-1 Inst./Cumm. APC (MWh / %)</td>
             <td></td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P23}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P24}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P25}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P26}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P23}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P24}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P25}</td>
+            <td class="Real-Time-Generation-Data-row-value"">${realTimeGenerationData.P26}</td>
         `;
                         realTimeGenerationTbody.appendChild(ph1Row);
 
                         const ph2Row = document.createElement('tr');
                         ph2Row.innerHTML = `
-            <td style="color: #de00de; font-weight: bold;">PH-2 Inst./Cumm. APC (MWh / %)</td>
+            <td class="Real-Time-Generation-Data-row-label">PH-2 Inst./Cumm. APC (MWh / %)</td>
             <td></td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P27}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P28}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P29}</td>
-            <td style="color: #00e800; font-weight: bold; text-align: center">${realTimeGenerationData.P30}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P27}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P28}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P29}</td>
+            <td class="Real-Time-Generation-Data-row-value">${realTimeGenerationData.P30}</td>
         `;
                         realTimeGenerationTbody.appendChild(ph2Row);
                     }

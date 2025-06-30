@@ -21,7 +21,8 @@ nav ul {
 nav ul li a {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #1a1a1a; /* Fixed to include # */
+    background-color: #1a1a1a;
+    /* Fixed to include # */
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -35,7 +36,8 @@ nav ul li a:hover {
 
 /* Style for the active link */
 nav ul li a.active {
-    background-color: #00b300; /* Green color for active link */
+    background-color: #00b300;
+    /* Green color for active link */
 }
 
 .header-container {
@@ -368,6 +370,7 @@ td {
     width: 95%;
     margin-bottom: 20px;
     height: 7.7%;
+
 }
 
 .Previous-Blocks-table {
@@ -749,4 +752,577 @@ td {
     width: 98%;
     height: 300px;
     margin-top: -30px;
+}
+
+.reactive-power-header {
+    text-align: center;
+    color: #f79546;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-radius: 5px;
+
+}
+
+.Previous-Block-Status-table {
+    height: 130px;
+    /* Adjust the height as needed */
+}
+
+.normal-rate-label {
+    color: #de00de;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.normal-rate-value {
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.Next-Block-table {
+    height: 110px;
+    /* Adjust the height as needed */
+}
+
+.Normal-Rate-table {
+    height: 130px;
+    /* Adjust the height as needed */
+}
+
+.SLPP-Phase-1-caption {
+    text-align: center;
+    color: #de00de;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-radius: 5px;
+}
+
+.SLPP-Phase-2-caption {
+    text-align: center;
+    color: #de00de;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-radius: 5px;
+}
+
+.SLPP-caption {
+    text-align: center;
+    color: #de00de;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-radius: 5px;
+}
+
+.SLPP-Phase-1-Subheading {
+    color: #00eaea;
+    font-weight: bold;
+    text-align: center;
+}
+
+.SLPP-Phase-2-Subheading {
+    color: #00eaea;
+    font-weight: bold;
+    text-align: center;
+}
+
+.SLPP-Subheading {
+    color: #00eaea;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Current-Block-Heading {
+    color: #de00de;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.Current-Block-Subheading {
+    color: #de00de;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.Current-Block-Frequency-Heading {
+    text-align: center;
+    color: #de00de;
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.Misnew-Cumulatives-Heading {
+    color: #de00de;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.Misnew-Cumulatives-Subheading {
+    color: #de00de;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.Real-Time-Generation-Data-table {
+    height: 130px;
+
+}
+
+.Real-Time-Generation-Data-row-label {
+    color: #de00de;
+    font-weight: bold;
+}
+
+.Real-Time-Generation-Data-row-value {
+    color: #00e800;
+    font-weight: bold;
+    text-align: "center"
+
+}
+
+.Real-Time-Generation-Data-Subheader {
+    color: #00eaea;
+    font-weight: bold;
+    text-align: "center"
+
+}
+
+.Total-Row {
+    color: #00eaea;
+    font-weight: bold;
+    text-align: left;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    padding: 10px;
+    background-color: #333;
+}
+
+.Real-Time-Generation-Data-APC {
+    text-align: left;
+    color: #f79546;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+
+
+/* Media Query for 1024x768 resolution */
+@media screen and (max-width: 1024px) and (max-height: 768px) {
+    body {
+        font-size: 1rem;
+        /* Adjust base font size for 1024x768 */
+    }
+
+    nav ul li a {
+        font-size: 0.8rem;
+        /* Adjust nav links font size */
+        padding: 6px 12px;
+        /* Slightly smaller padding */
+    }
+
+    .date-time {
+        font-size: 0.8rem;
+        /* Adjust date-time font size */
+    }
+
+    .table-title {
+        font-size: 0.8rem;
+        /* Adjust table-title font size */
+    }
+
+    .Previous-Block-table caption,
+    .Current-Block-table caption,
+    .Previous-Block-Status-table caption,
+    .Fuel-Cost-Frequency-table caption,
+    .Next-Block-table caption,
+    .Normal-Rate-table caption,
+    .Cumulative-table caption,
+    .Real-Time-Generation-Data-table caption,
+    .Real-Time-Exp-Imp-Data-table caption,
+    .Real-Time-table caption,
+    .Misnew-Current-Blocks-table caption,
+    .Misnew-Cumulatives-table caption,
+    .Acp-Fuel-Cost-Frequency-table caption,
+    .Normal-Rate-tables caption {
+        font-size: 0.9rem;
+        /* Adjust caption font size */
+    }
+
+    .Previous-Block-table,
+    .Current-Block-table,
+    .Cumulative-table,
+    .Misnew-Previous-Block-table,
+    .Misnew-Current-Block-table,
+    .Misnew-Cumulatives-table,
+    .Acp-Fuel-Cost-Frequency-table,
+    .Normal-Rate-tables,
+    th,
+    td {
+        font-size: 0.7rem;
+        /* Adjust table content font size */
+        padding: 2px;
+    }
+
+    .tables-container {
+        margin: 0px;
+        margin-top: -10px;
+        /* Reduce container margin */
+    }
+
+    .header-container {
+        padding: 3px;
+        /* Reduce header padding */
+    }
+
+    header {
+        padding: 0px 20px;
+        /* Reduce header side padding */
+    }
+
+    .reactive-power-header {
+        text-align: center;
+        color: #f79546;
+        padding: 2px;
+        font-weight: bold;
+        font-size: 0.7rem;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        border-left: none;
+        border-right: none;
+        border-radius: 2px;
+
+    }
+
+    .tables-container table {
+        height: 570px;
+        /* width: 100px; */
+    }
+
+    .tables-container .Fuel-Cost-Frequency-table {
+        height: 50px;
+        /* Adjust the height as needed */
+    }
+
+    .Previous-Block-Status-table table {
+        height: 50px;
+        /* Adjust the height as needed */
+    }
+
+    .table-containerss table {
+        width: 97%;
+        margin-bottom: 20px;
+        height: 15%;
+    }
+
+    .table-containerss .Previous-Block-Status-table {
+        height: 25%;
+    }
+
+    .normal-rate-label {
+        color: #de00de;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .normal-rate-value {
+        color: #00ff00;
+        font-weight: bold;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .Next-Block-table {
+        height: 80px;
+        /* Adjust the height as needed */
+    }
+
+    .Normal-Rate-table {
+        height: 80px;
+        /* Adjust the height as needed */
+    }
+
+    .tables-containers {
+        display: flex;
+        margin: 0px;
+        width: 100%;
+        margin-top: -15px;
+    }
+
+    .SLPP-Phase-1-caption {
+        text-align: center;
+        color: #de00de;
+        padding: 12px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        border-left: none;
+        border-right: none;
+        border-radius: 5px;
+        margin-top: -1px;
+    }
+
+    .SLPP-Phase-2-caption {
+        text-align: center;
+        color: #de00de;
+        padding: 2px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        border-left: none;
+        border-right: none;
+        border-radius: 5px;
+
+    }
+
+    .SLPP-caption {
+        text-align: center;
+        color: #de00de;
+        padding: 2px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        border-left: none;
+        border-right: none;
+        border-radius: 5px;
+    }
+
+    .SLPP-Phase-1-Subheading {
+        color: #00eaea;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .SLPP-Phase-2-Subheading {
+        color: #00eaea;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .SLPP-Subheading {
+        color: #00eaea;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .Real-Time-table {
+        /* border-collapse: collapse; */
+        margin: 10px;
+        width: 33%;
+        background-color: #1a1a1a;
+        min-height: 450px;
+        height: 100%;
+        border: 2px solid white;
+        border-top: none;
+
+    }
+
+    .Current-Block-Heading {
+        color: #de00de;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .Current-Block-Subheading {
+        color: #de00de;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+
+    .Current-Block-Frequency-Heading {
+        text-align: center;
+        color: #de00de;
+        padding: 2px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+
+    .Misnew-Current-Blocks-table {
+        /* border-collapse: collapse; */
+        margin: 10px;
+        width: 33%;
+        background-color: #1a1a1a;
+        min-height: 450px;
+        height: 100%;
+        border: 2px solid white;
+        border-top: none;
+    }
+
+    .Misnew-Cumulatives-Heading {
+        color: #de00de;
+        font-weight: bold;
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+    .Misnew-Cumulatives-Heading {
+        color: #de00de;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .Misnew-Cumulatives-Subheading {
+        color: #de00de;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.7rem;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+
+    .Misnew-Cumulatives-table {
+        border-collapse: collapse;
+        margin: 10px;
+        width: 33%;
+        background-color: #1a1a1a;
+        min-height: 450px;
+        height: 100%;
+        border: 2px solid white;
+        border-top: none;
+    }
+
+    .tabless-containerss {
+        display: flex;
+        margin: 20px;
+        /* width: 98%; */
+        height: 230px;
+        margin-top: -30px;
+    }
+
+    .Previous-Block-table {
+        /* border-collapse: collapse; */
+        margin: 10px;
+        width: 30%;
+        background-color: #1a1a1a;
+        border: 2px solid white;
+        /* White border to create the frame */
+        border-top: none;
+        /* Remove the top border for alignment with caption */
+    }
+
+    .Current-Block-table {
+        /* border-collapse: collapse; */
+        margin: 10px;
+        /* Remove extra margin */
+        width: 32%;
+        background-color: #1a1a1a;
+        border: 2px solid white;
+        /* White border to create the frame */
+        border-top: none;
+        /* Remove the top border for alignment with caption */
+        /* gap: 10px; */
+    }
+
+    .table-containerss {
+        width: 32%;
+    }
+
+    .Cumulative-table {
+        /* border-collapse: collapse; */
+        margin: 10px;
+        width: 25%;
+        background-color: #1a1a1a;
+        border: 2px solid white;
+        /* White border to create the frame */
+        border-top: none;
+        /* Remove the top border for alignment with caption */
+    }
+
+    .Real-Time-Generation-Data-table {
+        height: 250px;
+
+    }
+
+    .Real-Time-Generation-Data-row-label {
+        font-size: 0.7rem;
+    }
+
+    .Real-Time-Generation-Data-row-value {
+        color: #00e800;
+        font-weight: bold;
+        text-align: "center";
+        font-size: 0.7rem;
+
+    }
+
+    .Real-Time-Generation-Data-Subheader {
+        color: #00eaea;
+        font-weight: bold;
+        text-align: "center";
+        font-size: 0.6rem;
+
+    }
+
+    .Total-Row {
+        color: #00eaea;
+        font-weight: bold;
+        text-align: left;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        border-left: 2px solid white;
+        padding: 2px;
+        background-color: #333;
+        font-size: 0.7rem;
+
+    }
+
+    .Real-Time-Generation-Data-APC {
+        text-align: left;
+        color: #f79546;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+
+
+
+
+
+
 }
