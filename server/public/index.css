@@ -776,13 +776,13 @@ td {
 .normal-rate-label {
     color: #de00de;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .normal-rate-value {
     color: #00ff00;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-align: center;
 }
 
@@ -1055,13 +1055,13 @@ td {
     .normal-rate-label {
         color: #de00de;
         font-weight: bold;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .normal-rate-value {
         color: #00ff00;
         font-weight: bold;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         text-align: center;
     }
 
