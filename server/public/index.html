@@ -250,10 +250,10 @@
                     { label: 'Total DS (Rs)', value: previousBlockData.P13 },
                     { label: 'Fuel Cost (Rs)', value: previousBlockData.P14 },
                     { label: 'Net Gain /  Loss (Rs)', value: previousBlockData.P15 },
-                    { label: 'Avg. MVAr', value: previousBlockData.P16 },
-                    { label: 'MVAr (<97% of V)', value: previousBlockData.P17 },
+                    { label: 'Avg. MVARh', value: previousBlockData.P16 },
+                    { label: 'MVARh (<97% of V)', value: previousBlockData.P17 },
                     { label: 'Gain / Loss (Rs)', value: previousBlockData.P18 },
-                    { label: 'MVAr (>103% of V)', value: previousBlockData.P19 },
+                    { label: 'MVARh (>103% of V)', value: previousBlockData.P19 },
                     { label: 'Gain / Loss (Rs)', value: previousBlockData.P20 },
                     { label: 'Net Gain / Loss (Rs)', value: previousBlockData.P21 },
                 ];
@@ -305,10 +305,10 @@
                     { label: 'Total DS (Rs)', value: currentBlockData.P14 },
                     { label: 'Fuel Cost (Rs)', value: currentBlockData.P15 },
                     { label: 'Net Gain /  Loss (Rs)', value: currentBlockData.P16 },
-                    { label: 'Avg. MVAr', value: currentBlockData.P17 },
-                    { label: 'MVAr (<97% of V)', value: currentBlockData.P18 },
+                    { label: 'Avg. MVARh', value: currentBlockData.P17 },
+                    { label: 'MVARh (<97% of V)', value: currentBlockData.P18 },
                     { label: 'Gain / Loss (Rs)', value: currentBlockData.P19 },
-                    { label: 'MVAr (>103% of V)', value: currentBlockData.P20 },
+                    { label: 'MVARh (>103% of V)', value: currentBlockData.P20 },
                     { label: 'Gain / Loss (Rs)', value: currentBlockData.P21 },
                     { label: 'Net Gain / Loss (Rs)', value: currentBlockData.P22 },
                 ];
@@ -424,7 +424,7 @@
                 const normalRateRows = [
                     { label: 'Net Exp (MW)', value: previousBlockStatus.P53 },
                     { label: 'Frequency (Hz)', value: previousBlockStatus.P54 },
-                    { label: 'Net Exp (MVAr)', value: previousBlockStatus.P55 },
+                    { label: 'Net Exp (MVARh)', value: previousBlockStatus.P55 },
                     { label: 'Grid Voltage (%)', value: previousBlockStatus.P56 },
                 ];
 
@@ -455,11 +455,11 @@
                     { label: 'Fuel Cost (Rs)', value: cummUptoPreBlk.P14 },
                     { label: 'Net Gain / Loss (Rs)', value: cummUptoPreBlk.P15 },
                     { label: 'Net Exp (MVARh)', value: cummUptoPreBlk.P16 },
-                    { label: 'MVAr (<97% of V)', value: cummUptoPreBlk.P17 },
+                    { label: 'MVARh (<97% of V)', value: cummUptoPreBlk.P17 },
                     { label: 'Gain / Loss (Rs)', value: cummUptoPreBlk.P18 },
-                    { label: 'MVAr (>103% of V)', value: cummUptoPreBlk.P19 },
+                    { label: 'MVARh (>103% of V)', value: cummUptoPreBlk.P19 },
                     { label: 'Gain / Loss (Rs)', value: cummUptoPreBlk.P20 },
-                    { label: 'Net Gain / Loss', value: cummUptoPreBlk.P21 }
+                    { label: 'Net Gain / Loss (Rs)', value: cummUptoPreBlk.P21 }
                 ];
 
                 cumulativeRows.forEach(row => {
