@@ -12,7 +12,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Phase-1</a></li>
+                <li><a href="phase1.html">Phase-1</a></li>
                 <li><a href="phase2.html">Phase-2</a></li>
                 <li><a href="misnew.html">MIS</a></li>
             </ul>
@@ -246,9 +246,9 @@
                 realTimeValueRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.mw}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.mvar}</td>
+                <td class="real-time-value-label">${row.label}</td>
+                <td class="real-time-value-value">${row.mw}</td>
+                <td class="real-time-value-value">${row.mvar}</td>
             `;
                     realTimeValueTbody.appendChild(tr);
                 });
@@ -265,9 +265,9 @@
                 realTimeValueSLPPPhase2Rows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.mw}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.mvar}</td>
+                <td class="real-time-value-label">${row.label}</td>
+                <td class="real-time-value-value">${row.mw}</td>
+                <td class="real-time-value-value">${row.mvar}</td>
             `;
                     realTimeValueSLPPPhase2.appendChild(tr);
                 });
@@ -282,9 +282,9 @@
                 realTimeSLPPRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.mw}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.mvar}</td>
+                <td class="real-time-value-label">${row.label}</td>
+                <td class="real-time-value-value">${row.mw}</td>
+                <td class="real-time-value-value">${row.mvar}</td>
             `;
                     realTimeValueSLPP.appendChild(tr);
                 });
@@ -302,54 +302,54 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Dec.Capacity (MW)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P4)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P4)}</td>
+                    <td class="Misnew-Current-block-label">Dec.Capacity (MW)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P4)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P4)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Sch.Generation (MW)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P5)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P5)}</td>
+                    <td class="Misnew-Current-block-label">Sch.Generation (MW)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P5)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P5)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Backing Down (MW)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P6)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P6)}</td>
+                    <td class="Misnew-Current-block-label">Backing Down (MW)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P6)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P6)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Exp./SG%</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P7)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P7)}</td>
+                    <td class="Misnew-Current-block-label">Exp./SG%</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P7)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P7)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Avg.Export (MW)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P9)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P9)}</td>
+                    <td class="Misnew-Current-block-label">Avg.Export (MW)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P9)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P9)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">DS (MW)</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP1.P10)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P10)}</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP2.P10)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P10)}</td>
+                    <td class="Misnew-Current-block-label">DS (MW)</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P10)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P10)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P10)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P10)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">DS Rate (Rs)</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP1.P11)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P11)}</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP2.P11)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P11)}</td>
+                    <td class="Misnew-Current-block-label">DS Rate (Rs)</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P11)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P11)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P11)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P11)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Total DS (Rs)</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP1.P14)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P14)}</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP2.P14)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P14)}</td>
+                    <td class="Misnew-Current-block-label">Total DS (Rs)</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P14)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P14)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P14)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P14)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Fuel Cost (Rs)</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP1.P15)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P15)}</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP2.P15)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P15)}</td>
+                    <td class="Misnew-Current-block-label">Fuel Cost (Rs)</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P15)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P15)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P15)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P15)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Net Gain / Loss (Rs)</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP1.P16)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P16)}</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP2.P16)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P16)}</td>
+                    <td class="Misnew-Current-block-label">Net Gain / Loss (Rs)</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P16)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P16)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P16)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P16)}</td>
                 </tr>
             </tbody>
             <thead>
@@ -361,24 +361,24 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Avg. MVAr</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P17)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P17)}</td>
+                    <td class="Misnew-Current-block-label">Avg. MVAr</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P17)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P17)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">MVAr (<97% of V)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P18)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P18)}</td>
+                    <td class="Misnew-Current-block-label">MVAr (<97% of V)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P18)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P18)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">MVAr (>103% of V)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P20)}</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P20)}</td>
+                    <td class="Misnew-Current-block-label">MVAr (>103% of V)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P20)}</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P20)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Net Gain / Loss (Rs)</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP1.P22)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P22)}</td>
-                    <td style="color: ${getColor(currentBlockDataSLPP2.P22)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P22)}</td>
+                    <td class="Misnew-Current-block-label">Net Gain / Loss (Rs)</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P22)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P22)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P22)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P22)}</td>
                 </tr>
             </tbody>
             <thead>
@@ -390,12 +390,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Inst. / Avg. Freq. (Hz)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(previousBlockStatus.P54)}</td>
+                    <td class="Misnew-Current-block-label">Inst. / Avg. Freq. (Hz)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(previousBlockStatus.P54)}</td>
                 </tr>
                 <tr>
-                    <td style="color: #e7e700; font-weight: bold;">Inst. / Avg. Grid V (%)</td>
-                    <td style="color: #00e800; font-weight: bold; text-align: center;">${formatNumber(previousBlockStatus.P56)}</td>
+                    <td class="Misnew-Current-block-label">Inst. / Avg. Grid V (%)</td>
+                    <td class="Misnew-Current-block-value">${formatNumber(previousBlockStatus.P56)}</td>
                 </tr>
             </tbody>
         `;
@@ -429,10 +429,10 @@
                 cummUptoPreBlkRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                ${criticalLabels.includes(row.label) ? getStyledValue(row.value1) : `<td style="color: white; font-weight: bold; text-align: center;">${row.value1}</td>`}
-                ${criticalLabels.includes(row.label) ? getStyledValue(row.value2) : `<td style="color: white; font-weight: bold; text-align: center;">${row.value2}</td>`}
-                ${criticalLabels.includes(row.label) ? getStyledValue(row.value3) : `<td style="color: white; font-weight: bold; text-align: center;">${row.value3}</td>`}
+                <td class="Misnew-Cumm-Upto-PreBlk-row-label">${row.label}</td>
+                ${criticalLabels.includes(row.label) ? getStyledValue(row.value1) : `<td class="Misnew-Cumm-Upto-PreBlk-row-value">${row.value1}</td>`}
+                ${criticalLabels.includes(row.label) ? getStyledValue(row.value2) : `<td class="Misnew-Cumm-Upto-PreBlk-row-value">${row.value2}</td>`}
+                ${criticalLabels.includes(row.label) ? getStyledValue(row.value3) : `<td class="Misnew-Cumm-Upto-PreBlk-row-value">${row.value3}</td>`}
             `;
                     cummUptoPreBlkTable.appendChild(tr);
                 });
@@ -448,10 +448,10 @@
                 cummUptoPreBlkREACTIVEPOWERRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.value1}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.value2}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${row.value3}</td>
+                <td class="Misnew-Cumm-Upto-PreBlk-row-label">${row.label}</td>
+                <td class="Misnew-Cumm-Upto-PreBlk-row-value">${row.value1}</td>
+                <td class="Misnew-Cumm-Upto-PreBlk-row-value">${row.value2}</td>
+                <td class="Misnew-Cumm-Upto-PreBlk-row-value">${row.value3}</td>
             `;
                     cummUptoPreBlkREACTIVEPOWERTable.appendChild(tr);
                 });
@@ -473,25 +473,25 @@
                     // Check if the row label is "TOTAL"
                     const isTotalRow = row.label === 'TOTAL';
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold; ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-label" style="color: #00eaea; font-weight: bold; ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
                     ${row.label}
                 </td>
-                <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
                     ${row.expMW}
                 </td>
-                <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
                     ${row.impMVV}
                 </td>
-                <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
                     ${row.mvar}
                 </td>
-                <td style="color: white; font-weight: bold; text-align: center;">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: white; font-weight: bold; text-align: center;">
                     ${row.volt}
                 </td>
-                <td style="color: white; font-weight: bold; text-align: center;">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: white; font-weight: bold; text-align: center;">
                     ${row.amp}
                 </td>
-                <td style="color: white; font-weight: bold; text-align: center;">
+                <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: white; font-weight: bold; text-align: center;">
                     ${row.pf}
                 </td>
             `;
@@ -508,8 +508,8 @@
                 normalRateRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold;">${row.value}</td>
+                <td class="Misnew-Normal-Rate-row-label">${row.label}</td>
+                <td class="Misnew-Normal-Rate-row-value">${row.value}</td>
             `;
                     normalRateTable.appendChild(tr);
                 });

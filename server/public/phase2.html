@@ -12,7 +12,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Phase-1</a></li>
+                <li><a href="phase1.html">Phase-1</a></li>
                 <li><a href="phase2.html">Phase-2</a></li>
                 <li><a href="misnew.html">MIS</a></li>
             </ul>
@@ -48,12 +48,17 @@
                 <table class="Previous-Block-Status-table">
                     <caption class="Previous-Block-Status-caption">Previous Block Status</caption>
                     <thead>
-                        <tr>
-                            <th style="color: #00eaea;">Block.No</th>
-                            <th style="color: #00eaea;">Frequency</th>
-                            <th style="color: #00eaea;">SG</th>
-                            <th style="color: #00eaea;">Net.Export</th>
-                            <th style="color: #00eaea;">Dev.MW</th>
+                        <tr class="header-row-1">
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                Block<br>No</th>
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                Frequ<br>ency</th>
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                SG<br>MW</th>
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                Net<br>Export</th>
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                Dev<br>Mw</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,10 +77,11 @@
                     <caption class="Next-Block-caption">Next Block</caption>
                     <thead>
                         <tr>
-                            <th style="color: #00eaea;">Block No</th>
-                            <th style="color: #00eaea;">Block Time</th>
-                            <th style="color: #00eaea;">DC MW</th>
-                            <th style="color: #00eaea;">SG MW</th>
+                            <th class="Next-Block-table-label">Block<br>No</th>
+                            <th class="Next-Block-table-label">Block<br>Time</th>
+                            <th class="Next-Block-table-label">DC<br>MW</th>
+                            <th class="Next-Block-table-label">SG<br>MW</th>
+                        </tr>
                         </tr>
                     </thead>
                     <tbody style="color: white;">
@@ -83,7 +89,7 @@
                     </tbody>
                 </table>
 
-                <table style="height: 130px;" class="Normal-Rate-table">
+                <table class="Normal-Rate-table">
                     <caption class="Normal-Rate-caption">Inst. Parameters</caption>
                     <thead>
 
@@ -271,8 +277,8 @@
                     ];
 
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: ${typeof row.value === 'number' && row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white'}; font-weight: bold; text-align: center;">
+                <td class="previousBlock-label">${row.label}</td>
+                <td class="previousBlock-value" style="color: ${typeof row.value === 'number' && row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white'};" >
                     ${value}
                 </td>
             `;
@@ -327,8 +333,8 @@
                     ];
 
                     tr.innerHTML = `
-                <td style="color: #e7e700; font-weight: bold;">${row.label}</td>
-                <td style="color: ${typeof row.value === 'number' && row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : '#00e800'}; font-weight: bold; text-align: center;">
+                <td class="currentBlock-label">${row.label}</td>
+                <td class="currentBlock-value" style="color: ${typeof row.value === 'number' && row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : '#00e800'};">
                     ${value}
                 </td>
             `;
@@ -358,25 +364,27 @@
 
                 previousBlockStatusRows.forEach(row => {
                     const tr = document.createElement('tr');
-                    const borderStyle = row.blockNo === 'Average' ? 'border-top: 2px solid white; border-bottom: 2px solid white; padding: 10px' : '';
 
-                    const getColor = (value, column) => {
+                    // Function to determine text color class
+                    const getColorClass = (value, column) => {
                         if (row.blockNo === 'Average') {
-                            return value < 0 ? 'red' : '#00e800';
+                            return value < 0 ? 'text-red' : 'text-green';
                         }
+                        // Apply red color only for Dev.MW when value is negative
                         if (column === 'devMW' && value < 0) {
-                            return 'red';
+                            return 'text-red';
                         }
-                        return value < 0 ? 'white' : 'white';
+                        return 'text-white';
                     };
 
+                    // Generate table row with class-based styling
                     tr.innerHTML = `
-                <td style="color: ${row.blockNo === 'Average' ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${borderStyle}">${formatNumber(row.blockNo)}</td>
-                <td style="color: ${getColor(row.frequency, 'frequency')}; font-weight: bold; text-align: center; ${borderStyle}">${formatNumber(row.frequency)}</td>
-                <td style="color: ${getColor(row.sg, 'sg')}; font-weight: bold; text-align: center; ${borderStyle}">${formatNumber(row.sg)}</td>
-                <td style="color: ${getColor(row.netExport, 'netExport')}; font-weight: bold; text-align: center; ${borderStyle}">${formatNumber(row.netExport)}</td>
-                <td style="color: ${getColor(row.devMW, 'devMW')}; font-weight: bold; text-align: center; ${borderStyle}">${formatNumber(row.devMW)}</td>
-            `;
+        <td class="previous-block-status-label ${row.blockNo === 'Average' ? 'average-row' : ''} ${row.blockNo === 'Average' ? 'text-green' : 'text-white'}">${row.blockNo}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatNumber(row.frequency)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sg, 'sg')}">${formatNumber(row.sg)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatNumber(row.netExport)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatNumber(row.devMW)}</td>
+    `;
 
                     previousBlockStatusTbody.appendChild(tr);
                 });
@@ -390,8 +398,8 @@
                 fuelCostFrequencyRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: #de00de; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${formatNumber(row.value)}</td>
+                <td class="fuelCost-label">${row.label}</td>
+                <td class="fuelCost-value">${formatNumber(row.value)}</td>
             `;
                     fuelCostFrequencyTbody.appendChild(tr);
                 });
@@ -407,10 +415,10 @@
                 nextBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td style="color: white; font-weight: bold; text-align: center;">${formatNumber(row.blockNo)}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${formatNumber(row.blockTime)}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${formatNumber(row.dcMW)}</td>
-                <td style="color: white; font-weight: bold; text-align: center;">${formatNumber(row.sgMW)}</td>
+                <td class="next-block-label">${formatNumber(row.blockNo)}</td>
+                <td class="next-block-label">${formatNumber(row.blockTime)}</td>
+                <td class="next-block-label">${formatNumber(row.dcMW)}</td>
+                <td class="next-block-label">${formatNumber(row.sgMW)}</td>
             `;
                     nextBlockTbody.appendChild(tr);
                 });
@@ -471,8 +479,8 @@
                     };
 
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold;">${row.label}</td>
-                <td style="color: ${getColor(row.value, row.label)}; font-weight: bold; text-align: center;">
+                <td class="cumulative-label">${row.label}</td>
+                <td class="cumulative-value" style="color: ${getColor(row.value, row.label)};">
                     ${formatNumber(row.value)}
                 </td>
             `;
@@ -509,7 +517,7 @@
                 `;
                     } else {
                         tr.innerHTML = `
-                    <td style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
+                    <td class="real-time-generation-data-label" style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
                     <td style="color: white; font-weight: bold; text-align: "center">${formatNumber(row.mw)}</td>
                     <td style="color: white; font-weight: bold; text-align: "center">${formatNumber(row.mvar)}</td>
                     <td style="color: white; font-weight: bold; text-align: "center">${formatNumber(row.volt)}</td>
@@ -584,25 +592,25 @@
                     const isTotalRow = row.label === 'TOTAL';
 
                     tr.innerHTML = `
-                <td style="color: #00eaea; font-weight: bold; ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
+                <td class="real-time-exp-imp-data-row-label" style="color: #00eaea; font-weight: bold; ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
                     ${row.label}
                 </td>
-                <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
                     ${formatNumber(row.expMW)}
                 </td>
-                <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
                     ${formatNumber(row.impMVV)}
                 </td>
-                <td style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
+                <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
                     ${formatNumber(row.mvar)}
                 </td>
-                <td style="color: white; font-weight: bold; text-align: center;">
+                <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
                     ${formatNumber(row.volt)}
                 </td>
-                <td style="color: white; font-weight: bold; text-align: center;">
+                <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
                     ${formatNumber(row.amp)}
                 </td>
-                <td style="color: white; font-weight: bold; text-align: center;">
+                <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
                     ${formatNumber(row.pf)}
                 </td>
             `;
