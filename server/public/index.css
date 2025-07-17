@@ -427,11 +427,10 @@ td {
 
 .tabless-containerss {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 270px;
+    grid-template-columns: 69.6% 30%;
+    /* First column 300px, second column 500px */
     margin: 20px;
     gap: 5px;
-
 }
 
 .reactive-power-header {
@@ -789,14 +788,14 @@ td {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .Misnew-Normal-Rate-row-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 /* Media Query for 1024x768 resolution */

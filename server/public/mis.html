@@ -24,6 +24,8 @@
             <span class="date-time">
                 Date: <span id="current-date" style="padding: 0 15px;"></span>
                 Time: <span id="current-time" style="padding: 0 15px;"></span>
+                Block No: <span id="block-no" style="padding: 0 15px;"></span>
+                Block Time: <span id="block-time" style="padding: 0 15px;"></span>
             </span>
         </div>
 
@@ -215,6 +217,10 @@
                 const cummUptoPreBlkSLPP = data.find(item => item.ID === 15); // SLPP
                 const acpFuelCostFrequency = data.find(item => item.ID === 6);
                 const normalRate = data.find(item => item.ID === 17);
+
+                // Update DC Rev.No and SG Rev.No from currentBlockData (ID === 2)
+                document.getElementById('block-no').textContent = formatNumber(currentBlockDataSLPP1.P1);
+                document.getElementById('block-time').textContent = (currentBlockDataSLPP1.P2);
 
                 // Populate the SLPP Phase-1 tbody
                 const realTimeValueTbody = document.querySelector('.Real-Time-table tbody');
@@ -423,7 +429,7 @@
                     { label: 'DS (MW)', value1: formatNumber(cummUptoPreBlkSLPP1.P10), value2: formatNumber(cummUptoPreBlkSLPP2.P10), value3: formatNumber(cummUptoPreBlkSLPP.P10) },
                     { label: 'Total DS (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P13), value2: formatNumber(cummUptoPreBlkSLPP2.P13), value3: formatNumber(cummUptoPreBlkSLPP.P11) },
                     { label: 'Fuel Cost (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P14), value2: formatNumber(cummUptoPreBlkSLPP2.P14), value3: formatNumber(cummUptoPreBlkSLPP.P12) },
-                    { label: 'Net Gain / Loss (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P21), value2: formatNumber(cummUptoPreBlkSLPP2.P21), value3: formatNumber(cummUptoPreBlkSLPP.P13) },
+                    { label: 'Net Gain / Loss (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P15), value2: formatNumber(cummUptoPreBlkSLPP2.P15), value3: formatNumber(cummUptoPreBlkSLPP.P13) },
                 ];
 
                 cummUptoPreBlkRows.forEach(row => {
