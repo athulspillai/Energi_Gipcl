@@ -415,8 +415,8 @@
                 nextBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td class="next-block-label">${formatNumber(row.blockNo)}</td>
-                <td class="next-block-label">${formatNumber(row.blockTime)}</td>
+                <td class="next-block-label">${row.blockNo}</td>
+                <td class="next-block-label">${row.blockTime}</td>
                 <td class="next-block-label">${formatNumber(row.dcMW)}</td>
                 <td class="next-block-label">${formatNumber(row.sgMW)}</td>
             `;
