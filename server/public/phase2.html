@@ -198,20 +198,30 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('/EMS_Network/WebData');
-                if (!response.ok) {
+                // Fetch data from both endpoints
+                const [webDataResponse, rtDataResponse] = await Promise.all([
+                    fetch('/EMS_Network/WebData'),
+                    fetch('/EMS_Network/RTWebData')
+                ]);
+
+                if (!webDataResponse.ok || !rtDataResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                console.log(data); // Log the fetched data
+
+                const webData = await webDataResponse.json();
+                const rtData = await rtDataResponse.json();
+
+                console.log('WebData:', webData); // Log the fetched web data
+                console.log('RTData:', rtData); // Log the fetched RT data
+
 
                 // Filter the data for ID 1, ID 2, ID 3, and ID 4 (Cumm. Upto Pre Blk)
-                const previousBlockData = data.find(item => item.ID === 7);
-                const currentBlockData = data.find(item => item.ID === 8);
-                const previousBlockStatus = data.find(item => item.ID === 9);
-                const cummUptoPreBlk = data.find(item => item.ID === 10);
-                const realTimeGenerationData = data.find(item => item.ID === 5);
-                const realTimeExpImpData = data.find(item => item.ID === 6);
+                const previousBlockData = webData.find(item => item.ID === 7);
+                const currentBlockData = webData.find(item => item.ID === 8);
+                const previousBlockStatus = webData.find(item => item.ID === 9);
+                const cummUptoPreBlk = webData.find(item => item.ID === 10);
+                const realTimeGenerationData = rtData.find(item => item.ID === 5);
+                const realTimeExpImpData = rtData.find(item => item.ID === 6);
 
 
                 // Update DC Rev.No and SG Rev.No from currentBlockData (ID === 2)

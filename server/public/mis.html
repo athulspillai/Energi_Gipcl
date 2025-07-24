@@ -200,23 +200,33 @@
         async function fetchData() {
             try {
                 const response = await fetch('/EMS_Network/WebData');
-                if (!response.ok) {
+                // Fetch data from both endpoints
+                const [webDataResponse, rtDataResponse] = await Promise.all([
+                    fetch('/EMS_Network/WebData'),
+                    fetch('/EMS_Network/RTWebData')
+                ]);
+
+                if (!webDataResponse.ok || !rtDataResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                console.log(data);
 
-                const realTimeValue = data.find(item => item.ID === 13);
+                const webData = await webDataResponse.json();
+                const rtData = await rtDataResponse.json();
+
+                console.log('WebData:', webData); // Log the fetched web data
+                console.log('RTData:', rtData); // Log the fetched RT data
+
+                const realTimeValue = webData.find(item => item.ID === 13);
                 // const currentBlockData = data.find(item => item.ID === 14);
-                const currentBlockDataSLPP1 = data.find(item => item.ID === 2); // SLPP-1
-                const currentBlockDataSLPP2 = data.find(item => item.ID === 8); // SLPP-2
-                const previousBlockStatus = data.find(item => item.ID === 3); // Frequency and Grid
+                const currentBlockDataSLPP1 = webData.find(item => item.ID === 2); // SLPP-1
+                const currentBlockDataSLPP2 = webData.find(item => item.ID === 8); // SLPP-2
+                const previousBlockStatus = webData.find(item => item.ID === 3); // Frequency and Grid
 
-                const cummUptoPreBlkSLPP1 = data.find(item => item.ID === 4); // SLPP-1
-                const cummUptoPreBlkSLPP2 = data.find(item => item.ID === 10); // SLPP-2
-                const cummUptoPreBlkSLPP = data.find(item => item.ID === 15); // SLPP
-                const acpFuelCostFrequency = data.find(item => item.ID === 6);
-                const normalRate = data.find(item => item.ID === 17);
+                const cummUptoPreBlkSLPP1 = webData.find(item => item.ID === 4); // SLPP-1
+                const cummUptoPreBlkSLPP2 = webData.find(item => item.ID === 10); // SLPP-2
+                const cummUptoPreBlkSLPP = webData.find(item => item.ID === 15); // SLPP
+                const acpFuelCostFrequency = rtData.find(item => item.ID === 6);
+                const normalRate = webData.find(item => item.ID === 17);
 
                 // Update DC Rev.No and SG Rev.No from currentBlockData (ID === 2)
                 document.getElementById('block-no').textContent = formatNumber(currentBlockDataSLPP1.P1);

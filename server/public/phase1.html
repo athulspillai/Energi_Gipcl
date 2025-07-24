@@ -197,20 +197,31 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('/EMS_Network/WebData');
-                if (!response.ok) {
+                // Fetch data from both endpoints
+                const [webDataResponse, rtDataResponse] = await Promise.all([
+                    fetch('/EMS_Network/WebData'),
+                    fetch('/EMS_Network/RTWebData')
+                ]);
+
+                if (!webDataResponse.ok || !rtDataResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                console.log(data); // Log the fetched data
 
-                // Filter the data for ID 1, ID 2, ID 3, and ID 4 (Cumm. Upto Pre Blk)
-                const previousBlockData = data.find(item => item.ID === 1);
-                const currentBlockData = data.find(item => item.ID === 2);
-                const previousBlockStatus = data.find(item => item.ID === 3);
-                const cummUptoPreBlk = data.find(item => item.ID === 4);
-                const realTimeGenerationData = data.find(item => item.ID === 5);
-                const realTimeExpImpData = data.find(item => item.ID === 6);
+                const webData = await webDataResponse.json();
+                const rtData = await rtDataResponse.json();
+
+                console.log('WebData:', webData); // Log the fetched web data
+                console.log('RTData:', rtData); // Log the fetched RT data
+
+                // Filter the webData for ID 1, ID 2, ID 3, and ID 4 (Cumm. Upto Pre Blk)
+                const previousBlockData = webData.find(item => item.ID === 1);
+                const currentBlockData = webData.find(item => item.ID === 2);
+                const previousBlockStatus = webData.find(item => item.ID === 3);
+                const cummUptoPreBlk = webData.find(item => item.ID === 4);
+
+                // Filter the rtData for real-time generation and export/import data
+                const realTimeGenerationData = rtData.find(item => item.ID === 5);
+                const realTimeExpImpData = rtData.find(item => item.ID === 6);
 
                 // Update DC Rev.No and SG Rev.No from currentBlockData (ID === 2)
                 document.getElementById('dc-rev').textContent = formatNumber(currentBlockData.P23);
@@ -274,11 +285,11 @@
                     ];
 
                     tr.innerHTML = `
-                <td class="previousBlock-label">${row.label}</td>
-                <td class="previousBlock-value" style="color: ${row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white'};">
-                    ${value}
-                </td>
-            `;
+        <td class="previousBlock-label">${row.label}</td>
+        <td class="previousBlock-value" style="color: ${row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white'};">
+            ${value}
+        </td>
+    `;
 
                     previousBlockTbody.appendChild(tr);
 
@@ -286,8 +297,8 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-                    <th colspan="3" class="reactive-power-header">Reactive Power</th>
-                `;
+            <th colspan="3" class="reactive-power-header">Reactive Power</th>
+        `;
                         previousBlockTbody.appendChild(reactivePowerRow);
                     }
                 });
@@ -330,11 +341,11 @@
                     ];
 
                     tr.innerHTML = `
-                <td class="currentBlock-label">${row.label}</td>
-                <td class="currentBlock-value" style="color: ${row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : '#00e800'};">
-                    ${value}
-                </td>
-            `;
+        <td class="currentBlock-label">${row.label}</td>
+        <td class="currentBlock-value" style="color: ${row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : '#00e800'};">
+            ${value}
+        </td>
+    `;
 
                     currentBlockTbody.appendChild(tr);
 
@@ -342,8 +353,8 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-                    <th colspan="3" class="reactive-power-header">Reactive Power</th>
-                `;
+            <th colspan="3" class="reactive-power-header">Reactive Power</th>
+        `;
                         currentBlockTbody.appendChild(reactivePowerRow);
                     }
                 });
@@ -376,12 +387,12 @@
 
                     // Generate table row with class-based styling
                     tr.innerHTML = `
-        <td class="previous-block-status-label ${row.blockNo === 'Average' ? 'average-row' : ''} ${row.blockNo === 'Average' ? 'text-green' : 'text-white'}">${row.blockNo}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatNumber(row.frequency)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sg, 'sg')}">${formatNumber(row.sg)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatNumber(row.netExport)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatNumber(row.devMW)}</td>
-    `;
+    <td class="previous-block-status-label ${row.blockNo === 'Average' ? 'average-row' : ''} ${row.blockNo === 'Average' ? 'text-green' : 'text-white'}">${row.blockNo}</td>
+    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatNumber(row.frequency)}</td>
+    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sg, 'sg')}">${formatNumber(row.sg)}</td>
+    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatNumber(row.netExport)}</td>
+    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatNumber(row.devMW)}</td>
+`;
 
                     previousBlockStatusTbody.appendChild(tr);
                 });
@@ -395,9 +406,9 @@
                 fuelCostFrequencyRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td class="fuelCost-label">${row.label}</td>
-                <td class="fuelCost-value">${formatNumber(row.value)}</td>
-            `;
+        <td class="fuelCost-label">${row.label}</td>
+        <td class="fuelCost-value">${formatNumber(row.value)}</td>
+    `;
                     fuelCostFrequencyTbody.appendChild(tr);
                 });
 
@@ -412,11 +423,11 @@
                 nextBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td class="next-block-label">${row.blockNo}</td>
-                <td class="next-block-label">${row.blockTime}</td>
-                <td class="next-block-label">${formatNumber(row.dcMW)}</td>
-                <td class="next-block-label">${formatNumber(row.sgMW)}</td>
-            `;
+        <td class="next-block-label">${row.blockNo}</td>
+        <td class="next-block-label">${row.blockTime}</td>
+        <td class="next-block-label">${formatNumber(row.dcMW)}</td>
+        <td class="next-block-label">${formatNumber(row.sgMW)}</td>
+    `;
                     nextBlockTbody.appendChild(tr);
                 });
 
@@ -431,9 +442,9 @@
                 normalRateRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td class="normal-rate-label">${row.label}</td>
-                <td class="normal-rate-value">${formatNumber(row.value)}</td>
-            `;
+        <td class="normal-rate-label">${row.label}</td>
+        <td class="normal-rate-value">${formatNumber(row.value)}</td>
+    `;
                     normalRateTbody.appendChild(tr);
                 });
 
@@ -484,11 +495,11 @@
                     };
 
                     tr.innerHTML = `
-                <td class="cumulative-label">${row.label}</td>
-                <td class="cumulative-value" style="color: ${getColor(row.value, row.label)};">
-                    ${formatNumber(row.value)}
-                </td>
-            `;
+        <td class="cumulative-label">${row.label}</td>
+        <td class="cumulative-value" style="color: ${getColor(row.value, row.label)};">
+            ${formatNumber(row.value)}
+        </td>
+    `;
 
                     cumulativeTbody.appendChild(tr);
 
@@ -496,140 +507,150 @@
                     if (row.label === 'Net Gain / Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-                    <th colspan="3" class="reactive-power-header">Reactive Power</th>
-                `;
+            <th colspan="3" class="reactive-power-header">Reactive Power</th>
+        `;
                         cumulativeTbody.appendChild(reactivePowerRow);
                     }
                 });
 
-                // Populate the Real-Time Generation Data table
-                const realTimeRows = [
-                    { label: 'GEN-1', mw: realTimeGenerationData.P1, mvar: realTimeGenerationData.P2, volt: realTimeGenerationData.P3, amp: realTimeGenerationData.P4, pf: realTimeGenerationData.P5 },
-                    { label: 'GEN-2', mw: realTimeGenerationData.P6, mvar: realTimeGenerationData.P7, volt: realTimeGenerationData.P8, amp: realTimeGenerationData.P9, pf: realTimeGenerationData.P10 },
-                    { label: 'GEN-3', mw: realTimeGenerationData.P11, mvar: realTimeGenerationData.P12, volt: realTimeGenerationData.P13, amp: realTimeGenerationData.P14, pf: realTimeGenerationData.P15 },
-                    { label: 'GEN-4', mw: realTimeGenerationData.P16, mvar: realTimeGenerationData.P17, volt: realTimeGenerationData.P18, amp: realTimeGenerationData.P19, pf: realTimeGenerationData.P20 },
-                    { label: 'TOTAL', mw: realTimeGenerationData.P21, mvar: realTimeGenerationData.P22, volt: '', amp: '', pf: '' },
-                ];
+                // Check if realTimeGenerationData exists before using it
+                if (realTimeGenerationData) {
+                    // Populate the Real-Time Generation Data table
+                    const realTimeRows = [
+                        { label: 'GEN-1', mw: realTimeGenerationData.P1, mvar: realTimeGenerationData.P2, volt: realTimeGenerationData.P3, amp: realTimeGenerationData.P4, pf: realTimeGenerationData.P5 },
+                        { label: 'GEN-2', mw: realTimeGenerationData.P6, mvar: realTimeGenerationData.P7, volt: realTimeGenerationData.P8, amp: realTimeGenerationData.P9, pf: realTimeGenerationData.P10 },
+                        { label: 'GEN-3', mw: realTimeGenerationData.P11, mvar: realTimeGenerationData.P12, volt: realTimeGenerationData.P13, amp: realTimeGenerationData.P14, pf: realTimeGenerationData.P15 },
+                        { label: 'GEN-4', mw: realTimeGenerationData.P16, mvar: realTimeGenerationData.P17, volt: realTimeGenerationData.P18, amp: realTimeGenerationData.P19, pf: realTimeGenerationData.P20 },
+                        { label: 'TOTAL', mw: realTimeGenerationData.P21, mvar: realTimeGenerationData.P22, volt: '', amp: '', pf: '' },
+                    ];
 
-                realTimeRows.forEach(row => {
-                    const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#de00de' : '#00eaea';
+                    realTimeRows.forEach(row => {
+                        const labelColor = (row.label === 'PH-1 Inst./Cumm. APC (MWh / %)' || row.label === 'PH-2 Inst./Cumm. APC (MWh / %)') ? '#de00de' : '#00eaea';
 
-                    const tr = document.createElement('tr');
+                        const tr = document.createElement('tr');
 
-                    // Apply border only for the "TOTAL" row
-                    if (row.label === 'TOTAL') {
-                        tr.innerHTML = `
-                    <td class="Total-Row">${row.label}</td>
-                    <td class="Total-Row">${formatNumber(row.mw)}</td>
-                    <td class="Total-Row">${formatNumber(row.mvar)}</td>
-                `;
-                    } else {
-                        tr.innerHTML = `
-                    <td class="real-time-generation-data-label" style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
-                    <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.mw)}</td>
-                    <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.mvar)}</td>
-                    <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.volt)}</td>
-                    <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.amp)}</td>
-                    <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.pf)}</td>
-                `;
-                    }
-
-                    realTimeGenerationTbody.appendChild(tr);
-
-                    if (row.label === 'TOTAL') {
-                        // Add an empty row for spacing
-                        const emptyRow = document.createElement('tr');
-                        emptyRow.innerHTML = `<td colspan="6" style="height: 5%;"></td>`;
-                        realTimeGenerationTbody.appendChild(emptyRow);
-
-                        const apcRow = document.createElement('tr');
-                        apcRow.innerHTML = `
-                    <th class="Real-Time-Generation-Data-APC" colspan="6">APC</th>
-                `;
-                        realTimeGenerationTbody.appendChild(apcRow);
-
-                        // Create the new header row
-                        const newHeaderRow = document.createElement('tr');
-                        newHeaderRow.innerHTML = `
-                    <th></th>
-                    <th></th>
-                    <th class="Real-Time-Generation-Data-Subheader">Inst (MW)</th>
-                    <th class="Real-Time-Generation-Data-Subheader">Inst (%)</th>
-                    <th class="Real-Time-Generation-Data-Subheader">Cum (MWh)</th>
-                    <th class="Real-Time-Generation-Data-Subheader">Cum (%)</th>
-                `;
-                        realTimeGenerationTbody.appendChild(newHeaderRow);
-
-                        // Create the new rows for PH-1 and PH-2
-                        const ph1Row = document.createElement('tr');
-                        ph1Row.innerHTML = `
-                    <td class="Real-Time-Generation-Data-row-label">PH-1 Inst./Cumm. APC (MWh / %)</td>
-                    <td></td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P23)}</td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P24)}</td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P25)}</td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P26)}</td>
-                `;
-                        realTimeGenerationTbody.appendChild(ph1Row);
-
-                        const ph2Row = document.createElement('tr');
-                        ph2Row.innerHTML = `
-                    <td class="Real-Time-Generation-Data-row-label">PH-2 Inst./Cumm. APC (MWh / %)</td>
-                    <td></td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P27)}</td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P28)}</td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P29)}</td>
-                    <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P30)}</td>
-                `;
-                        realTimeGenerationTbody.appendChild(ph2Row);
-                    }
-                });
-
-                // Populate the Real-Time Exp/Imp Data table
-                const expImpRows = [
-                    { label: 'KJ', expMW: realTimeExpImpData.P1, impMVV: realTimeExpImpData.P2, mvar: realTimeExpImpData.P3, volt: realTimeExpImpData.P4, amp: realTimeExpImpData.P5, pf: realTimeExpImpData.P6 },
-                    { label: 'GV-4', expMW: realTimeExpImpData.P7, impMVV: realTimeExpImpData.P8, mvar: realTimeExpImpData.P9, volt: realTimeExpImpData.P10, amp: realTimeExpImpData.P11, pf: realTimeExpImpData.P12 },
-                    { label: 'ZL-1', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 },
-                    { label: 'ZL-2', expMW: realTimeExpImpData.P19, impMVV: realTimeExpImpData.P20, mvar: realTimeExpImpData.P21, volt: realTimeExpImpData.P22, amp: realTimeExpImpData.P23, pf: realTimeExpImpData.P24 },
-                    { label: 'AD -1', expMW: realTimeExpImpData.P25, impMVV: realTimeExpImpData.P26, mvar: realTimeExpImpData.P27, volt: realTimeExpImpData.P28, amp: realTimeExpImpData.P29, pf: realTimeExpImpData.P30 },
-                    { label: 'AD -2', expMW: realTimeExpImpData.P31, impMVV: realTimeExpImpData.P32, mvar: realTimeExpImpData.P33, volt: realTimeExpImpData.P34, amp: realTimeExpImpData.P35, pf: realTimeExpImpData.P36 },
-                    { label: 'TOTAL', expMW: realTimeExpImpData.P37, impMVV: realTimeExpImpData.P38, mvar: realTimeExpImpData.P39, volt: '', amp: '', pf: '' },
-                    { label: 'I/C-A', expMW: realTimeExpImpData.P40, impMVV: realTimeExpImpData.P41, mvar: realTimeExpImpData.P42, volt: realTimeExpImpData.P43, amp: realTimeExpImpData.P44, pf: realTimeExpImpData.P45 },
-                    { label: 'I/C-B', expMW: realTimeExpImpData.P46, impMVV: realTimeExpImpData.P47, mvar: realTimeExpImpData.P48, volt: realTimeExpImpData.P49, amp: realTimeExpImpData.P50, pf: realTimeExpImpData.P51 },
-                ];
-
-                expImpRows.forEach(row => {
-                    const tr = document.createElement('tr');
-
-                    // Check if the row label is "TOTAL"
-                    const isTotalRow = row.label === 'TOTAL';
-
-                    tr.innerHTML = `
-                <td class="real-time-exp-imp-data-row-label" ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
-                    ${row.label}
-                </td>
-                <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
-                    ${formatNumber(row.expMW)}
-                </td>
-                <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
-                    ${formatNumber(row.impMVV)}
-                </td>
-                <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
-                    ${formatNumber(row.mvar)}
-                </td>
-                <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
-                    ${formatNumber(row.volt)}
-                </td>
-                <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
-                    ${formatNumber(row.amp)}
-                </td>
-                <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
-                    ${formatNumber(row.pf)}
-                </td>
+                        // Apply border only for the "TOTAL" row
+                        if (row.label === 'TOTAL') {
+                            tr.innerHTML = `
+                <td class="Total-Row">${row.label}</td>
+                <td class="Total-Row">${formatNumber(row.mw)}</td>
+                <td class="Total-Row">${formatNumber(row.mvar)}</td>
             `;
+                        } else {
+                            tr.innerHTML = `
+                <td class="real-time-generation-data-label" style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.mw)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.mvar)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.volt)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.amp)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.pf)}</td>
+            `;
+                        }
 
-                    realTimeExpImpTbody.appendChild(tr);
-                });
+                        realTimeGenerationTbody.appendChild(tr);
+
+                        if (row.label === 'TOTAL') {
+                            // Add an empty row for spacing
+                            const emptyRow = document.createElement('tr');
+                            emptyRow.innerHTML = `<td colspan="6" style="height: 5%;"></td>`;
+                            realTimeGenerationTbody.appendChild(emptyRow);
+
+                            const apcRow = document.createElement('tr');
+                            apcRow.innerHTML = `
+                <th class="Real-Time-Generation-Data-APC" colspan="6">APC</th>
+            `;
+                            realTimeGenerationTbody.appendChild(apcRow);
+
+                            // Create the new header row
+                            const newHeaderRow = document.createElement('tr');
+                            newHeaderRow.innerHTML = `
+                <th></th>
+                <th></th>
+                <th class="Real-Time-Generation-Data-Subheader">Inst (MW)</th>
+                <th class="Real-Time-Generation-Data-Subheader">Inst (%)</th>
+                <th class="Real-Time-Generation-Data-Subheader">Cum (MWh)</th>
+                <th class="Real-Time-Generation-Data-Subheader">Cum (%)</th>
+            `;
+                            realTimeGenerationTbody.appendChild(newHeaderRow);
+
+                            // Create the new rows for PH-1 and PH-2
+                            const ph1Row = document.createElement('tr');
+                            ph1Row.innerHTML = `
+                <td class="Real-Time-Generation-Data-row-label">PH-1 Inst./Cumm. APC (MWh / %)</td>
+                <td></td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P23)}</td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P24)}</td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P25)}</td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P26)}</td>
+            `;
+                            realTimeGenerationTbody.appendChild(ph1Row);
+
+                            const ph2Row = document.createElement('tr');
+                            ph2Row.innerHTML = `
+                <td class="Real-Time-Generation-Data-row-label">PH-2 Inst./Cumm. APC (MWh / %)</td>
+                <td></td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P27)}</td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P28)}</td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P29)}</td>
+                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P30)}</td>
+            `;
+                            realTimeGenerationTbody.appendChild(ph2Row);
+                        }
+                    });
+                } else {
+                    console.warn('Real-time generation data not found (ID 5 in RTWebData)');
+                }
+
+                // Check if realTimeExpImpData exists before using it
+                if (realTimeExpImpData) {
+                    // Populate the Real-Time Exp/Imp Data table
+                    const expImpRows = [
+                        { label: 'KJ', expMW: realTimeExpImpData.P1, impMVV: realTimeExpImpData.P2, mvar: realTimeExpImpData.P3, volt: realTimeExpImpData.P4, amp: realTimeExpImpData.P5, pf: realTimeExpImpData.P6 },
+                        { label: 'GV-4', expMW: realTimeExpImpData.P7, impMVV: realTimeExpImpData.P8, mvar: realTimeExpImpData.P9, volt: realTimeExpImpData.P10, amp: realTimeExpImpData.P11, pf: realTimeExpImpData.P12 },
+                        { label: 'ZL-1', expMW: realTimeExpImpData.P13, impMVV: realTimeExpImpData.P14, mvar: realTimeExpImpData.P15, volt: realTimeExpImpData.P16, amp: realTimeExpImpData.P17, pf: realTimeExpImpData.P18 },
+                        { label: 'ZL-2', expMW: realTimeExpImpData.P19, impMVV: realTimeExpImpData.P20, mvar: realTimeExpImpData.P21, volt: realTimeExpImpData.P22, amp: realTimeExpImpData.P23, pf: realTimeExpImpData.P24 },
+                        { label: 'AD -1', expMW: realTimeExpImpData.P25, impMVV: realTimeExpImpData.P26, mvar: realTimeExpImpData.P27, volt: realTimeExpImpData.P28, amp: realTimeExpImpData.P29, pf: realTimeExpImpData.P30 },
+                        { label: 'AD -2', expMW: realTimeExpImpData.P31, impMVV: realTimeExpImpData.P32, mvar: realTimeExpImpData.P33, volt: realTimeExpImpData.P34, amp: realTimeExpImpData.P35, pf: realTimeExpImpData.P36 },
+                        { label: 'TOTAL', expMW: realTimeExpImpData.P37, impMVV: realTimeExpImpData.P38, mvar: realTimeExpImpData.P39, volt: '', amp: '', pf: '' },
+                        { label: 'I/C-A', expMW: realTimeExpImpData.P40, impMVV: realTimeExpImpData.P41, mvar: realTimeExpImpData.P42, volt: realTimeExpImpData.P43, amp: realTimeExpImpData.P44, pf: realTimeExpImpData.P45 },
+                        { label: 'I/C-B', expMW: realTimeExpImpData.P46, impMVV: realTimeExpImpData.P47, mvar: realTimeExpImpData.P48, volt: realTimeExpImpData.P49, amp: realTimeExpImpData.P50, pf: realTimeExpImpData.P51 },
+                    ];
+
+                    expImpRows.forEach(row => {
+                        const tr = document.createElement('tr');
+
+                        // Check if the row label is "TOTAL"
+                        const isTotalRow = row.label === 'TOTAL';
+
+                        tr.innerHTML = `
+            <td class="real-time-exp-imp-data-row-label" ${isTotalRow ? 'border-top: 2px solid white; border-bottom: 2px solid white; border-left: 2px solid white; background-color: #333' : ''}">
+                ${row.label}
+            </td>
+            <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                ${formatNumber(row.expMW)}
+            </td>
+            <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
+                ${formatNumber(row.impMVV)}
+            </td>
+            <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
+                ${formatNumber(row.mvar)}
+            </td>
+            <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
+                ${formatNumber(row.volt)}
+            </td>
+            <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
+                ${formatNumber(row.amp)}
+            </td>
+            <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
+                ${formatNumber(row.pf)}
+            </td>
+        `;
+
+                        realTimeExpImpTbody.appendChild(tr);
+                    });
+                } else {
+                    console.warn('Real-time export/import data not found (ID 6 in RTWebData)');
+                }
 
             } catch (error) {
                 console.error('Error fetching data:', error);

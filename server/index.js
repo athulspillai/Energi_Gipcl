@@ -45,6 +45,23 @@ app.get('/EMS_Network/WebData', async (req, res) => {
     }
 });
 
+// New API endpoint for fetching real-time data from RTWebData table
+app.get('/EMS_Network/RTWebData', async (req, res) => {
+    try {
+        const config = { ...baseConfig, database: 'EMS_Network' };
+        await sql.connect(config);
+        const query = `SELECT * FROM RTWebData`;
+        console.log('Executing query RTWebData:', query);
+        const result = await sql.query(query);
+        res.json(result.recordset);
+    } catch (err) {
+        console.error('Database error (EMS_Network RTWebData):', err);
+        res.status(500).send(`Error fetching RT data: ${err.message}`);
+    } finally {
+        await sql.close();
+    }
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Backend server running at http://localhost:${port}`);
