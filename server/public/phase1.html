@@ -50,15 +50,26 @@
                     <thead>
                         <tr class="header-row-1">
                             <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
-                                Block<br>No</th>
+                                Blk.No<br>
+                            </th>
                             <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
-                                Frequ<br>ency</th>
+                                Frequ<br>
+                            </th>
                             <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
-                                SG<br>MW</th>
+                                SLDC.SG<br>
+                            </th>
                             <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
-                                Net<br>Export</th>
+                                IEX.SG<br>
+                            </th>
                             <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
-                                Dev<br>Mw</th>
+                                Tot.SG<br>
+                            </th>
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                Net.Exp<br>
+                            </th>
+                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none;">
+                                Dev<br>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,10 +87,13 @@
                     <caption class="Next-Block-caption">Next Block</caption>
                     <thead>
                         <tr class=" header-row-1">
-                            <th class="Next-Block-table-label">Block<br>No</th>
-                            <th class="Next-Block-table-label">Block<br>Time</th>
-                            <th class="Next-Block-table-label">DC<br>MW</th>
-                            <th class="Next-Block-table-label">SG<br>MW</th>
+                            <th class="Next-Block-table-label">Blk.No<br></th>
+                            <th class="Next-Block-table-label">Blk.Time<br></th>
+                            <th class="Next-Block-table-label">DC<br></th>
+                            <th class="Next-Block-table-label">Tot.SG<br></th>
+                            <th class="Next-Block-table-label">IEX.SG<br></th>
+                            <th class="Next-Block-table-label">USR Power<br></th>
+
                         </tr>
                     </thead>
                     <tbody style="color: white;">
@@ -223,6 +237,9 @@
                 const realTimeGenerationData = rtData.find(item => item.ID === 5);
                 const realTimeExpImpData = rtData.find(item => item.ID === 6);
 
+                const next8blocksData = webData.find(item => item.ID === 19);
+                const newpreviousBlockStatus = webData.find(item => item.ID === 20);
+
                 // Update DC Rev.No and SG Rev.No from currentBlockData (ID === 2)
                 document.getElementById('dc-rev').textContent = formatNumber(currentBlockData.P23);
                 document.getElementById('sg-rev').textContent = formatNumber(currentBlockData.P24);
@@ -359,15 +376,52 @@
                     }
                 });
 
-                // Populate the Previous Block Status table with ID 3 data
                 const previousBlockStatusRows = [
-                    { blockNo: previousBlockStatus.P1, frequency: previousBlockStatus.P7, sg: previousBlockStatus.P14, netExport: previousBlockStatus.P21, devMW: previousBlockStatus.P28 },
-                    { blockNo: previousBlockStatus.P2, frequency: previousBlockStatus.P8, sg: previousBlockStatus.P15, netExport: previousBlockStatus.P22, devMW: previousBlockStatus.P29 },
-                    { blockNo: previousBlockStatus.P3, frequency: previousBlockStatus.P9, sg: previousBlockStatus.P16, netExport: previousBlockStatus.P23, devMW: previousBlockStatus.P30 },
-                    { blockNo: previousBlockStatus.P4, frequency: previousBlockStatus.P10, sg: previousBlockStatus.P17, netExport: previousBlockStatus.P24, devMW: previousBlockStatus.P31 },
-                    { blockNo: previousBlockStatus.P5, frequency: previousBlockStatus.P11, sg: previousBlockStatus.P18, netExport: previousBlockStatus.P25, devMW: previousBlockStatus.P32 },
-                    { blockNo: previousBlockStatus.P6, frequency: previousBlockStatus.P12, sg: previousBlockStatus.P19, netExport: previousBlockStatus.P26, devMW: previousBlockStatus.P33 },
-                    { blockNo: 'Average', frequency: previousBlockStatus.P13, sg: previousBlockStatus.P20, netExport: previousBlockStatus.P27, devMW: previousBlockStatus.P34 },
+                    {
+                        blockNo: newpreviousBlockStatus.P1,
+                        frequency: newpreviousBlockStatus.P2,
+                        sldcSG: newpreviousBlockStatus.P3,    // SLDC.SG column
+                        iexSG: newpreviousBlockStatus.P4,     // IEX SG column (adjust property number as needed)
+                        totSG: newpreviousBlockStatus.P5,     // Tot.SG column (adjust property number as needed)
+                        netExport: newpreviousBlockStatus.P6,
+                        devMW: newpreviousBlockStatus.P7
+                    },
+                    {
+                        blockNo: newpreviousBlockStatus.P8,
+                        frequency: newpreviousBlockStatus.P9,
+                        sldcSG: newpreviousBlockStatus.P10,
+                        iexSG: newpreviousBlockStatus.P11,     // Adjust property numbers
+                        totSG: newpreviousBlockStatus.P12,
+                        netExport: newpreviousBlockStatus.P13,
+                        devMW: newpreviousBlockStatus.P14
+                    },
+                    {
+                        blockNo: newpreviousBlockStatus.P15,
+                        frequency: newpreviousBlockStatus.P16,
+                        sldcSG: newpreviousBlockStatus.P17,
+                        iexSG: newpreviousBlockStatus.P18,
+                        totSG: newpreviousBlockStatus.P19,
+                        netExport: newpreviousBlockStatus.P20,
+                        devMW: newpreviousBlockStatus.P21
+                    },
+                    {
+                        blockNo: newpreviousBlockStatus.P22,
+                        frequency: newpreviousBlockStatus.P23,
+                        sldcSG: newpreviousBlockStatus.P24,
+                        iexSG: newpreviousBlockStatus.P25,
+                        totSG: newpreviousBlockStatus.P26,
+                        netExport: newpreviousBlockStatus.P27,
+                        devMW: newpreviousBlockStatus.P28
+                    },
+                    {
+                        blockNo: 'Average',
+                        frequency: newpreviousBlockStatus.P29,
+                        sldcSG: newpreviousBlockStatus.P30,
+                        iexSG: newpreviousBlockStatus.P31,
+                        totSG: newpreviousBlockStatus.P32,
+                        netExport: newpreviousBlockStatus.P33,
+                        devMW: newpreviousBlockStatus.P34
+                    },
                 ];
 
                 previousBlockStatusRows.forEach(row => {
@@ -387,12 +441,14 @@
 
                     // Generate table row with class-based styling
                     tr.innerHTML = `
-    <td class="previous-block-status-label ${row.blockNo === 'Average' ? 'average-row' : ''} ${row.blockNo === 'Average' ? 'text-green' : 'text-white'}">${row.blockNo}</td>
-    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatNumber(row.frequency)}</td>
-    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sg, 'sg')}">${formatNumber(row.sg)}</td>
-    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatNumber(row.netExport)}</td>
-    <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatNumber(row.devMW)}</td>
-`;
+        <td class="previous-block-status-label ${row.blockNo === 'Average' ? 'average-row' : ''} ${row.blockNo === 'Average' ? 'text-green' : 'text-white'}">${row.blockNo}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatNumber(row.frequency)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sldcSG, 'sldcSG')}">${formatNumber(row.sldcSG)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.iexSG, 'iexSG')}">${formatNumber(row.iexSG)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.totSG, 'totSG')}">${formatNumber(row.totSG)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatNumber(row.netExport)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatNumber(row.devMW)}</td>
+    `;
 
                     previousBlockStatusTbody.appendChild(tr);
                 });
@@ -412,25 +468,94 @@
                     fuelCostFrequencyTbody.appendChild(tr);
                 });
 
-                // Populate the Next Block table
-                const nextBlockRows = [
-                    { blockNo: previousBlockStatus.P37, blockTime: previousBlockStatus.P41, dcMW: previousBlockStatus.P45, sgMW: previousBlockStatus.P49 },
-                    { blockNo: previousBlockStatus.P38, blockTime: previousBlockStatus.P42, dcMW: previousBlockStatus.P46, sgMW: previousBlockStatus.P50 },
-                    { blockNo: previousBlockStatus.P39, blockTime: previousBlockStatus.P43, dcMW: previousBlockStatus.P47, sgMW: previousBlockStatus.P51 },
-                    { blockNo: previousBlockStatus.P40, blockTime: previousBlockStatus.P44, dcMW: previousBlockStatus.P48, sgMW: previousBlockStatus.P52 },
-                ];
+                if (next8blocksData) {
+                    console.log('Full next8blocksData object:', next8blocksData);
 
-                nextBlockRows.forEach(row => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-        <td class="next-block-label">${row.blockNo}</td>
-        <td class="next-block-label">${row.blockTime}</td>
-        <td class="next-block-label">${formatNumber(row.dcMW)}</td>
-        <td class="next-block-label">${formatNumber(row.sgMW)}</td>
-    `;
-                    nextBlockTbody.appendChild(tr);
-                });
+                    // Pattern: Sequential groups of 6 properties per block
+                    // Block 1: P1-P6, Block 2: P7-P12, Block 3: P13-P18, etc.
+                    const nextBlockRows = [
+                        {
+                            blockNo: next8blocksData.P1,
+                            blockTime: next8blocksData.P2,
+                            dcMW: next8blocksData.P3,
+                            totalSG: next8blocksData.P4,
+                            iexSG: next8blocksData.P5,          // IEX SG column
+                            surplusPower: next8blocksData.P6    // SurplusPower column
+                        },
+                        {
+                            blockNo: next8blocksData.P7,
+                            blockTime: next8blocksData.P8,
+                            dcMW: next8blocksData.P9,
+                            totalSG: next8blocksData.P10,
+                            iexSG: next8blocksData.P11,
+                            surplusPower: next8blocksData.P12
+                        },
+                        {
+                            blockNo: next8blocksData.P13,
+                            blockTime: next8blocksData.P14,
+                            dcMW: next8blocksData.P15,
+                            totalSG: next8blocksData.P16,
+                            iexSG: next8blocksData.P17,
+                            surplusPower: next8blocksData.P18
+                        },
+                        {
+                            blockNo: next8blocksData.P19,
+                            blockTime: next8blocksData.P20,
+                            dcMW: next8blocksData.P21,
+                            totalSG: next8blocksData.P22,
+                            iexSG: next8blocksData.P23,
+                            surplusPower: next8blocksData.P24
+                        },
+                        {
+                            blockNo: next8blocksData.P25,
+                            blockTime: next8blocksData.P26,
+                            dcMW: next8blocksData.P27,
+                            totalSG: next8blocksData.P28,
+                            iexSG: next8blocksData.P29,
+                            surplusPower: next8blocksData.P30
+                        },
+                        {
+                            blockNo: next8blocksData.P31,
+                            blockTime: next8blocksData.P32,
+                            dcMW: next8blocksData.P33,
+                            totalSG: next8blocksData.P34,
+                            iexSG: next8blocksData.P35,
+                            surplusPower: next8blocksData.P36
+                        },
+                        {
+                            blockNo: next8blocksData.P37,
+                            blockTime: next8blocksData.P38,
+                            dcMW: next8blocksData.P39,
+                            totalSG: next8blocksData.P40,
+                            iexSG: next8blocksData.P41,
+                            surplusPower: next8blocksData.P42
+                        },
+                        {
+                            blockNo: next8blocksData.P43,
+                            blockTime: next8blocksData.P44,
+                            dcMW: next8blocksData.P45,
+                            totalSG: next8blocksData.P46,
+                            iexSG: next8blocksData.P47,
+                            surplusPower: next8blocksData.P48
+                        },
+                    ];
 
+                    nextBlockRows.forEach((row, index) => {
+                        console.log(`Row ${index + 1}:`, row);
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+            <td class="next-block-label">${row.blockNo}</td>
+            <td class="next-block-label">${row.blockTime}</td>
+            <td class="next-block-label">${formatNumber(row.dcMW)}</td>
+            <td class="next-block-label">${formatNumber(row.totalSG)}</td>
+            <td class="next-block-label">${formatNumber(row.iexSG)}</td>
+            <td class="next-block-label">${formatNumber(row.surplusPower)}</td>
+        `;
+                        nextBlockTbody.appendChild(tr);
+                    });
+                } else {
+                    console.warn('Next 8 blocks data not found (ID 19 in WebData)');
+                }
                 // Populate the Normal Rate table with data from previousBlockStatus
                 const normalRateRows = [
                     { label: 'Net Exp (MW)', value: previousBlockStatus.P53 },
@@ -454,7 +579,9 @@
                     { label: 'Gen-1 (MWh)', value: cummUptoPreBlk.P2 },
                     { label: 'Gen-2 (MWh)', value: cummUptoPreBlk.P3 },
                     { label: 'DC (MWh)', value: cummUptoPreBlk.P4 },
-                    { label: 'SG (MWh)', value: cummUptoPreBlk.P5 },
+                    { label: 'SG - SLDC (MWh)', value: cummUptoPreBlk.P25 },
+                    { label: 'SG - IEX (MWh)', value: cummUptoPreBlk.P26 },
+                    { label: 'SG - Total (MWh)', value: cummUptoPreBlk.P5 },
                     { label: 'Backing Down (MWh)', value: cummUptoPreBlk.P6 },
                     { label: 'Exp./SG%', value: cummUptoPreBlk.P7 },
                     { label: 'Avg. Frequency (Hz)', value: cummUptoPreBlk.P8 },

@@ -322,7 +322,7 @@ td {
 
 .Real-Time-tbody,
 tr {
-    line-height: 100%;
+    line-height: 20%;
 }
 
 .Misnew-Current-Blocks-table {
@@ -609,6 +609,7 @@ td {
     color: #00eaea;
     font-weight: bold;
     font-size: 1.1rem;
+    line-height: 0;
 }
 
 .previousBlock-value {
@@ -836,7 +837,7 @@ td {
     .Misnew-Cumulatives-table caption,
     .Acp-Fuel-Cost-Frequency-table caption,
     .Normal-Rate-tables caption {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         /* Adjust caption font size */
     }
 
@@ -850,9 +851,9 @@ td {
     .Normal-Rate-tables,
     th,
     td {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         /* Adjust table content font size */
-        padding: 2px;
+        padding: 1px;
     }
 
     .tables-container {
@@ -1291,5 +1292,11 @@ td {
         text-align: center;
         font-size: 0.7rem;
     }
+
+    .Real-Time-tbody,
+    tr {
+        line-height: 50%;
+    }
+
 
 }
