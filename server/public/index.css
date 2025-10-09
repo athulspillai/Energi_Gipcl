@@ -450,7 +450,7 @@ td {
 .normal-rate-label {
     color: #de00de;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .normal-rate-value {
@@ -566,14 +566,14 @@ td {
     color: #de00de;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Real-Time-Generation-Data-row-value {
     color: #00e800;
     font-weight: bold;
     text-align: "center";
-    font-size: 1.1rem;
+    font-size: 1rem;
 
 }
 
@@ -608,27 +608,27 @@ td {
 .previousBlock-label {
     color: #00eaea;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 0;
 }
 
 .previousBlock-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 
 }
 
 .currentBlock-label {
     color: #e7e700;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .currentBlock-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .previous-block-status-label {
@@ -673,102 +673,102 @@ td {
 .fuelCost-label {
     color: #de00de;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .fuelCost-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Next-Block-table-label {
     color: #00eaea;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .next-block-label {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .cumulative-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .cumulative-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .real-time-generation-data-label {
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .real-time-exp-imp-data-row-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .real-time-exp-imp-data-row-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .real-time-value-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .real-time-value-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Misnew-Current-block-label {
     color: #e7e700;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Misnew-Current-block-value {
     color: #00e800;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Misnew-Cumm-Upto-PreBlk-row-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Misnew-Cumm-Upto-PreBlk-row-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Misnew-ACP-Fuel-Cost-Frequency-row-label {
@@ -782,7 +782,7 @@ td {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .Misnew-Normal-Rate-row-label {
