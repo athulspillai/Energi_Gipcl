@@ -91,9 +91,10 @@
                             <th class="Next-Block-table-label">Blk.No<br></th>
                             <th class="Next-Block-table-label">Blk.Time<br></th>
                             <th class="Next-Block-table-label">DC<br></th>
-                            <th class="Next-Block-table-label">Tot.SG<br></th>
+                            <th class="Next-Block-table-label">SLDC.SG<br></th>
                             <th class="Next-Block-table-label">IEX.SG<br></th>
-                            <th class="Next-Block-table-label">USR Power<br></th>
+                            <th class="Next-Block-table-label">Tot.SG<br></th>
+                            <th class="Next-Block-table-label">USR<br></th>
                         </tr>
                         </tr>
                     </thead>
@@ -481,6 +482,7 @@
                             blockNo: next8blocksData.P1,
                             blockTime: next8blocksData.P2,
                             dcMW: next8blocksData.P3,
+                            sldcSG: next8blocksData.P49,
                             totalSG: next8blocksData.P4,
                             iexSG: next8blocksData.P5,          // IEX SG column
                             surplusPower: next8blocksData.P6    // SurplusPower column
@@ -489,6 +491,7 @@
                             blockNo: next8blocksData.P7,
                             blockTime: next8blocksData.P8,
                             dcMW: next8blocksData.P9,
+                            sldcSG: next8blocksData.P50,
                             totalSG: next8blocksData.P10,
                             iexSG: next8blocksData.P11,
                             surplusPower: next8blocksData.P12
@@ -497,6 +500,7 @@
                             blockNo: next8blocksData.P13,
                             blockTime: next8blocksData.P14,
                             dcMW: next8blocksData.P15,
+                            sldcSG: next8blocksData.P51,
                             totalSG: next8blocksData.P16,
                             iexSG: next8blocksData.P17,
                             surplusPower: next8blocksData.P18
@@ -505,6 +509,7 @@
                             blockNo: next8blocksData.P19,
                             blockTime: next8blocksData.P20,
                             dcMW: next8blocksData.P21,
+                            sldcSG: next8blocksData.P52,
                             totalSG: next8blocksData.P22,
                             iexSG: next8blocksData.P23,
                             surplusPower: next8blocksData.P24
@@ -513,6 +518,7 @@
                             blockNo: next8blocksData.P25,
                             blockTime: next8blocksData.P26,
                             dcMW: next8blocksData.P27,
+                            sldcSG: next8blocksData.P53,
                             totalSG: next8blocksData.P28,
                             iexSG: next8blocksData.P29,
                             surplusPower: next8blocksData.P30
@@ -521,6 +527,7 @@
                             blockNo: next8blocksData.P31,
                             blockTime: next8blocksData.P32,
                             dcMW: next8blocksData.P33,
+                            sldcSG: next8blocksData.P54,
                             totalSG: next8blocksData.P34,
                             iexSG: next8blocksData.P35,
                             surplusPower: next8blocksData.P36
@@ -529,6 +536,7 @@
                             blockNo: next8blocksData.P37,
                             blockTime: next8blocksData.P38,
                             dcMW: next8blocksData.P39,
+                            sldcSG: next8blocksData.P55,
                             totalSG: next8blocksData.P40,
                             iexSG: next8blocksData.P41,
                             surplusPower: next8blocksData.P42
@@ -537,6 +545,7 @@
                             blockNo: next8blocksData.P43,
                             blockTime: next8blocksData.P44,
                             dcMW: next8blocksData.P45,
+                            sldcSG: next8blocksData.P56,
                             totalSG: next8blocksData.P46,
                             iexSG: next8blocksData.P47,
                             surplusPower: next8blocksData.P48
@@ -550,8 +559,9 @@
             <td class="next-block-label">${row.blockNo}</td>
             <td class="next-block-label">${row.blockTime}</td>
             <td class="next-block-label">${formatNumber(row.dcMW)}</td>
-            <td class="next-block-label">${formatNumber(row.totalSG)}</td>
+            <td class="next-block-label">${formatNumber(row.sldcSG)}</td>
             <td class="next-block-label">${formatNumber(row.iexSG)}</td>
+            <td class="next-block-label">${formatNumber(row.totalSG)}</td>
             <td class="next-block-label">${formatNumber(row.surplusPower)}</td>
         `;
                         nextBlockTbody.appendChild(tr);
