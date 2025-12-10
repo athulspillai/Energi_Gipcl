@@ -59,7 +59,7 @@ nav ul li a.active {
 
 .tables-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr 1.5fr 1fr;
     gap: 5px;
     margin: 20px;
     margin-top: 0%;
@@ -858,7 +858,7 @@ td {
 
     .tables-container {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1fr 1fr 1.5fr 1fr;
         gap: 5px;
         margin: 20px;
         margin-top: 0%;
