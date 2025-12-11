@@ -126,7 +126,7 @@
                     <tr>
                         <th></th>
                         <th style="color: #00eaea; font-weight: bold; text-align: center;">EXP MW</th>
-                        <th style="color: #00eaea; font-weight: bold; text-align: center;">IMP MVV</th>
+                        <th style="color: #00eaea; font-weight: bold; text-align: center;">IMP MW</th>
                         <th style="color: #00eaea; font-weight: bold; text-align: center;">MVAR</th>
                         <th style="color: #00eaea; font-weight: bold; text-align: center;">VOLT(kV)</th>
                         <th style="color: #00eaea; font-weight: bold; text-align: center;">AMP (I)</th>
@@ -434,7 +434,7 @@
                     { label: 'APC (%)', value1: formatNumber(cummUptoPreBlkSLPP1.P24), value2: formatNumber(cummUptoPreBlkSLPP2.P24), value3: formatNumber(cummUptoPreBlkSLPP.P4) },
                     { label: 'DC (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P4), value2: formatNumber(cummUptoPreBlkSLPP2.P4), value3: formatNumber(cummUptoPreBlkSLPP.P5) },
                     { label: 'SG - SLDC (Mwh)', value1: formatNumber(cummUptoPreBlkSLPP1.P25), value2: formatNumber(cummUptoPreBlkSLPP2.P25), value3: formatNumber(cummUptoPreBlkSLPP.P18) },
-                    { label: 'SG - IEX (Mwh))', value1: formatNumber(cummUptoPreBlkSLPP1.P26), value2: formatNumber(cummUptoPreBlkSLPP2.P26), value3: formatNumber(cummUptoPreBlkSLPP.P19) },
+                    { label: 'SG - IEX (Mwh)', value1: formatNumber(cummUptoPreBlkSLPP1.P26), value2: formatNumber(cummUptoPreBlkSLPP2.P26), value3: formatNumber(cummUptoPreBlkSLPP.P19) },
                     { label: 'SG - Total (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P5), value2: formatNumber(cummUptoPreBlkSLPP2.P5), value3: formatNumber(cummUptoPreBlkSLPP.P6) },
                     { label: 'Backing Down (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P6), value2: formatNumber(cummUptoPreBlkSLPP2.P6), value3: formatNumber(cummUptoPreBlkSLPP.P7) },
                     { label: 'Net Export (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P9), value2: formatNumber(cummUptoPreBlkSLPP2.P9), value3: formatNumber(cummUptoPreBlkSLPP.P8) },
@@ -476,15 +476,15 @@
                 });
 
                 const acpFuelCostFrequencyRows = [
-                    { label: 'KJ', expMW: formatNumber(acpFuelCostFrequency.P1), impMVV: formatNumber(acpFuelCostFrequency.P2), mvar: formatNumber(acpFuelCostFrequency.P3), volt: formatNumber(acpFuelCostFrequency.P4), amp: formatNumber(acpFuelCostFrequency.P5), pf: formatNumber(acpFuelCostFrequency.P6) },
-                    { label: 'GV-4', expMW: formatNumber(acpFuelCostFrequency.P7), impMVV: formatNumber(acpFuelCostFrequency.P8), mvar: formatNumber(acpFuelCostFrequency.P9), volt: formatNumber(acpFuelCostFrequency.P10), amp: formatNumber(acpFuelCostFrequency.P11), pf: formatNumber(acpFuelCostFrequency.P12) },
-                    { label: 'ZL-1', expMW: formatNumber(acpFuelCostFrequency.P13), impMVV: formatNumber(acpFuelCostFrequency.P14), mvar: formatNumber(acpFuelCostFrequency.P15), volt: formatNumber(acpFuelCostFrequency.P16), amp: formatNumber(acpFuelCostFrequency.P17), pf: formatNumber(acpFuelCostFrequency.P18) },
-                    { label: 'ZL-2', expMW: formatNumber(acpFuelCostFrequency.P19), impMVV: formatNumber(acpFuelCostFrequency.P20), mvar: formatNumber(acpFuelCostFrequency.P21), volt: formatNumber(acpFuelCostFrequency.P22), amp: formatNumber(acpFuelCostFrequency.P23), pf: formatNumber(acpFuelCostFrequency.P24) },
-                    { label: 'AD -1', expMW: formatNumber(acpFuelCostFrequency.P25), impMVV: formatNumber(acpFuelCostFrequency.P26), mvar: formatNumber(acpFuelCostFrequency.P27), volt: formatNumber(acpFuelCostFrequency.P28), amp: formatNumber(acpFuelCostFrequency.P29), pf: formatNumber(acpFuelCostFrequency.P30) },
-                    { label: 'AD -2', expMW: formatNumber(acpFuelCostFrequency.P31), impMVV: formatNumber(acpFuelCostFrequency.P32), mvar: formatNumber(acpFuelCostFrequency.P33), volt: formatNumber(acpFuelCostFrequency.P34), amp: formatNumber(acpFuelCostFrequency.P35), pf: formatNumber(acpFuelCostFrequency.P36) },
-                    { label: 'TOTAL', expMW: formatNumber(acpFuelCostFrequency.P37), impMVV: formatNumber(acpFuelCostFrequency.P38), mvar: formatNumber(acpFuelCostFrequency.P39), volt: '', amp: '', pf: '' },
-                    { label: 'I/C-A', expMW: formatNumber(acpFuelCostFrequency.P40), impMVV: formatNumber(acpFuelCostFrequency.P41), mvar: formatNumber(acpFuelCostFrequency.P42), volt: formatNumber(acpFuelCostFrequency.P43), amp: formatNumber(acpFuelCostFrequency.P44), pf: formatNumber(acpFuelCostFrequency.P45) },
-                    { label: 'I/C-B', expMW: formatNumber(acpFuelCostFrequency.P46), impMVV: formatNumber(acpFuelCostFrequency.P47), mvar: formatNumber(acpFuelCostFrequency.P48), volt: formatNumber(acpFuelCostFrequency.P49), amp: formatNumber(acpFuelCostFrequency.P50), pf: formatNumber(acpFuelCostFrequency.P51) },
+                    { label: 'KJ', expMW: formatNumber(acpFuelCostFrequency.P1), impMW: formatNumber(acpFuelCostFrequency.P2), mvar: formatNumber(acpFuelCostFrequency.P3), volt: formatNumber(acpFuelCostFrequency.P4), amp: formatNumber(acpFuelCostFrequency.P5), pf: formatNumber(acpFuelCostFrequency.P6) },
+                    { label: 'GV-4', expMW: formatNumber(acpFuelCostFrequency.P7), impMW: formatNumber(acpFuelCostFrequency.P8), mvar: formatNumber(acpFuelCostFrequency.P9), volt: formatNumber(acpFuelCostFrequency.P10), amp: formatNumber(acpFuelCostFrequency.P11), pf: formatNumber(acpFuelCostFrequency.P12) },
+                    { label: 'ZL-1', expMW: formatNumber(acpFuelCostFrequency.P13), impMW: formatNumber(acpFuelCostFrequency.P14), mvar: formatNumber(acpFuelCostFrequency.P15), volt: formatNumber(acpFuelCostFrequency.P16), amp: formatNumber(acpFuelCostFrequency.P17), pf: formatNumber(acpFuelCostFrequency.P18) },
+                    { label: 'ZL-2', expMW: formatNumber(acpFuelCostFrequency.P19), impMW: formatNumber(acpFuelCostFrequency.P20), mvar: formatNumber(acpFuelCostFrequency.P21), volt: formatNumber(acpFuelCostFrequency.P22), amp: formatNumber(acpFuelCostFrequency.P23), pf: formatNumber(acpFuelCostFrequency.P24) },
+                    { label: 'AD -1', expMW: formatNumber(acpFuelCostFrequency.P25), impMW: formatNumber(acpFuelCostFrequency.P26), mvar: formatNumber(acpFuelCostFrequency.P27), volt: formatNumber(acpFuelCostFrequency.P28), amp: formatNumber(acpFuelCostFrequency.P29), pf: formatNumber(acpFuelCostFrequency.P30) },
+                    { label: 'AD -2', expMW: formatNumber(acpFuelCostFrequency.P31), impMW: formatNumber(acpFuelCostFrequency.P32), mvar: formatNumber(acpFuelCostFrequency.P33), volt: formatNumber(acpFuelCostFrequency.P34), amp: formatNumber(acpFuelCostFrequency.P35), pf: formatNumber(acpFuelCostFrequency.P36) },
+                    { label: 'TOTAL', expMW: formatNumber(acpFuelCostFrequency.P37), impMW: formatNumber(acpFuelCostFrequency.P38), mvar: formatNumber(acpFuelCostFrequency.P39), volt: '', amp: '', pf: '' },
+                    { label: 'I/C-A', expMW: formatNumber(acpFuelCostFrequency.P40), impMW: formatNumber(acpFuelCostFrequency.P41), mvar: formatNumber(acpFuelCostFrequency.P42), volt: formatNumber(acpFuelCostFrequency.P43), amp: formatNumber(acpFuelCostFrequency.P44), pf: formatNumber(acpFuelCostFrequency.P45) },
+                    { label: 'I/C-B', expMW: formatNumber(acpFuelCostFrequency.P46), impMW: formatNumber(acpFuelCostFrequency.P47), mvar: formatNumber(acpFuelCostFrequency.P48), volt: formatNumber(acpFuelCostFrequency.P49), amp: formatNumber(acpFuelCostFrequency.P50), pf: formatNumber(acpFuelCostFrequency.P51) },
                 ];
 
                 acpFuelCostFrequencyRows.forEach(row => {
@@ -499,7 +499,7 @@
                     ${row.expMW}
                 </td>
                 <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
-                    ${row.impMVV}
+                    ${row.impMW}
                 </td>
                 <td class="Misnew-ACP-Fuel-Cost-Frequency-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
                     ${row.mvar}
