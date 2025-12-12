@@ -250,13 +250,18 @@
                 acpFuelCostFrequencyTable.innerHTML = '';
                 normalRateTable.innerHTML = '';
 
+                const formatValue = (value) => {
+                    const numValue = parseFloat(value);
+                    return isNaN(numValue) ? value : numValue.toFixed(2);
+                };
+
                 const realTimeValueRows = [
-                    { label: 'GEN-1', mw: formatNumber(realTimeValue.P1), mvar: formatNumber(realTimeValue.P2) },
-                    { label: 'GEN-2', mw: formatNumber(realTimeValue.P3), mvar: formatNumber(realTimeValue.P4) },
-                    { label: 'TOTAL GEN', mw: formatNumber(realTimeValue.P5), mvar: formatNumber(realTimeValue.P6) },
-                    { label: 'NET EXP', mw: formatNumber(realTimeValue.P7), mvar: formatNumber(realTimeValue.P8) },
-                    { label: 'APC', mw: formatNumber(realTimeValue.P9), mvar: formatNumber(realTimeValue.P10) },
-                    { label: '% APC', mw: `${formatNumber(realTimeValue.P11)}%`, mvar: '' },
+                    { label: 'GEN-1', mw: formatValue(realTimeValue.P1), mvar: formatValue(realTimeValue.P2) },
+                    { label: 'GEN-2', mw: formatValue(realTimeValue.P3), mvar: formatValue(realTimeValue.P4) },
+                    { label: 'TOTAL GEN', mw: formatValue(realTimeValue.P5), mvar: formatValue(realTimeValue.P6) },
+                    { label: 'NET EXP', mw: formatValue(realTimeValue.P7), mvar: formatValue(realTimeValue.P8) },
+                    { label: 'APC', mw: formatValue(realTimeValue.P9), mvar: formatValue(realTimeValue.P10) },
+                    { label: '% APC', mw: `${formatValue(realTimeValue.P11)}%`, mvar: '' },
                 ];
 
                 realTimeValueRows.forEach(row => {
@@ -270,12 +275,12 @@
                 });
 
                 const realTimeValueSLPPPhase2Rows = [
-                    { label: 'GEN-3', mw: formatNumber(realTimeValue.P12), mvar: formatNumber(realTimeValue.P13) },
-                    { label: 'GEN-4', mw: formatNumber(realTimeValue.P14), mvar: formatNumber(realTimeValue.P15) },
-                    { label: 'TOTAL GEN', mw: formatNumber(realTimeValue.P16), mvar: formatNumber(realTimeValue.P17) },
-                    { label: 'NET EXP', mw: formatNumber(realTimeValue.P18), mvar: formatNumber(realTimeValue.P19) },
-                    { label: 'APC', mw: formatNumber(realTimeValue.P20), mvar: formatNumber(realTimeValue.P21) },
-                    { label: '% APC', mw: `${formatNumber(realTimeValue.P22)}%`, mvar: '' },
+                    { label: 'GEN-3', mw: formatValue(realTimeValue.P12), mvar: formatValue(realTimeValue.P13) },
+                    { label: 'GEN-4', mw: formatValue(realTimeValue.P14), mvar: formatValue(realTimeValue.P15) },
+                    { label: 'TOTAL GEN', mw: formatValue(realTimeValue.P16), mvar: formatValue(realTimeValue.P17) },
+                    { label: 'NET EXP', mw: formatValue(realTimeValue.P18), mvar: formatValue(realTimeValue.P19) },
+                    { label: 'APC', mw: formatValue(realTimeValue.P20), mvar: formatValue(realTimeValue.P21) },
+                    { label: '% APC', mw: `${formatValue(realTimeValue.P22)}%`, mvar: '' },
                 ];
 
                 realTimeValueSLPPPhase2Rows.forEach(row => {
@@ -289,10 +294,10 @@
                 });
 
                 const realTimeSLPPRows = [
-                    { label: 'TOTAL GEN', mw: formatNumber(realTimeValue.P23), mvar: formatNumber(realTimeValue.P24) },
-                    { label: 'NET EXP', mw: formatNumber(realTimeValue.P25), mvar: formatNumber(realTimeValue.P26) },
-                    { label: 'APC', mw: formatNumber(realTimeValue.P27), mvar: formatNumber(realTimeValue.P28) },
-                    { label: '% APC', mw: `${formatNumber(realTimeValue.P29)}%`, mvar: '' },
+                    { label: 'TOTAL GEN', mw: formatValue(realTimeValue.P23), mvar: formatValue(realTimeValue.P24) },
+                    { label: 'NET EXP', mw: formatValue(realTimeValue.P25), mvar: formatValue(realTimeValue.P26) },
+                    { label: 'APC', mw: formatValue(realTimeValue.P27), mvar: formatValue(realTimeValue.P28) },
+                    { label: '% APC', mw: `${formatValue(realTimeValue.P29)}%`, mvar: '' },
                 ];
 
                 realTimeSLPPRows.forEach(row => {
@@ -319,53 +324,53 @@
             <tbody>
                 <tr>
                     <td class="Misnew-Current-block-label">Dec.Capacity (MW)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P4)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P4)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P4)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P4)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Sch.Generation (MW)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P5)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P5)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P5)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P5)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Backing Down (MW)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P6)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P6)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P6)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P6)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Exp./SG%</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P7)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P7)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P7)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P7)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Avg.Export (MW)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P9)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P9)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P9)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P9)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">DS (MW)</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P10)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P10)}</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P10)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P10)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P10)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP1.P10)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P10)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP2.P10)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">DS Rate (Rs)</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P11)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P11)}</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P11)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P11)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P11)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP1.P11)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P11)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP2.P11)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Total DS (Rs)</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P14)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P14)}</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P14)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P14)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P14)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP1.P14)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P14)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP2.P14)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Fuel Cost (Rs)</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P15)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P15)}</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P15)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P15)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P15)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP1.P15)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P15)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP2.P15)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Net Gain / Loss (Rs)</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P16)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P16)}</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P16)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P16)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P16)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP1.P16)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P16)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP2.P16)}</td>
                 </tr>
             </tbody>
             <thead>
@@ -378,23 +383,23 @@
             <tbody>
                 <tr>
                     <td class="Misnew-Current-block-label">Avg. MVAr</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P17)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P17)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P17)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P17)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">MVAr (<97% of V)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P18)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P18)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P18)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P18)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">MVAr (>103% of V)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP1.P20)}</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(currentBlockDataSLPP2.P20)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP1.P20)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(currentBlockDataSLPP2.P20)}</td>
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Net Gain / Loss (Rs)</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P22)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP1.P22)}</td>
-                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P22)}; font-weight: bold; text-align: center;">${formatNumber(currentBlockDataSLPP2.P22)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP1.P22)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP1.P22)}</td>
+                    <td class="Misnew-Current-block-value" style="color: ${getColor(currentBlockDataSLPP2.P22)}; font-weight: bold; text-align: center;">${formatValue(currentBlockDataSLPP2.P22)}</td>
                 </tr>
             </tbody>
             <thead>
@@ -407,12 +412,12 @@
             <tbody>
                 <tr>
                     <td class="Misnew-Current-block-label">Inst. / Avg. Freq. (Hz)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(previousBlockStatus.P54)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(previousBlockStatus.P54)}</td>
 
                 </tr>
                 <tr>
                     <td class="Misnew-Current-block-label">Inst. / Avg. Grid V (%)</td>
-                    <td class="Misnew-Current-block-value">${formatNumber(previousBlockStatus.P56)}</td>
+                    <td class="Misnew-Current-block-value">${formatValue(previousBlockStatus.P56)}</td>
                 </tr>
             </tbody>
         `;
@@ -422,27 +427,33 @@
 
                 // Function to style negative values in red
                 const getStyledValue = (value) => {
-                    return `<td style="color: ${value < 0 ? 'red' : 'white'}; font-weight: bold; text-align: center;">${formatNumber(value)}</td>`;
+                    return `<td style="color: ${value < 0 ? 'red' : 'white'}; font-weight: bold; text-align: center;">${formatValue(value)}</td>`;
+                };
+
+                // Add this helper function at the top of your code
+                const formatToTwoDecimals = (value) => {
+                    if (value === null || value === undefined || value === '') return '';
+                    return Number(value).toFixed(2);
                 };
 
                 const cummUptoPreBlkRows = [
-                    { label: 'Gen-1/3 (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P2), value2: formatNumber(cummUptoPreBlkSLPP2.P2), value3: '' },
-                    { label: 'Gen-2/4 (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P3), value2: formatNumber(cummUptoPreBlkSLPP2.P3), value3: '' },
-                    { label: 'Station Gen (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P1), value2: formatNumber(cummUptoPreBlkSLPP2.P1), value3: formatNumber(cummUptoPreBlkSLPP.P1) },
-                    { label: 'PLF (%)', value1: formatNumber(cummUptoPreBlkSLPP1.P22), value2: formatNumber(cummUptoPreBlkSLPP2.P22), value3: formatNumber(cummUptoPreBlkSLPP.P2) },
-                    { label: 'APC (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P23), value2: formatNumber(cummUptoPreBlkSLPP2.P23), value3: formatNumber(cummUptoPreBlkSLPP.P3) },
-                    { label: 'APC (%)', value1: formatNumber(cummUptoPreBlkSLPP1.P24), value2: formatNumber(cummUptoPreBlkSLPP2.P24), value3: formatNumber(cummUptoPreBlkSLPP.P4) },
-                    { label: 'DC (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P4), value2: formatNumber(cummUptoPreBlkSLPP2.P4), value3: formatNumber(cummUptoPreBlkSLPP.P5) },
-                    { label: 'SG - SLDC (Mwh)', value1: formatNumber(cummUptoPreBlkSLPP1.P25), value2: formatNumber(cummUptoPreBlkSLPP2.P25), value3: formatNumber(cummUptoPreBlkSLPP.P18) },
-                    { label: 'SG - IEX (Mwh)', value1: formatNumber(cummUptoPreBlkSLPP1.P26), value2: formatNumber(cummUptoPreBlkSLPP2.P26), value3: formatNumber(cummUptoPreBlkSLPP.P19) },
-                    { label: 'SG - Total (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P5), value2: formatNumber(cummUptoPreBlkSLPP2.P5), value3: formatNumber(cummUptoPreBlkSLPP.P6) },
-                    { label: 'Backing Down (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P6), value2: formatNumber(cummUptoPreBlkSLPP2.P6), value3: formatNumber(cummUptoPreBlkSLPP.P7) },
-                    { label: 'Net Export (MWh)', value1: formatNumber(cummUptoPreBlkSLPP1.P9), value2: formatNumber(cummUptoPreBlkSLPP2.P9), value3: formatNumber(cummUptoPreBlkSLPP.P8) },
-                    { label: 'Exp./SG%', value1: formatNumber(cummUptoPreBlkSLPP1.P7), value2: formatNumber(cummUptoPreBlkSLPP2.P7), value3: formatNumber(cummUptoPreBlkSLPP.P9) },
-                    { label: 'DS (MW)', value1: formatNumber(cummUptoPreBlkSLPP1.P10), value2: formatNumber(cummUptoPreBlkSLPP2.P10), value3: formatNumber(cummUptoPreBlkSLPP.P10) },
-                    { label: 'Total DS (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P13), value2: formatNumber(cummUptoPreBlkSLPP2.P13), value3: formatNumber(cummUptoPreBlkSLPP.P11) },
-                    { label: 'Fuel Cost (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P14), value2: formatNumber(cummUptoPreBlkSLPP2.P14), value3: formatNumber(cummUptoPreBlkSLPP.P12) },
-                    { label: 'Net Gain / Loss (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P15), value2: formatNumber(cummUptoPreBlkSLPP2.P15), value3: formatNumber(cummUptoPreBlkSLPP.P13) },
+                    { label: 'Gen-1/3 (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P2), value2: Math.round(cummUptoPreBlkSLPP2.P2), value3: '' },
+                    { label: 'Gen-2/4 (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P3), value2: Math.round(cummUptoPreBlkSLPP2.P3), value3: '' },
+                    { label: 'Station Gen (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P1), value2: Math.round(cummUptoPreBlkSLPP2.P1), value3: Math.round(cummUptoPreBlkSLPP.P1) },
+                    { label: 'PLF (%)', value1: formatValue(cummUptoPreBlkSLPP1.P22), value2: formatValue(cummUptoPreBlkSLPP2.P22), value3: formatValue(cummUptoPreBlkSLPP.P2) },
+                    { label: 'APC (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P23), value2: Math.round(cummUptoPreBlkSLPP2.P23), value3: Math.round(cummUptoPreBlkSLPP.P3) },
+                    { label: 'APC (%)', value1: formatValue(cummUptoPreBlkSLPP1.P24), value2: formatValue(cummUptoPreBlkSLPP2.P24), value3: formatValue(cummUptoPreBlkSLPP.P4) },
+                    { label: 'DC (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P4), value2: Math.round(cummUptoPreBlkSLPP2.P4), value3: Math.round(cummUptoPreBlkSLPP.P5) },
+                    { label: 'SG - SLDC (Mwh)', value1: Math.round(cummUptoPreBlkSLPP1.P25), value2: Math.round(cummUptoPreBlkSLPP2.P25), value3: Math.round(cummUptoPreBlkSLPP.P18) },
+                    { label: 'SG - IEX (Mwh)', value1: Math.round(cummUptoPreBlkSLPP1.P26), value2: Math.round(cummUptoPreBlkSLPP2.P26), value3: Math.round(cummUptoPreBlkSLPP.P19) },
+                    { label: 'SG - Total (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P5), value2: Math.round(cummUptoPreBlkSLPP2.P5), value3: Math.round(cummUptoPreBlkSLPP.P6) },
+                    { label: 'Backing Down (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P6), value2: Math.round(cummUptoPreBlkSLPP2.P6), value3: Math.round(cummUptoPreBlkSLPP.P7) },
+                    { label: 'Net Export (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P9), value2: Math.round(cummUptoPreBlkSLPP2.P9), value3: Math.round(cummUptoPreBlkSLPP.P8) },
+                    { label: 'Exp./SG%', value1: formatValue(cummUptoPreBlkSLPP1.P7), value2: formatValue(cummUptoPreBlkSLPP2.P7), value3: formatValue(cummUptoPreBlkSLPP.P9) },
+                    { label: 'DS (MW)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P10), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P10), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P10) },
+                    { label: 'Total DS (Rs)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P13), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P13), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P11) },
+                    { label: 'Fuel Cost (Rs)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P14), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P14), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P12) },
+                    { label: 'Net Gain / Loss (Rs)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P15), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P15), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P13) },
                 ];
 
                 cummUptoPreBlkRows.forEach(row => {
@@ -458,10 +469,10 @@
 
                 // Reactive Power Section
                 const cummUptoPreBlkREACTIVEPOWERRows = [
-                    { label: 'MVAr (<97% of V)', value1: formatNumber(cummUptoPreBlkSLPP1.P17), value2: formatNumber(cummUptoPreBlkSLPP2.P17), value3: formatNumber(cummUptoPreBlkSLPP.P14) },
-                    { label: 'Gain / Loss (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P18), value2: formatNumber(cummUptoPreBlkSLPP2.P18), value3: formatNumber(cummUptoPreBlkSLPP.P15) },
-                    { label: 'MVAr (>103% of V)', value1: formatNumber(cummUptoPreBlkSLPP1.P19), value2: formatNumber(cummUptoPreBlkSLPP2.P19), value3: formatNumber(cummUptoPreBlkSLPP.P16) },
-                    { label: 'Gain / Loss (Rs)', value1: formatNumber(cummUptoPreBlkSLPP1.P20), value2: formatNumber(cummUptoPreBlkSLPP2.P20), value3: formatNumber(cummUptoPreBlkSLPP.P17) },
+                    { label: 'MVAr (<97% of V)', value1: formatValue(cummUptoPreBlkSLPP1.P17), value2: formatValue(cummUptoPreBlkSLPP2.P17), value3: formatValue(cummUptoPreBlkSLPP.P14) },
+                    { label: 'Gain / Loss (Rs)', value1: formatValue(cummUptoPreBlkSLPP1.P18), value2: formatValue(cummUptoPreBlkSLPP2.P18), value3: formatValue(cummUptoPreBlkSLPP.P15) },
+                    { label: 'MVAr (>103% of V)', value1: formatValue(cummUptoPreBlkSLPP1.P19), value2: formatValue(cummUptoPreBlkSLPP2.P19), value3: formatValue(cummUptoPreBlkSLPP.P16) },
+                    { label: 'Gain / Loss (Rs)', value1: formatValue(cummUptoPreBlkSLPP1.P20), value2: formatValue(cummUptoPreBlkSLPP2.P20), value3: formatValue(cummUptoPreBlkSLPP.P17) },
                 ];
 
                 cummUptoPreBlkREACTIVEPOWERRows.forEach(row => {
@@ -476,15 +487,15 @@
                 });
 
                 const acpFuelCostFrequencyRows = [
-                    { label: 'KJ', expMW: formatNumber(acpFuelCostFrequency.P1), impMW: formatNumber(acpFuelCostFrequency.P2), mvar: formatNumber(acpFuelCostFrequency.P3), volt: formatNumber(acpFuelCostFrequency.P4), amp: formatNumber(acpFuelCostFrequency.P5), pf: formatNumber(acpFuelCostFrequency.P6) },
-                    { label: 'GV-4', expMW: formatNumber(acpFuelCostFrequency.P7), impMW: formatNumber(acpFuelCostFrequency.P8), mvar: formatNumber(acpFuelCostFrequency.P9), volt: formatNumber(acpFuelCostFrequency.P10), amp: formatNumber(acpFuelCostFrequency.P11), pf: formatNumber(acpFuelCostFrequency.P12) },
-                    { label: 'ZL-1', expMW: formatNumber(acpFuelCostFrequency.P13), impMW: formatNumber(acpFuelCostFrequency.P14), mvar: formatNumber(acpFuelCostFrequency.P15), volt: formatNumber(acpFuelCostFrequency.P16), amp: formatNumber(acpFuelCostFrequency.P17), pf: formatNumber(acpFuelCostFrequency.P18) },
-                    { label: 'ZL-2', expMW: formatNumber(acpFuelCostFrequency.P19), impMW: formatNumber(acpFuelCostFrequency.P20), mvar: formatNumber(acpFuelCostFrequency.P21), volt: formatNumber(acpFuelCostFrequency.P22), amp: formatNumber(acpFuelCostFrequency.P23), pf: formatNumber(acpFuelCostFrequency.P24) },
-                    { label: 'AD -1', expMW: formatNumber(acpFuelCostFrequency.P25), impMW: formatNumber(acpFuelCostFrequency.P26), mvar: formatNumber(acpFuelCostFrequency.P27), volt: formatNumber(acpFuelCostFrequency.P28), amp: formatNumber(acpFuelCostFrequency.P29), pf: formatNumber(acpFuelCostFrequency.P30) },
-                    { label: 'AD -2', expMW: formatNumber(acpFuelCostFrequency.P31), impMW: formatNumber(acpFuelCostFrequency.P32), mvar: formatNumber(acpFuelCostFrequency.P33), volt: formatNumber(acpFuelCostFrequency.P34), amp: formatNumber(acpFuelCostFrequency.P35), pf: formatNumber(acpFuelCostFrequency.P36) },
-                    { label: 'TOTAL', expMW: formatNumber(acpFuelCostFrequency.P37), impMW: formatNumber(acpFuelCostFrequency.P38), mvar: formatNumber(acpFuelCostFrequency.P39), volt: '', amp: '', pf: '' },
-                    { label: 'I/C-A', expMW: formatNumber(acpFuelCostFrequency.P40), impMW: formatNumber(acpFuelCostFrequency.P41), mvar: formatNumber(acpFuelCostFrequency.P42), volt: formatNumber(acpFuelCostFrequency.P43), amp: formatNumber(acpFuelCostFrequency.P44), pf: formatNumber(acpFuelCostFrequency.P45) },
-                    { label: 'I/C-B', expMW: formatNumber(acpFuelCostFrequency.P46), impMW: formatNumber(acpFuelCostFrequency.P47), mvar: formatNumber(acpFuelCostFrequency.P48), volt: formatNumber(acpFuelCostFrequency.P49), amp: formatNumber(acpFuelCostFrequency.P50), pf: formatNumber(acpFuelCostFrequency.P51) },
+                    { label: 'KJ', expMW: formatValue(acpFuelCostFrequency.P1), impMW: formatValue(acpFuelCostFrequency.P2), mvar: formatValue(acpFuelCostFrequency.P3), volt: formatValue(acpFuelCostFrequency.P4), amp: Math.round(acpFuelCostFrequency.P5), pf: formatNumber(acpFuelCostFrequency.P6) },
+                    { label: 'GV-4', expMW: formatValue(acpFuelCostFrequency.P7), impMW: formatValue(acpFuelCostFrequency.P8), mvar: formatValue(acpFuelCostFrequency.P9), volt: formatValue(acpFuelCostFrequency.P10), amp: Math.round(acpFuelCostFrequency.P11), pf: formatNumber(acpFuelCostFrequency.P12) },
+                    { label: 'ZL-1', expMW: formatValue(acpFuelCostFrequency.P13), impMW: formatValue(acpFuelCostFrequency.P14), mvar: formatValue(acpFuelCostFrequency.P15), volt: formatValue(acpFuelCostFrequency.P16), amp: Math.round(acpFuelCostFrequency.P17), pf: formatNumber(acpFuelCostFrequency.P18) },
+                    { label: 'ZL-2', expMW: formatValue(acpFuelCostFrequency.P19), impMW: formatValue(acpFuelCostFrequency.P20), mvar: formatValue(acpFuelCostFrequency.P21), volt: formatValue(acpFuelCostFrequency.P22), amp: Math.round(acpFuelCostFrequency.P23), pf: formatNumber(acpFuelCostFrequency.P24) },
+                    { label: 'AD -1', expMW: formatValue(acpFuelCostFrequency.P25), impMW: formatValue(acpFuelCostFrequency.P26), mvar: formatValue(acpFuelCostFrequency.P27), volt: formatValue(acpFuelCostFrequency.P28), amp: Math.round(acpFuelCostFrequency.P29), pf: formatNumber(acpFuelCostFrequency.P30) },
+                    { label: 'AD -2', expMW: formatValue(acpFuelCostFrequency.P31), impMW: formatValue(acpFuelCostFrequency.P32), mvar: formatValue(acpFuelCostFrequency.P33), volt: formatValue(acpFuelCostFrequency.P34), amp: Math.round(acpFuelCostFrequency.P35), pf: formatNumber(acpFuelCostFrequency.P36) },
+                    { label: 'TOTAL', expMW: formatValue(acpFuelCostFrequency.P49), impMW: formatValue(acpFuelCostFrequency.P50), mvar: formatValue(acpFuelCostFrequency.P51), volt: '', amp: '', pf: '' },
+                    { label: 'I/C-A', expMW: formatValue(acpFuelCostFrequency.P37), impMW: formatValue(acpFuelCostFrequency.P38), mvar: formatValue(acpFuelCostFrequency.P39), volt: formatValue(acpFuelCostFrequency.P40), amp: Math.round(acpFuelCostFrequency.P41), pf: formatNumber(acpFuelCostFrequency.P42) },
+                    { label: 'I/C-B', expMW: formatValue(acpFuelCostFrequency.P43), impMW: formatValue(acpFuelCostFrequency.P44), mvar: formatValue(acpFuelCostFrequency.P45), volt: formatValue(acpFuelCostFrequency.P46), amp: Math.round(acpFuelCostFrequency.P47), pf: formatNumber(acpFuelCostFrequency.P48) },
                 ];
 
                 acpFuelCostFrequencyRows.forEach(row => {
@@ -518,10 +529,10 @@
                 });
 
                 const normalRateRows = [
-                    { label: 'ACP (Rs./kWh)', value: formatNumber(normalRate.P2) },
-                    { label: 'FuelCost Ph –1 (Rs./KWh)', value: formatNumber(normalRate.P3) },
-                    { label: 'FuelCost Ph –2 (Rs./KWh)', value: formatNumber(normalRate.P4) },
-                    { label: 'Avg.Freq.up to prev.Block', value: formatNumber(normalRate.P5) }
+                    { label: 'ACP (Rs./kWh)', value: formatValue(normalRate.P2) },
+                    { label: 'FuelCost Ph –1 (Rs./KWh)', value: formatValue(normalRate.P3) },
+                    { label: 'FuelCost Ph –2 (Rs./KWh)', value: formatValue(normalRate.P4) },
+                    { label: 'Avg.Freq.up to prev.Block', value: formatValue(normalRate.P5) }
                 ];
 
                 normalRateRows.forEach(row => {

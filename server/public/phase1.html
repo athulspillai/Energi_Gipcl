@@ -294,7 +294,14 @@
 
                 previousBlockRows.forEach((row, index) => {
                     const tr = document.createElement('tr');
-                    const value = row.label === 'Block Time' ? row.value : formatNumber(row.value);
+                    let value;
+                    if (row.label === 'Block No' || row.label === 'Block Time') {
+                        value = row.value;
+                    } else {
+                        // Assuming row.value is a number; parseFloat ensures it's treated as such
+                        const numValue = parseFloat(row.value);
+                        value = isNaN(numValue) ? row.value : numValue.toFixed(2);
+                    }
                     // Define the labels that should have red text when their value is negative
                     const labelsWithRedText = [
                         'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
@@ -304,7 +311,7 @@
 
                     tr.innerHTML = `
         <td class="previousBlock-label">${row.label}</td>
-        <td class="previousBlock-value" style="color: ${row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white'};">
+        <td class="previousBlock-value" style="color: ${parseFloat(row.value) < 0 && labelsWithRedText.includes(row.label) ? 'red' : 'white'};">
             ${value}
         </td>
     `;
@@ -349,7 +356,14 @@
 
                 currentBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
-                    const value = row.label === 'Block Time' || row.label === 'Time Left' ? row.value : formatNumber(row.value);
+                    let value;
+                    if (row.label === 'Block No' || row.label === 'Block Time' || row.label === 'Time Left') {
+                        value = row.value;
+                    } else {
+                        // Assuming row.value is a number; parseFloat ensures it's treated as such
+                        const numValue = parseFloat(row.value);
+                        value = isNaN(numValue) ? row.value : numValue.toFixed(2);
+                    }
 
                     // Labels that should have red text when the value is negative
                     const labelsWithRedText = [
@@ -360,7 +374,7 @@
 
                     tr.innerHTML = `
         <td class="currentBlock-label">${row.label}</td>
-        <td class="currentBlock-value" style="color: ${row.value < 0 && labelsWithRedText.includes(row.label) ? 'red' : '#00e800'};">
+        <td class="currentBlock-value" style="color: ${parseFloat(row.value) < 0 && labelsWithRedText.includes(row.label) ? 'red' : '#00e800'};">
             ${value}
         </td>
     `;
@@ -425,16 +439,22 @@
                     },
                 ];
 
+                const formatValue = (value) => {
+                    const numValue = parseFloat(value);
+                    return isNaN(numValue) ? value : numValue.toFixed(2);
+                };
+
                 previousBlockStatusRows.forEach(row => {
                     const tr = document.createElement('tr');
 
                     // Function to determine text color class
                     const getColorClass = (value, column) => {
+                        const numValue = parseFloat(value);
                         if (row.blockNo === 'Average') {
-                            return value < 0 ? 'text-red' : 'text-green';
+                            return isNaN(numValue) ? 'text-green' : (numValue < 0 ? 'text-red' : 'text-green');
                         }
                         // Apply red color only for Dev.MW when value is negative
-                        if (column === 'devMW' && value < 0) {
+                        if (column === 'devMW' && !isNaN(numValue) && numValue < 0) {
                             return 'text-red';
                         }
                         return 'text-white';
@@ -443,12 +463,12 @@
                     // Generate table row with class-based styling
                     tr.innerHTML = `
         <td class="previous-block-status-label ${row.blockNo === 'Average' ? 'average-row' : ''} ${row.blockNo === 'Average' ? 'text-green' : 'text-white'}">${row.blockNo}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatNumber(row.frequency)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sldcSG, 'sldcSG')}">${formatNumber(row.sldcSG)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.iexSG, 'iexSG')}">${formatNumber(row.iexSG)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.totSG, 'totSG')}">${formatNumber(row.totSG)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatNumber(row.netExport)}</td>
-        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatNumber(row.devMW)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.frequency, 'frequency')}">${formatValue(row.frequency)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.sldcSG, 'sldcSG')}">${formatValue(row.sldcSG)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.iexSG, 'iexSG')}">${formatValue(row.iexSG)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.totSG, 'totSG')}">${formatValue(row.totSG)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.netExport, 'netExport')}">${formatValue(row.netExport)}</td>
+        <td class="table-cell ${row.blockNo === 'Average' ? 'average-row' : ''} ${getColorClass(row.devMW, 'devMW')}">${formatValue(row.devMW)}</td>
     `;
 
                     previousBlockStatusTbody.appendChild(tr);
@@ -464,7 +484,7 @@
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
         <td class="fuelCost-label">${row.label}</td>
-        <td class="fuelCost-value">${formatNumber(row.value)}</td>
+        <td class="fuelCost-value">${formatValue(row.value)}</td>
     `;
                     fuelCostFrequencyTbody.appendChild(tr);
                 });
@@ -555,11 +575,11 @@
                         tr.innerHTML = `
             <td class="next-block-label">${row.blockNo}</td>
             <td class="next-block-label">${row.blockTime}</td>
-            <td class="next-block-label">${formatNumber(row.dcMW)}</td>
-            <td class="next-block-label">${formatNumber(row.sldcSG)}</td>
-            <td class="next-block-label">${formatNumber(row.iexSG)}</td>
-            <td class="next-block-label">${formatNumber(row.totalSG)}</td>
-            <td class="next-block-label">${formatNumber(row.surplusPower)}</td>
+            <td class="next-block-label">${formatValue(row.dcMW)}</td>
+            <td class="next-block-label">${formatValue(row.sldcSG)}</td>
+            <td class="next-block-label">${formatValue(row.iexSG)}</td>
+            <td class="next-block-label">${formatValue(row.totalSG)}</td>
+            <td class="next-block-label">${formatValue(row.surplusPower)}</td>
         `;
                         nextBlockTbody.appendChild(tr);
                     });
@@ -578,7 +598,7 @@
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
         <td class="normal-rate-label">${row.label}</td>
-        <td class="normal-rate-value">${formatNumber(row.value)}</td>
+        <td class="normal-rate-value">${formatValue(row.value)}</td>
     `;
                     normalRateTbody.appendChild(tr);
                 });
@@ -610,31 +630,69 @@
                     { label: 'Net Gain / Loss (Rs) ', value: cummUptoPreBlk.P21 }
                 ];
 
+                // Labels that should show rounded values (no decimals)
+                const labelsToRound = [
+                    'Station Gen (MWh)',
+                    'Gen-1 (MWh)',
+                    'Gen-2 (MWh)',
+                    'DC (MWh)',
+                    'SG - SLDC (MWh)',
+                    'SG - IEX (MWh)',
+                    'SG - Total (MWh)',
+                    'Backing Down (MWh)',
+                    'Net Export (MWh)'
+                ];
+
+                // Labels that require red color when values are negative
+                const labelsWithRedColor = [
+                    'DS (MW)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain / Loss (Rs)'
+                ];
+
+                // Function to format value based on label
+                const formatValueByLabel = (value, label) => {
+                    // Handle null, undefined, or empty values
+                    if (value === null || value === undefined || value === '') {
+                        return '-';
+                    }
+
+                    // Convert to number if it's a string
+                    const numValue = typeof value === 'string' ? parseFloat(value) : value;
+
+                    // Check if it's a valid number
+                    if (isNaN(numValue)) {
+                        return value;
+                    }
+
+                    if (labelsToRound.includes(label)) {
+                        // Round to nearest integer without commas
+                        return Math.round(numValue).toString();
+                    } else {
+                        // Show with 2 decimal places without commas
+                        return numValue.toFixed(2);
+                    }
+                };
+
+                // Function to determine text color based on label
+                const getColor = (value, label) => {
+                    const numValue = typeof value === 'string' ? parseFloat(value) : value;
+                    if (typeof numValue === 'number' && numValue < 0 && labelsWithRedColor.includes(label)) {
+                        return 'red';
+                    }
+                    return 'white';
+                };
+
                 cumulativeRows.forEach(row => {
                     const tr = document.createElement('tr');
-
-                    // Labels that require red color when values are negative
-                    const labelsWithRedColor = [
-                        'DS (MW)',
-                        'DS (Rs)',
-                        'DS beyond ± 10% (Rs)',
-                        'Total DS (Rs)',
-                        'Fuel Cost (Rs)',
-                        'Net Gain / Loss (Rs)'
-                    ];
-
-                    // Function to determine text color based on label
-                    const getColor = (value, label) => {
-                        if (typeof value === 'number' && value < 0 && labelsWithRedColor.includes(label)) {
-                            return 'red';
-                        }
-                        return 'white';
-                    };
 
                     tr.innerHTML = `
         <td class="cumulative-label">${row.label}</td>
         <td class="cumulative-value" style="color: ${getColor(row.value, row.label)};">
-            ${formatNumber(row.value)}
+            ${formatValueByLabel(row.value, row.label)}
         </td>
     `;
 
@@ -670,17 +728,17 @@
                         if (row.label === 'TOTAL') {
                             tr.innerHTML = `
                 <td class="Total-Row">${row.label}</td>
-                <td class="Total-Row">${formatNumber(row.mw)}</td>
-                <td class="Total-Row">${formatNumber(row.mvar)}</td>
+                <td style="text-align: center" class="Total-Row">${formatValue(row.mw)}</td>
+                <td style="text-align: center" class="Total-Row">${formatValue(row.mvar)}</td>
             `;
                         } else {
                             tr.innerHTML = `
                 <td class="real-time-generation-data-label" style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.mw)}</td>
-                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.mvar)}</td>
-                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.volt)}</td>
-                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.amp)}</td>
-                <td style="color: white; font-weight: bold; text-align: center">${formatNumber(row.pf)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatValue(row.mw)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatValue(row.mvar)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatValue(row.volt)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${Math.round(row.amp)}</td>
+                <td style="color: white; font-weight: bold; text-align: center">${formatValue(row.pf)}</td>
             `;
                         }
 
@@ -703,10 +761,10 @@
                             newHeaderRow.innerHTML = `
                 <th></th>
                 <th></th>
-                <th class="Real-Time-Generation-Data-Subheader">Inst (MW)</th>
-                <th class="Real-Time-Generation-Data-Subheader">Inst (%)</th>
-                <th class="Real-Time-Generation-Data-Subheader">Cum (MWh)</th>
-                <th class="Real-Time-Generation-Data-Subheader">Cum (%)</th>
+                <th style="text-align: center" class="Real-Time-Generation-Data-Subheader">Inst (MW)</th>
+                <th style="text-align: center" class="Real-Time-Generation-Data-Subheader">Inst (%)</th>
+                <th style="text-align: center" class="Real-Time-Generation-Data-Subheader">Cum (MWh)</th>
+                <th style="text-align: center" class="Real-Time-Generation-Data-Subheader">Cum (%)</th>
             `;
                             realTimeGenerationTbody.appendChild(newHeaderRow);
 
@@ -715,10 +773,10 @@
                             ph1Row.innerHTML = `
                 <td class="Real-Time-Generation-Data-row-label">PH-1 Inst./Cumm. APC (MWh / %)</td>
                 <td></td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P23)}</td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P24)}</td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P25)}</td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P26)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${formatValue(realTimeGenerationData.P23)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${formatValue(realTimeGenerationData.P24)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${Math.round(realTimeGenerationData.P25)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${formatValue(realTimeGenerationData.P26)}</td>
             `;
                             realTimeGenerationTbody.appendChild(ph1Row);
 
@@ -726,10 +784,10 @@
                             ph2Row.innerHTML = `
                 <td class="Real-Time-Generation-Data-row-label">PH-2 Inst./Cumm. APC (MWh / %)</td>
                 <td></td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P27)}</td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P28)}</td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P29)}</td>
-                <td class="Real-Time-Generation-Data-row-value">${formatNumber(realTimeGenerationData.P30)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${formatValue(realTimeGenerationData.P27)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${formatValue(realTimeGenerationData.P28)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${Math.round(realTimeGenerationData.P29)}</td>
+                <td style="text-align: center" class="Real-Time-Generation-Data-row-value">${formatValue(realTimeGenerationData.P30)}</td>
             `;
                             realTimeGenerationTbody.appendChild(ph2Row);
                         }
@@ -764,22 +822,22 @@
                 ${row.label}
             </td>
             <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
-                ${formatNumber(row.expMW)}
+                ${formatValue(row.expMW)}
             </td>
             <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; border-right: none; background-color: #333' : ''}">
-                ${formatNumber(row.impMVV)}
+                ${formatValue(row.impMVV)}
             </td>
             <td class="real-time-exp-imp-data-row-value" style="color: ${isTotalRow ? '#00e800' : 'white'}; font-weight: bold; text-align: center; ${isTotalRow ? 'border: 2px solid white; border-left: none; background-color: #333' : ''}">
-                ${formatNumber(row.mvar)}
+                ${formatValue(row.mvar)}
             </td>
             <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
-                ${formatNumber(row.volt)}
+                ${formatValue(row.volt)}
             </td>
             <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
-                ${formatNumber(row.amp)}
+                ${formatValue(row.amp)}
             </td>
             <td class="real-time-exp-imp-data-row-value" style="color: white; font-weight: bold; text-align: center;">
-                ${formatNumber(row.pf)}
+                ${formatValue(row.pf)}
             </td>
         `;
 
