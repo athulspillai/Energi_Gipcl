@@ -292,6 +292,17 @@
                     { label: 'Net Gain / Loss (Rs)', value: previousBlockData.P21 },
                 ];
 
+                const integerLabels = [
+                    'DS Rate (Rs)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain /  Loss (Rs)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs)'
+                ];
+
                 previousBlockRows.forEach((row, index) => {
                     const tr = document.createElement('tr');
                     let value;
@@ -300,7 +311,12 @@
                     } else {
                         // Assuming row.value is a number; parseFloat ensures it's treated as such
                         const numValue = parseFloat(row.value);
-                        value = isNaN(numValue) ? row.value : numValue.toFixed(2);
+                        if (isNaN(numValue)) {
+                            value = row.value;
+                        } else {
+                            const fixedDigits = integerLabels.includes(row.label) ? 0 : 2;
+                            value = numValue.toFixed(fixedDigits);
+                        }
                     }
                     // Define the labels that should have red text when their value is negative
                     const labelsWithRedText = [
@@ -354,6 +370,17 @@
                     { label: 'Net Gain / Loss (Rs)', value: currentBlockData.P22 },
                 ];
 
+                const integerLabelss = [
+                    'DS Rate (Rs)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain /  Loss (Rs)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs)'
+                ];
+
                 currentBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
                     let value;
@@ -362,14 +389,19 @@
                     } else {
                         // Assuming row.value is a number; parseFloat ensures it's treated as such
                         const numValue = parseFloat(row.value);
-                        value = isNaN(numValue) ? row.value : numValue.toFixed(2);
+                        if (isNaN(numValue)) {
+                            value = row.value;
+                        } else {
+                            const fixedDigits = integerLabelss.includes(row.label) ? 0 : 2;
+                            value = numValue.toFixed(fixedDigits);
+                        }
                     }
 
                     // Labels that should have red text when the value is negative
                     const labelsWithRedText = [
                         'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
                         'DS beyond ± 10% (Rs)', 'Total DS (Rs)',
-                        'Fuel Cost (Rs)', 'Net Gain /  Loss (Rs)'
+                        'Fuel Cost (Rs)', 'Net Gain / Loss (Rs)'
                     ];
 
                     tr.innerHTML = `
@@ -643,6 +675,17 @@
                     'Net Export (MWh)'
                 ];
 
+                const integerRsLabels = [
+                    'DS Rate (Rs)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain / Loss (Rs)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs) '
+                ];
+
                 // Labels that require red color when values are negative
                 const labelsWithRedColor = [
                     'DS (MW)',
@@ -668,7 +711,7 @@
                         return value;
                     }
 
-                    if (labelsToRound.includes(label)) {
+                    if (labelsToRound.includes(label) || integerRsLabels.includes(label)) {
                         // Round to nearest integer without commas
                         return Math.round(numValue).toString();
                     } else {

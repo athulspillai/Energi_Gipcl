@@ -272,16 +272,16 @@
                 const previousBlockRows = [
                     { label: 'Block No', value: previousBlockData.P1 },
                     { label: 'Block Time', value: previousBlockData.P2 },
-                    { label: 'Dec.Capacity(MW)', value: previousBlockData.P3 },
-                    { label: 'Sch.Generation(MW)', value: previousBlockData.P4 },
+                    { label: 'Dec.Capacity (MW)', value: previousBlockData.P3 },
+                    { label: 'Sch.Generation (MW)', value: previousBlockData.P4 },
                     { label: 'Backing Down (MW)', value: previousBlockData.P5 },
                     { label: 'Exp./SG%', value: previousBlockData.P6 },
                     { label: 'Avg.Frequency (Hz)', value: previousBlockData.P7 },
                     { label: 'Avg.Export (MW)', value: previousBlockData.P8 },
-                    { label: 'DS( MW)', value: previousBlockData.P9 },
+                    { label: 'DS (MW)', value: previousBlockData.P9 },
                     { label: 'DS Rate (Rs)', value: previousBlockData.P10 },
                     { label: 'DS (Rs)', value: previousBlockData.P11 },
-                    { label: 'DS beyond ± 10% (Rs.)', value: previousBlockData.P12 },
+                    { label: 'DS beyond ± 10% (Rs)', value: previousBlockData.P12 },
                     { label: 'Total DS (Rs)', value: previousBlockData.P13 },
                     { label: 'Fuel Cost (Rs)', value: previousBlockData.P14 },
                     { label: 'Net Gain /  Loss (Rs)', value: previousBlockData.P15 },
@@ -293,6 +293,17 @@
                     { label: 'Net Gain / Loss (Rs)', value: previousBlockData.P21 },
                 ];
 
+                const integerLabels = [
+                    'DS Rate (Rs)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain /  Loss (Rs)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs)'
+                ];
+
                 previousBlockRows.forEach((row, index) => {
                     const tr = document.createElement('tr');
                     let value;
@@ -301,7 +312,12 @@
                     } else {
                         // Assuming row.value is a number; parseFloat ensures it's treated as such
                         const numValue = parseFloat(row.value);
-                        value = isNaN(numValue) ? row.value : numValue.toFixed(2);
+                        if (isNaN(numValue)) {
+                            value = row.value;
+                        } else {
+                            const fixedDigits = integerLabels.includes(row.label) ? 0 : 2;
+                            value = numValue.toFixed(fixedDigits);
+                        }
                     }
                     // Define the labels that should have red text when their value is negative
                     const labelsWithRedText = [
@@ -323,8 +339,8 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-                    <th colspan="3" class="reactive-power-header">Reactive Power</th>
-                `;
+            <th colspan="3" class="reactive-power-header">Reactive Power</th>
+        `;
                         previousBlockTbody.appendChild(reactivePowerRow);
                     }
                 });
@@ -343,7 +359,7 @@
                     { label: 'DS (MW)', value: currentBlockData.P10 },
                     { label: 'DS Rate (Rs)', value: currentBlockData.P11 },
                     { label: 'DS (Rs)', value: currentBlockData.P12 },
-                    { label: 'DS beyond ± 10% (Rs.)', value: currentBlockData.P13 },
+                    { label: 'DS beyond ± 10% (Rs)', value: currentBlockData.P13 },
                     { label: 'Total DS (Rs)', value: currentBlockData.P14 },
                     { label: 'Fuel Cost (Rs)', value: currentBlockData.P15 },
                     { label: 'Net Gain /  Loss (Rs)', value: currentBlockData.P16 },
@@ -355,6 +371,17 @@
                     { label: 'Net Gain / Loss (Rs)', value: currentBlockData.P22 },
                 ];
 
+                const integerLabelss = [
+                    'DS Rate (Rs)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain /  Loss (Rs)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs)'
+                ];
+
                 currentBlockRows.forEach(row => {
                     const tr = document.createElement('tr');
                     let value;
@@ -363,14 +390,19 @@
                     } else {
                         // Assuming row.value is a number; parseFloat ensures it's treated as such
                         const numValue = parseFloat(row.value);
-                        value = isNaN(numValue) ? row.value : numValue.toFixed(2);
+                        if (isNaN(numValue)) {
+                            value = row.value;
+                        } else {
+                            const fixedDigits = integerLabelss.includes(row.label) ? 0 : 2;
+                            value = numValue.toFixed(fixedDigits);
+                        }
                     }
 
                     // Labels that should have red text when the value is negative
                     const labelsWithRedText = [
                         'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
                         'DS beyond ± 10% (Rs)', 'Total DS (Rs)',
-                        'Fuel Cost (Rs)', 'Net Gain /  Loss (Rs)'
+                        'Fuel Cost (Rs)', 'Net Gain / Loss (Rs)'
                     ];
 
                     tr.innerHTML = `
@@ -386,8 +418,8 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-                    <th colspan="3" class="reactive-power-header">Reactive Power</th>
-                `;
+            <th colspan="3" class="reactive-power-header">Reactive Power</th>
+        `;
                         currentBlockTbody.appendChild(reactivePowerRow);
                     }
                 });
@@ -646,6 +678,17 @@
                     'Net Export (MWh)'
                 ];
 
+                const integerRsLabels = [
+                    'DS Rate (Rs)',
+                    'DS (Rs)',
+                    'DS beyond ± 10% (Rs)',
+                    'Total DS (Rs)',
+                    'Fuel Cost (Rs)',
+                    'Net Gain / Loss (Rs)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs) '
+                ];
+
                 // Labels that require red color when values are negative
                 const labelsWithRedColor = [
                     'DS (MW)',
@@ -671,7 +714,7 @@
                         return value;
                     }
 
-                    if (labelsToRound.includes(label)) {
+                    if (labelsToRound.includes(label) || integerRsLabels.includes(label)) {
                         // Round to nearest integer without commas
                         return Math.round(numValue).toString();
                     } else {
@@ -710,6 +753,7 @@
                         cumulativeTbody.appendChild(reactivePowerRow);
                     }
                 });
+
 
                 // Populate the Real Time Generation table
                 const realTimeRows = [

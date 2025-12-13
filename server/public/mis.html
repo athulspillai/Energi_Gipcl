@@ -427,7 +427,7 @@
 
                 // Function to style negative values in red
                 const getStyledValue = (value) => {
-                    return `<td style="color: ${value < 0 ? 'red' : 'white'}; font-weight: bold; text-align: center;">${formatValue(value)}</td>`;
+                    return `<td style="color: ${value < 0 ? 'red' : 'white'}; font-weight: bold; text-align: center;">${(value)}</td>`;
                 };
 
                 // Add this helper function at the top of your code
@@ -451,9 +451,9 @@
                     { label: 'Net Export (MWh)', value1: Math.round(cummUptoPreBlkSLPP1.P9), value2: Math.round(cummUptoPreBlkSLPP2.P9), value3: Math.round(cummUptoPreBlkSLPP.P8) },
                     { label: 'Exp./SG%', value1: formatValue(cummUptoPreBlkSLPP1.P7), value2: formatValue(cummUptoPreBlkSLPP2.P7), value3: formatValue(cummUptoPreBlkSLPP.P9) },
                     { label: 'DS (MW)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P10), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P10), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P10) },
-                    { label: 'Total DS (Rs)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P13), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P13), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P11) },
-                    { label: 'Fuel Cost (Rs)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P14), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P14), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P12) },
-                    { label: 'Net Gain / Loss (Rs)', value1: formatToTwoDecimals(cummUptoPreBlkSLPP1.P15), value2: formatToTwoDecimals(cummUptoPreBlkSLPP2.P15), value3: formatToTwoDecimals(cummUptoPreBlkSLPP.P13) },
+                    { label: 'Total DS (Rs)', value1: (cummUptoPreBlkSLPP1.P13), value2: (cummUptoPreBlkSLPP2.P13), value3: (cummUptoPreBlkSLPP.P11) },
+                    { label: 'Fuel Cost (Rs)', value1: (cummUptoPreBlkSLPP1.P14), value2: (cummUptoPreBlkSLPP2.P14), value3: (cummUptoPreBlkSLPP.P12) },
+                    { label: 'Net Gain / Loss (Rs)', value1: (cummUptoPreBlkSLPP1.P15), value2: (cummUptoPreBlkSLPP2.P15), value3: (cummUptoPreBlkSLPP.P13) },
                 ];
 
                 cummUptoPreBlkRows.forEach(row => {
@@ -470,9 +470,9 @@
                 // Reactive Power Section
                 const cummUptoPreBlkREACTIVEPOWERRows = [
                     { label: 'MVAr (<97% of V)', value1: formatValue(cummUptoPreBlkSLPP1.P17), value2: formatValue(cummUptoPreBlkSLPP2.P17), value3: formatValue(cummUptoPreBlkSLPP.P14) },
-                    { label: 'Gain / Loss (Rs)', value1: formatValue(cummUptoPreBlkSLPP1.P18), value2: formatValue(cummUptoPreBlkSLPP2.P18), value3: formatValue(cummUptoPreBlkSLPP.P15) },
+                    { label: 'Gain / Loss (Rs)', value1: (cummUptoPreBlkSLPP1.P18), value2: (cummUptoPreBlkSLPP2.P18), value3: (cummUptoPreBlkSLPP.P15) },
                     { label: 'MVAr (>103% of V)', value1: formatValue(cummUptoPreBlkSLPP1.P19), value2: formatValue(cummUptoPreBlkSLPP2.P19), value3: formatValue(cummUptoPreBlkSLPP.P16) },
-                    { label: 'Gain / Loss (Rs)', value1: formatValue(cummUptoPreBlkSLPP1.P20), value2: formatValue(cummUptoPreBlkSLPP2.P20), value3: formatValue(cummUptoPreBlkSLPP.P17) },
+                    { label: 'Gain / Loss (Rs)', value1: (cummUptoPreBlkSLPP1.P20), value2: (cummUptoPreBlkSLPP2.P20), value3: (cummUptoPreBlkSLPP.P17) },
                 ];
 
                 cummUptoPreBlkREACTIVEPOWERRows.forEach(row => {
