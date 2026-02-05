@@ -18,6 +18,7 @@ nav ul {
     gap: 10px;
 }
 
+
 nav ul li a {
     display: inline-block;
     padding: 8px 16px;
@@ -75,7 +76,7 @@ nav ul li a.active {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     font-weight: bold;
@@ -103,7 +104,7 @@ td {
     font-weight: bold;
     color: #00e600;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     font-weight: bold;
@@ -134,7 +135,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -157,7 +158,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -180,7 +181,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -204,7 +205,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -228,7 +229,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -259,7 +260,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -283,7 +284,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -312,7 +313,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -342,7 +343,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -367,7 +368,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -393,7 +394,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
     border: 2px solid white;
@@ -420,7 +421,7 @@ td {
     font-weight: bold;
     color: #f79546;
     background-color: #1a1a1a;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-align: left;
     padding: 5px;
 }
@@ -438,7 +439,7 @@ td {
     color: #f79546;
     padding: 10px;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     border-left: none;
@@ -450,13 +451,13 @@ td {
 .normal-rate-label {
     color: #de00de;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .normal-rate-value {
     color: #00ff00;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -465,7 +466,7 @@ td {
     color: #de00de;
     padding: 12px;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     border-left: none;
@@ -478,7 +479,7 @@ td {
     color: #de00de;
     padding: 10px;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     border-left: none;
@@ -491,7 +492,7 @@ td {
     color: #de00de;
     padding: 10px;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     border-left: none;
@@ -524,14 +525,14 @@ td {
     color: #de00de;
     font-weight: bold;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .Current-Block-Subheading {
     color: #de00de;
     font-weight: bold;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
 }
@@ -540,7 +541,7 @@ td {
     text-align: center;
     color: #de00de;
     padding: 10px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
@@ -550,14 +551,14 @@ td {
     color: #de00de;
     font-weight: bold;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .Misnew-Cumulatives-Subheading {
     color: #de00de;
     text-align: center;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
 }
@@ -566,21 +567,21 @@ td {
     color: #de00de;
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Real-Time-Generation-Data-row-value {
     color: #00e800;
     font-weight: bold;
     text-align: "center";
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .Real-Time-Generation-Data-Subheader {
     color: #00eaea;
     font-weight: bold;
     text-align: "center";
-    font-size: 1.1rem;
+    font-size: 1rem;
 
 }
 
@@ -588,12 +589,12 @@ td {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    border-top: 2px solid white;
+    /* border-top: 2px solid white;
     border-bottom: 2px solid white;
-    border-left: 2px solid white;
+    border-left: 2px solid white; */
     padding: 10px;
-    background-color: #333;
-    font-size: 1.1rem;
+    /* background-color: #333; */
+    font-size: 0.9rem;
 }
 
 .Real-Time-Generation-Data-APC {
@@ -601,33 +602,33 @@ td {
     color: #f79546;
     padding: 5px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .previousBlock-label {
     color: #00eaea;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 0;
 }
 
 .previousBlock-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 
 }
 
 .currentBlock-label {
     color: #e7e700;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .currentBlock-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .previous-block-status-label {
@@ -640,6 +641,7 @@ td {
 .table-cell {
     font-weight: bold;
     text-align: center;
+    font-size: 0.9rem;
 }
 
 .average-row {
@@ -672,102 +674,102 @@ td {
 .fuelCost-label {
     color: #de00de;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .fuelCost-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Next-Block-table-label {
     color: #00eaea;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .next-block-label {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .cumulative-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .cumulative-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .real-time-generation-data-label {
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .real-time-exp-imp-data-row-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .real-time-exp-imp-data-row-value {
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .real-time-value-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .real-time-value-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-Current-block-label {
     color: #e7e700;
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-Current-block-value {
     color: #00e800;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-Cumm-Upto-PreBlk-row-label {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-Cumm-Upto-PreBlk-row-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-ACP-Fuel-Cost-Frequency-row-label {
@@ -781,7 +783,7 @@ td {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-Normal-Rate-row-label {
@@ -801,7 +803,7 @@ td {
 /* Media Query for 1024x768 resolution */
 @media screen and (max-width: 1024px) and (max-height: 768px) {
     body {
-        font-size: 1rem;
+        font-size: 0.9rem;
         /* Adjust base font size for 1024x768 */
     }
 
@@ -1027,7 +1029,7 @@ td {
         color: #de00de;
         font-weight: bold;
         text-align: center;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .Misnew-Cumulatives-Heading {
@@ -1120,11 +1122,11 @@ td {
         color: #00eaea;
         font-weight: bold;
         text-align: left;
-        border-top: 2px solid white;
-        border-bottom: 2px solid white;
-        border-left: 2px solid white;
+        /* border-top: 2px solid white; */
+        /* border-bottom: 2px solid white;
+        border-left: 2px solid white; */
         padding: 2px;
-        background-color: #333;
+        /* background-color: #333; */
         font-size: 0.7rem;
 
     }

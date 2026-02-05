@@ -78,7 +78,7 @@
                 </table>
 
                 <table class="Fuel-Cost-Frequency-table">
-                    <caption class="Fuel-Cost-Frequency-caption">Fuel Cost / Frequency</caption>
+                    <caption class="Fuel-Cost-Frequency-caption">Fuel Cost / URS Rate</caption>
                     <tbody>
 
                     </tbody>
@@ -94,7 +94,7 @@
                             <th class="Next-Block-table-label">SLDC.SG<br></th>
                             <th class="Next-Block-table-label">IEX.SG<br></th>
                             <th class="Next-Block-table-label">Tot.SG<br></th>
-                            <th class="Next-Block-table-label">USR<br></th>
+                            <th class="Next-Block-table-label">URS<br></th>
                         </tr>
                         </tr>
                     </thead>
@@ -294,6 +294,7 @@
                 ];
 
                 const integerLabels = [
+                    'DS Rate (Rs)',
                     'DS (Rs)',
                     'DS beyond ± 10% (Rs)',
                     'Total DS (Rs)',
@@ -320,9 +321,25 @@
                     }
                     // Define the labels that should have red text when their value is negative
                     const labelsWithRedText = [
-                        'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
-                        'DS beyond ± 10% (Rs)', 'Total DS (Rs)',
-                        'Fuel Cost (Rs)', 'Net Gain / Loss (Rs)'
+                        'Dec.Capacity (MW)',
+                        'Sch.Generation (MW)',
+                        'Backing Down (MW)',
+                        'Exp./SG%',
+                        'Avg.Frequency (Hz)',
+                        'Avg.Export (MW)',
+                        'DS (MW)',
+                        'DS Rate (Rs)',
+                        'DS (Rs)',
+                        'DS beyond ± 10% (Rs)',
+                        'Total DS (Rs)',
+                        'Fuel Cost (Rs)',
+                        'Net Gain /  Loss (Rs)',
+                        'Avg. MVARh',
+                        'MVARh (<97% of V)',
+                        'Gain / Loss (Rs)',
+                        'MVARh (>103% of V)',
+                        'Gain / Loss (Rs)',
+                        'Net Gain / Loss (Rs)'
                     ];
 
                     tr.innerHTML = `
@@ -371,6 +388,7 @@
                 ];
 
                 const integerLabelss = [
+                    'DS Rate (Rs)',
                     'DS (Rs)',
                     'DS beyond ± 10% (Rs)',
                     'Total DS (Rs)',
@@ -398,9 +416,25 @@
 
                     // Labels that should have red text when the value is negative
                     const labelsWithRedText = [
-                        'DS (MW)', 'DS Rate (Rs)', 'DS (Rs)',
-                        'DS beyond ± 10% (Rs)', 'Total DS (Rs)',
-                        'Fuel Cost (Rs)', 'Net Gain / Loss (Rs)'
+                        'Dec.Capacity (MW)',
+                        'Sch.Generation (MW)',
+                        'Backing Down (MW)',
+                        'Exp./SG%',
+                        'Avg.Frequency (Hz)',
+                        'Avg.Export (MW)',
+                        'DS (MW)',
+                        'DS Rate (Rs)',
+                        'DS (Rs)',
+                        'DS beyond ± 10% (Rs)',
+                        'Total DS (Rs)',
+                        'Fuel Cost (Rs)',
+                        'Net Gain /  Loss (Rs)',
+                        'Avg. MVARh',
+                        'MVARh (<97% of V)',
+                        'Gain / Loss (Rs)',
+                        'MVARh (>103% of V)',
+                        'Gain / Loss (Rs)',
+                        'Net Gain / Loss (Rs)'
                     ];
 
                     tr.innerHTML = `
@@ -480,15 +514,17 @@
                     const tr = document.createElement('tr');
 
                     // Function to determine text color class
-                    const getColorClass = (value, column) => {
+                    const getColorClass = (value) => {
                         const numValue = parseFloat(value);
-                        if (row.blockNo === 'Average') {
-                            return isNaN(numValue) ? 'text-green' : (numValue < 0 ? 'text-red' : 'text-green');
-                        }
-                        // Apply red color only for Dev.MW when value is negative
-                        if (column === 'devMW' && !isNaN(numValue) && numValue < 0) {
+                        // If it's a valid number and negative, return red
+                        if (!isNaN(numValue) && numValue < 0) {
                             return 'text-red';
                         }
+                        // For Average row, positive values are green
+                        if (row.blockNo === 'Average') {
+                            return 'text-green';
+                        }
+                        // Default color for regular rows
                         return 'text-white';
                     };
 
@@ -509,7 +545,7 @@
                 // Populate the Fuel Cost / Frequency table
                 const fuelCostFrequencyRows = [
                     { label: 'Fuel Cost (Rs./kWh)', value: previousBlockStatus.P35 },
-                    { label: 'ACP (RS./kWh)', value: previousBlockStatus.P36 },
+                    { label: 'URS Rate (RS./kWh)', value: previousBlockStatus.P36 },
                 ];
 
                 fuelCostFrequencyRows.forEach(row => {
@@ -604,15 +640,29 @@
                     nextBlockRows.forEach((row, index) => {
                         console.log(`Row ${index + 1}:`, row);
                         const tr = document.createElement('tr');
-                        tr.innerHTML = `
-            <td class="next-block-label">${row.blockNo}</td>
-            <td class="next-block-label">${row.blockTime}</td>
-            <td class="next-block-label">${formatValue(row.dcMW)}</td>
-            <td class="next-block-label">${formatValue(row.sldcSG)}</td>
-            <td class="next-block-label">${formatValue(row.iexSG)}</td>
-            <td class="next-block-label">${formatValue(row.totalSG)}</td>
-            <td class="next-block-label">${formatValue(row.surplusPower)}</td>
-        `;
+
+                        // Check if this is the 5th block (index 4)
+                        if (index === 4) {
+                            tr.innerHTML = `
+                <td class="next-block-label" style="color: #00ff00;">${row.blockNo}</td>
+                <td class="next-block-label" style="color: #00ff00;">${row.blockTime}</td>
+                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.dcMW)}</td>
+                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.sldcSG)}</td>
+                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.iexSG)}</td>
+                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.totalSG)}</td>
+                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.surplusPower)}</td>
+            `;
+                        } else {
+                            tr.innerHTML = `
+                <td class="next-block-label">${row.blockNo}</td>
+                <td class="next-block-label">${row.blockTime}</td>
+                <td class="next-block-label">${formatValue(row.dcMW)}</td>
+                <td class="next-block-label">${formatValue(row.sldcSG)}</td>
+                <td class="next-block-label">${formatValue(row.iexSG)}</td>
+                <td class="next-block-label">${formatValue(row.totalSG)}</td>
+                <td class="next-block-label">${formatValue(row.surplusPower)}</td>
+            `;
+                        }
                         nextBlockTbody.appendChild(tr);
                     });
                 } else {
@@ -627,12 +677,21 @@
                     { label: 'Grid Voltage (%)', value: previousBlockStatus.P56 },
                 ];
 
+                const getColorClass = (value) => {
+                    const numValue = parseFloat(value);
+                    // If it's a valid number and negative, return red class
+                    if (!isNaN(numValue) && numValue < 0) {
+                        return 'text-red';
+                    }
+                    // Default color
+                    return 'normal-rate-value';
+                };
+
                 normalRateRows.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td class="normal-rate-label">${row.label}</td>
-                <td class="normal-rate-value">${formatValue(row.value)}</td>
-            `;
+        <td class="normal-rate-label">${row.label}</td>
+<td class="${getColorClass(row.value)} normal-rate-value">${formatValue(row.value)}</td>    `;
                     normalRateTbody.appendChild(tr);
                 });
 
@@ -677,7 +736,6 @@
                 ];
 
                 const integerRsLabels = [
-                    'DS Rate (Rs)',
                     'DS (Rs)',
                     'DS beyond ± 10% (Rs)',
                     'Total DS (Rs)',
@@ -689,12 +747,29 @@
 
                 // Labels that require red color when values are negative
                 const labelsWithRedColor = [
+                    'Station Gen (MWh)',
+                    'Gen-1 (MWh)',
+                    'Gen-2 (MWh)',
+                    'DC (MWh)',
+                    'SG - SLDC (MWh)',
+                    'SG - IEX (MWh)',
+                    'SG - Total (MWh)',
+                    'Backing Down (MWh)',
+                    'Exp./SG%',
+                    'Avg. Frequency (Hz)',
+                    'Net Export (MWh)',
                     'DS (MW)',
                     'DS (Rs)',
                     'DS beyond ± 10% (Rs)',
                     'Total DS (Rs)',
                     'Fuel Cost (Rs)',
-                    'Net Gain / Loss (Rs)'
+                    'Net Gain / Loss (Rs)',
+                    'Net Exp (MVARh)',
+                    'MVARh (<97% of V)',
+                    'Gain / Loss (Rs)',
+                    'MVARh (>103% of V)',
+                    'Gain / Loss (Rs)',
+                    'Net Gain / Loss (Rs) '
                 ];
 
                 // Function to format value based on label
