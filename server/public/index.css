@@ -439,7 +439,21 @@ td {
     color: #f79546;
     padding: 10px;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-radius: 5px;
+
+}
+
+.reactive-power-headers {
+    text-align: center;
+    color: #f79546;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1rem;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     border-left: none;
@@ -589,11 +603,7 @@ td {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    /* border-top: 2px solid white;
-    border-bottom: 2px solid white;
-    border-left: 2px solid white; */
     padding: 10px;
-    /* background-color: #333; */
     font-size: 0.9rem;
 }
 
@@ -717,11 +727,17 @@ td {
     font-size: 0.9rem;
 }
 
+.real-time-generation-data-value {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.9rem
+}
+
 .real-time-exp-imp-data-row-label {
     color: #00eaea;
     font-weight: bold;
-    text-align: left;
-    font-size: 0.9rem;
+    text-align: center;
 }
 
 .real-time-exp-imp-data-row-value {
@@ -776,7 +792,7 @@ td {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 .Misnew-ACP-Fuel-Cost-Frequency-row-value {
@@ -790,14 +806,23 @@ td {
     color: #00eaea;
     font-weight: bold;
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .Misnew-Normal-Rate-row-value {
     color: white;
     font-weight: bold;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.header-row-1 th {
+    color: #00eaea;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: none;
+    font-size: 1rem"
+
 }
 
 /* Media Query for 1024x768 resolution */
@@ -878,7 +903,21 @@ td {
     .reactive-power-header {
         text-align: center;
         color: #f79546;
-        padding: 2px;
+        padding: 1px;
+        font-weight: bold;
+        font-size: 0.7rem;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        border-left: none;
+        border-right: none;
+        border-radius: 2px;
+
+    }
+
+    .reactive-power-headers {
+        text-align: center;
+        color: #f79546;
+        padding: 0px;
         font-weight: bold;
         font-size: 0.7rem;
         border-top: 1px solid white;
@@ -1060,7 +1099,7 @@ td {
     .tabless-containerss {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 270px;
+        grid-template-rows: 200px;
         margin: 20px;
         gap: 5px;
         margin-top: 3%;
@@ -1094,10 +1133,10 @@ td {
         /* Remove the top border for alignment with caption */
     }
 
-    .Real-Time-Generation-Data-table {
+    /* .Real-Time-Generation-Data-table {
         height: 250px;
 
-    }
+    } */
 
     .Real-Time-Generation-Data-row-label {
         font-size: 0.7rem;
@@ -1122,11 +1161,8 @@ td {
         color: #00eaea;
         font-weight: bold;
         text-align: left;
-        /* border-top: 2px solid white; */
-        /* border-bottom: 2px solid white;
-        border-left: 2px solid white; */
         padding: 2px;
-        /* background-color: #333; */
+
         font-size: 0.7rem;
 
     }
@@ -1213,7 +1249,7 @@ td {
     .real-time-exp-imp-data-row-label {
         color: #00eaea;
         font-weight: bold;
-        text-align: left;
+        text-align: center;
         font-size: 0.7rem;
     }
 
@@ -1283,20 +1319,34 @@ td {
         color: #00eaea;
         font-weight: bold;
         text-align: left;
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 
     .Misnew-Normal-Rate-row-value {
         color: white;
         font-weight: bold;
         text-align: center;
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 
     .Real-Time-tbody,
     tr {
         line-height: 50%;
     }
+
+    .table-cell {
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .real-time-generation-data-value {
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.7rem
+    }
+
 
 
 }

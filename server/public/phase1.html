@@ -22,10 +22,10 @@
         <div class="header-container">
             <h2 class="table-title">GIPCL-SLPP Phase-1 DSM Monitoring</h2>
             <span class="date-time">
-                Date: <span id="current-date" style="padding: 0 15px;"></span>
-                Time: <span id="current-time" style="padding: 0 15px;"></span>
-                DC Rev.No: <span id="dc-rev" style="padding: 0 15px;"></span>
-                SG Rev.No: <span id="sg-rev" style="padding: 0 15px;"></span>
+                Date: <span id="current-date" style="padding: 0 15px; color: red;"></span>
+                Time: <span id="current-time" style="padding: 0 15px; color: red;"></span>
+                DC Rev.No: <span id="dc-rev" style="padding: 0 15px; color: red;"></span>
+                SG Rev.No: <span id="sg-rev" style="padding: 0 15px; color: red;"></span>
             </span>
         </div>
         <div class="tables-container">
@@ -49,25 +49,25 @@
                     <caption class="Previous-Block-Status-caption">Previous Block Status</caption>
                     <thead>
                         <tr class="header-row-1">
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 Blk.No<br>
                             </th>
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 Frequ<br>
                             </th>
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 SLDC.SG<br>
                             </th>
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 IEX.SG<br>
                             </th>
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 Tot.SG<br>
                             </th>
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 Net.Exp<br>
                             </th>
-                            <th style="color: #00eaea; font-weight: bold; text-align: center; border-bottom: none; font-size: 1rem">
+                            <th>
                                 Dev<br>
                             </th>
                         </tr>
@@ -127,13 +127,13 @@
                     Real Time Generation Data
                 </caption>
                 <thead>
-                    <tr>
+                    <tr class="">
                         <th></th>
-                        <th style="color: #00eaea; font-weight: bold; text-align: center; font-size: 1rem">MW</th>
-                        <th style="color: #00eaea; font-weight: bold; text-align: center; font-size: 1rem">MVAR</th>
-                        <th style="color: #00eaea; font-weight: bold; text-align: center; font-size: 1rem">VOLT (kV)</th>
-                        <th style="color: #00eaea; font-weight: bold; text-align: center; font-size: 1rem">AMP (I)</th>
-                        <th style="color: #00eaea; font-weight: bold; text-align: center; font-size: 1rem">PF</th>
+                        <th class="real-time-exp-imp-data-row-label">MW</th>
+                        <th class="real-time-exp-imp-data-row-label">MVAR</th>
+                        <th class="real-time-exp-imp-data-row-label">VOLT (kV)</th>
+                        <th class="real-time-exp-imp-data-row-label">AMP (I)</th>
+                        <th class="real-time-exp-imp-data-row-label">PF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,12 +148,12 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th style="color: #00ffff; font-weight: bold; text-align: center; font-size: 1rem">EXP MW</th>
-                        <th style="color: #00ffff; font-weight: bold; text-align: center; font-size: 1rem">IMP MW</th>
-                        <th style="color: #00ffff; font-weight: bold; text-align: center; font-size: 1rem">MVAR</th>
-                        <th style="color: #00ffff; font-weight: bold; text-align: center; font-size: 1rem">VOLT (kV)</th>
-                        <th style="color: #00ffff; font-weight: bold; text-align: center; font-size: 1rem">AMP (I)</th>
-                        <th style="color: #00ffff; font-weight: bold; text-align: center; font-size: 1rem">PF</th>
+                        <th class="real-time-exp-imp-data-row-label">EXP MW</th>
+                        <th class="real-time-exp-imp-data-row-label">IMP MW</th>
+                        <th class="real-time-exp-imp-data-row-label">MVAR</th>
+                        <th class="real-time-exp-imp-data-row-label">VOLT (kV)
+                        <th class="real-time-exp-imp-data-row-label">AMP (I)</th>
+                        <th class="real-time-exp-imp-data-row-label">PF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -293,7 +293,6 @@
                 ];
 
                 const integerLabels = [
-                    'DS Rate (Rs)',
                     'DS (Rs)',
                     'DS beyond ± 10% (Rs)',
                     'Total DS (Rs)',
@@ -360,7 +359,7 @@
                     if (row.label === 'Net Gain /  Loss (Rs)') {
                         const reactivePowerRow = document.createElement('tr');
                         reactivePowerRow.innerHTML = `
-            <th colspan="3" class="reactive-power-header">Reactive Power</th>
+            <th colspan="3" class="reactive-power-headers">Reactive Power</th>
         `;
                         previousBlockTbody.appendChild(reactivePowerRow);
                     }
@@ -393,7 +392,6 @@
                 ];
 
                 const integerLabelss = [
-                    'DS Rate (Rs)',
                     'DS (Rs)',
                     'DS beyond ± 10% (Rs)',
                     'Total DS (Rs)',
@@ -858,11 +856,11 @@
                         } else {
                             tr.innerHTML = `
                 <td class="real-time-generation-data-label" style="color: ${labelColor}; font-weight: bold;">${row.label}</td>
-                <td style="color: white; font-weight: bold; text-align: center; font-size: 0.9rem">${formatValue(row.mw)}</td>
-                <td style="color: white; font-weight: bold; text-align: center; font-size: 0.9rem">${formatValue(row.mvar)}</td>
-                <td style="color: white; font-weight: bold; text-align: center; font-size: 0.9rem">${formatValue(row.volt)}</td>
-                <td style="color: white; font-weight: bold; text-align: center; font-size: 0.9rem">${Math.round(row.amp)}</td>
-                <td style="color: white; font-weight: bold; text-align: center; font-size: 0.9rem">${formatValue(row.pf)}</td>
+                <td class="real-time-generation-data-value">${formatValue(row.mw)}</td>
+                <td class="real-time-generation-data-value">${formatValue(row.mvar)}</td>
+                <td class="real-time-generation-data-value">${formatValue(row.volt)}</td>
+                <td class="real-time-generation-data-value">${Math.round(row.amp)}</td>
+                <td class="real-time-generation-data-value">${formatValue(row.pf)}</td>
             `;
                         }
 
