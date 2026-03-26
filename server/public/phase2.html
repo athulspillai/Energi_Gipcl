@@ -558,8 +558,6 @@
                 if (next8blocksData) {
                     console.log('Full next8blocksData object:', next8blocksData);
 
-                    // Pattern: Sequential groups of 6 properties per block
-                    // Block 1: P1-P6, Block 2: P7-P12, Block 3: P13-P18, etc.
                     const nextBlockRows = [
                         {
                             blockNo: next8blocksData.P1,
@@ -567,8 +565,8 @@
                             dcMW: next8blocksData.P3,
                             sldcSG: next8blocksData.P49,
                             totalSG: next8blocksData.P4,
-                            iexSG: next8blocksData.P5,          // IEX SG column
-                            surplusPower: next8blocksData.P6    // SurplusPower column
+                            iexSG: next8blocksData.P5,
+                            surplusPower: next8blocksData.P6
                         },
                         {
                             blockNo: next8blocksData.P7,
@@ -639,28 +637,35 @@
                         console.log(`Row ${index + 1}:`, row);
                         const tr = document.createElement('tr');
 
-                        // Check if this is the 5th block (index 4)
-                        if (index === 4) {
-                            tr.innerHTML = `
-                <td class="next-block-label" style="color: #00ff00;">${row.blockNo}</td>
-                <td class="next-block-label" style="color: #00ff00;">${row.blockTime}</td>
-                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.dcMW)}</td>
-                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.sldcSG)}</td>
-                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.iexSG)}</td>
-                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.totalSG)}</td>
-                <td class="next-block-label" style="color: #00ff00;">${formatValue(row.surplusPower)}</td>
-            `;
-                        } else {
-                            tr.innerHTML = `
-                <td class="next-block-label">${row.blockNo}</td>
-                <td class="next-block-label">${row.blockTime}</td>
-                <td class="next-block-label">${formatValue(row.dcMW)}</td>
-                <td class="next-block-label">${formatValue(row.sldcSG)}</td>
-                <td class="next-block-label">${formatValue(row.iexSG)}</td>
-                <td class="next-block-label">${formatValue(row.totalSG)}</td>
-                <td class="next-block-label">${formatValue(row.surplusPower)}</td>
-            `;
-                        }
+                        const isFifthBlock = index === 4; // 5th block (0-based index)
+
+                        // Helper function to format value with color
+                        const getColoredValue = (value) => {
+                            if (value === null || value === undefined || value === '') {
+                                return formatValue(value);
+                            }
+
+                            const numValue = parseFloat(value);
+                            let colorStyle = '';
+
+                            if (!isNaN(numValue) && numValue < 0) {
+                                colorStyle = ' style="color: #ff4444;"';  // Red for negative
+                            }
+
+                            return `<span${colorStyle}>${formatValue(value)}</span>`;
+                        };
+
+                        let rowHTML = `
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${row.blockNo}</td>
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${row.blockTime}</td>
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${getColoredValue(row.dcMW)}</td>
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${getColoredValue(row.sldcSG)}</td>
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${getColoredValue(row.iexSG)}</td>
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${getColoredValue(row.totalSG)}</td>
+            <td class="next-block-label"${isFifthBlock ? ' style="color: #00ff00;"' : ''}>${getColoredValue(row.surplusPower)}</td>
+        `;
+
+                        tr.innerHTML = rowHTML;
                         nextBlockTbody.appendChild(tr);
                     });
                 } else {
